@@ -15,7 +15,7 @@
               <div class="sidebar-brand">
                 <a href="#">
                   <img
-                    src="http://denuncia.vitoriahospitalar.com.br/dist/logo.png?343b76e5e3d8038a9c8e00e61671535e"
+                    src="https://unisales.br/wp-content/uploads/2020/03/logo.svg"
                     alt="VHLogo"
                     width="150px"
                   />

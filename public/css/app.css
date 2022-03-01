@@ -741,8 +741,8 @@ html {
 .sidebar-brand {
     height: 65px;
     position: relative;
-    background: #212531;
-    background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+    background: #ffffff;
+    background: linear-gradient(to right bottom, #ffffff 50%, #e7e7e7 50%);
     padding-top: 1em;
 }
 

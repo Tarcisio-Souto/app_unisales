@@ -16,6 +16,14 @@ class CreateAssets extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->boolean('status');
+            $table->unsignedBigInteger('fk_category');
+            $table->unsignedBigInteger('fk_instituition');
+
+            $table->foreign('fk_category')->references('id')->on('categories');
+            $table->foreign('fk_instituition')->references('id')->on('instituitions');
+
         });
     }
 

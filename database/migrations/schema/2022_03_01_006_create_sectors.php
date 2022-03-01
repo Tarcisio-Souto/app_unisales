@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInstituition extends Migration
+class CreateSectors extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateInstituition extends Migration
      */
     public function up()
     {
-        Schema::create('instituition', function (Blueprint $table) {
+        Schema::create('sectors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->unsignedBigInteger('fk_department');
+
+            $table->foreign('fk_department')->references('id')->on('departments');
+
         });
     }
 
@@ -26,6 +31,6 @@ class CreateInstituition extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instituition');
+        Schema::dropIfExists('sectors');
     }
 }

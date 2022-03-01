@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoans extends Migration
+class CreateDepartments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateLoans extends Migration
      */
     public function up()
     {
-        Schema::create('loans', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->unsignedBigInteger('fk_instituition');
+
+            $table->foreign('fk_instituition')->references('id')->on('instituitions');
+
         });
     }
 
@@ -26,6 +31,6 @@ class CreateLoans extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loans');
+        Schema::dropIfExists('departments');
     }
 }

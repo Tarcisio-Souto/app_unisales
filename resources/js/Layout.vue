@@ -25,70 +25,57 @@
             <li><Link href="/"><i class="fas fa-home icons-menu"></i>Início </Link></li>
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown"
-                ><i class="fas fa-users icons-menu"></i>Colaboradores</a
+                ><i class="fas fa-users icons-menu"></i>Usuários</a
               >
-              <ul class="dropdown-menu animated fadeInLeft" role="menu">
+              <ul class="dropdown-menu animated fadeInLeft menuUsuarios" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="/colaborador/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="/colaborador/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="#/users/register"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="#/users/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
               </ul>
             </li>
 
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown"
-                ><i class="fas fa-building icons-menu"></i>Empresas</a
+                ><i class="fas fa-building icons-menu"></i>Instituições</a
               >
-              <ul class="dropdown-menu animated fadeInLeft" role="menu">
+              <ul class="dropdown-menu animated fadeInLeft menuInstituicoes" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="/empresas/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="/empresas/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="#/instituitions/register"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="#/instituitions/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="#/departments/list"><i class="fas fa-solid fa-briefcase icons-menu"></i>Departamentos</Link></li>
+                <li><Link href="#/sectors/list"><i class="fas fa-solid fa-door-closed icons-menu"></i>Setores</Link></li>
+                <li><Link href="#/positions/list"><i class="fas fa-solid fa-sitemap icons-menu"></i>Cargos</Link></li>
               </ul>
             </li>
 
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown"
-                ><i class="fas fa-car icons-menu"></i>Veículos</a
+                ><i class="fas fa-car icons-menu"></i>Bens</a
               >
-              <ul class="dropdown-menu animated fadeInLeft menuVeiculos" role="menu">
+              <ul class="dropdown-menu animated fadeInLeft menuBens" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="/veiculos/cadastro"><i class="fas fa-plus-circle icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="/veiculos/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
-                <li><Link href="/fabricantes/lista"><i class="fas fa-industry icons-menu"></i>Fabricantes</Link></li>
-                <li><Link href="/multas/lista"><i class="fas fa-traffic-light icons-menu"></i>Multas</Link></li>              
-                <li><Link href="/servicos/lista"><i class="fas fa-cogs icons-menu"></i>Serviços</Link></li>
-                <li><Link href="/manutencoes/lista"><i class="fas fa-tools icons-menu"></i>Manutenções</Link></li>
-                <li><Link href="/abastecimentos/lista"><i class="fas fa-gas-pump icons-menu"></i>Abastecimentos</Link></li>
-                <li><Link href="/trocas-oleo/lista"><i class="fas fa-oil-can icons-menu"></i>Trocas de Óleo</Link></li>
-                
+                <li><Link href="#/assets/register"><i class="fas fa-plus-circle icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="#/assets/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="#/categories/list"><i class="fas fa-duotone fa-layer-group icons-menu"></i>Categorias</Link></li>
+                <li><Link href="#/assets/occurrences"><i class="fas fa-solid fa-exclamation icons-menu"></i>Ocorrências</Link></li>                
               </ul>
             </li>
            
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown"
-                ><i class="fas fa-wrench icons-menu"></i>Oficinas</a
+                ><i class="fas fa-wrench icons-menu"></i>Locações</a
               >
-              <ul class="dropdown-menu animated fadeInLeft" role="menu">
+              <ul class="dropdown-menu animated fadeInLeft menuLocacoes" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="/oficinas/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="/oficinas/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="#/loans/register"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="#/loans/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="#/loans/reserves"><i class="fas fa-solid fa-calendar icons-menu"></i>Reservas</Link></li>
               </ul>
             </li>
 
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown"
-                ><i class="fas fa-gas-pump icons-menu"></i>Postos</a
-              >
-              <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="/postos/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="/postos/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
-              </ul>
-            </li>
-
-
-            <li><Link href="#sobre"><i class="fas fa-info-circle icons-menu"></i>Sobre</Link></li>            
+            <li><Link href="#/sobre"><i class="fas fa-info-circle icons-menu"></i>Sobre</Link></li>            
             <li>
-              <Link href="/logout"><i class="fas fa-sign-out-alt icons-menu"></i>Sair</Link>
+              <Link href="#/logout"><i class="fas fa-sign-out-alt icons-menu"></i>Sair</Link>
             </li>
           </ul>
         </nav>

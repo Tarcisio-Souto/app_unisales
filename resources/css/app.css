@@ -596,11 +596,38 @@ a[href*="#contact"]::before {
     height: 8px;
 }
 
-.menuVeiculos {
+.menuUsuarios {
     text-align: left !important;
 }
 
-.menuVeiculos i {
+.menuUsuarios i {
+    position: relative;
+    margin-left: 20px !important;
+}
+
+.menuInstituicoes {
+    text-align: left !important;
+}
+
+.menuInstituicoes i {
+    position: relative;
+    margin-left: 20px !important;
+}
+
+.menuBens {
+    text-align: left !important;
+}
+
+.menuBens i {
+    position: relative;
+    margin-left: 20px !important;
+}
+
+.menuLocacoes {
+    text-align: left !important;
+}
+
+.menuLocacoes i {
     position: relative;
     margin-left: 20px !important;
 }

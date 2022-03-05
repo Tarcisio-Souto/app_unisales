@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //\App\Models\States::factory()->create();
-
+        
         $this->call(StatesSeeder::class);
+        \App\Models\Addresses::factory()->create();
 
     }
 }

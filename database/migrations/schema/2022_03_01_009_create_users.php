@@ -27,7 +27,7 @@ class CreateUsers extends Migration
             $table->boolean('status');
             $table->string('race');           
             $table->string('password');
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('fk_department');
             $table->unsignedBigInteger('fk_address');

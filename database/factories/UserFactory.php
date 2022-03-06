@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -14,6 +15,9 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+
+        $key = '!@#$';
+
         return [
             'name' => 'Tarcisio Souto',
             'email' => 'tss.labsi@gmail.com',
@@ -25,7 +29,7 @@ class UserFactory extends Factory
             'fk_department' => '2',
             'fk_position' => '5',
             'genre' => 'm',
-            'password' => '!@#$',
+            'password' => Hash::make($key),
             'path_photo' => '',
             'phone_number' => '(10) 10101-1010',
             'fk_race' => '3',

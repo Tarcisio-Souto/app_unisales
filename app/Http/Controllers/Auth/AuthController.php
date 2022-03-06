@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,7 @@ class AuthController extends Controller
         $user = User::where('cpf', $req->cpf)->first();
 
         if ($user != null) {
-            $confirm = Hash::check($req->senha, $user->senha);
+            $confirm = Hash::check($req->senha, $user->password);
         } else {
             $confirm = false;
         }

@@ -19,6 +19,16 @@ class DatabaseSeeder extends Seeder
         
         \App\Models\Addresses::factory()->create();
         $this->call(PositionsSeeder::class);
+        \App\Models\Instituitions::factory()->create();
+        $this->call(DepartmentsSeeder::class);
+        $this->call(SectorsSeeder::class);
+        $this->call(CategoriesSeeder::class);
+        $this->call(ManufacturersSeeder::class);
+        $this->call(ModelsSeeder::class);
+        $this->call(AssetsSeeder::class);
+        $this->call(RacesSeeder::class);
+        \App\Models\User::factory()->create();
+        $this->call(LoansSeeder::class);
 
     }
 }

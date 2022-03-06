@@ -23,19 +23,20 @@ class CreateUsers extends Migration
             $table->string('genre');
             $table->string('email');
             $table->string('phone_number');
-            $table->string('path_photo');
-            $table->boolean('status');
-            $table->string('race');           
+            $table->string('path_photo')->nullable();
+            $table->boolean('status');         
             $table->string('password');
             $table->rememberToken()->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('fk_department');
             $table->unsignedBigInteger('fk_address');
-            $table->unsignedBigInteger('fk_positions');
+            $table->unsignedBigInteger('fk_position');
+            $table->unsignedBigInteger('fk_race');
 
             $table->foreign('fk_department')->references('id')->on('departments');
             $table->foreign('fk_address')->references('id')->on('addresses');
-            $table->foreign('fk_positions')->references('id')->on('positions');
+            $table->foreign('fk_position')->references('id')->on('positions');
+            $table->foreign('fk_race')->references('id')->on('races');
 
 
         });

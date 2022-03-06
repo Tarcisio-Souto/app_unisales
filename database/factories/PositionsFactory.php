@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\States;
+use App\Models\Positions;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class StatesFactory extends Factory
+class PositionsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -13,12 +13,11 @@ class StatesFactory extends Factory
      * @return array
      */
 
-    protected $model = States::class;
+    protected $model = Positions::class;
 
 
     public function definition()
     {
-
         return [true];
     }
 }

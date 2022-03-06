@@ -14,8 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
+        // utilizar a notação abaixo para insert via seed:
         $this->call(StatesSeeder::class);
+        
         \App\Models\Addresses::factory()->create();
+        $this->call(PositionsSeeder::class);
 
     }
 }

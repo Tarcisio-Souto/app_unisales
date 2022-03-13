@@ -12,5 +12,4 @@ Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('auth', [AuthController::class, 'auth'])->name('auth.user');  
 
 
-
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');

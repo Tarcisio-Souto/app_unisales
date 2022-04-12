@@ -7,7 +7,7 @@
               <div class="col-md-6" align="center">
                 <img src="https://unisales.br/wp-content/uploads/2020/03/logo.svg" alt="UniSales Logo">
                 <h5>Locação de Recursos Institucionais</h5>
-
+                
                 <div class="error-login" v-for="(erro, login) in errors" :key="login">
                   <div v-if="login == 'login'">
                     <span v-if="erro != ''" class="errors-label-notification">
@@ -15,7 +15,6 @@
                     </span>
                   </div>
                 </div>
-
 
               </div>
               <div class="col-md-3"></div>

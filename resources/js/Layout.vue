@@ -5,6 +5,7 @@
         <div class="overlay"></div>
 
         <!-- Sidebar -->
+
         <nav
           class="navbar navbar-inverse fixed-top"
           id="sidebar-wrapper"
@@ -29,7 +30,7 @@
               >
               <ul class="dropdown-menu animated fadeInLeft menuUsuarios" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="#/users/register"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="/usuario/registrar"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
                 <li><Link href="#/users/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
               </ul>
             </li>
@@ -63,7 +64,7 @@
            
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown"
-                ><i class="fas fa-wrench icons-menu"></i>Locações</a
+                ><i class="fas fa-handshake icons-menu"></i>Locações</a
               >
               <ul class="dropdown-menu animated fadeInLeft menuLocacoes" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->

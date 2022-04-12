@@ -2855,16 +2855,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2883,13 +2873,12 @@ __webpack_require__.r(__webpack_exports__);
         cpf: null,
         idade: null,
         sexo: null,
-        email_part: null,
-        email_inst: null,
+        email: null,
         empresa: null,
         cargo: null,
         data_adm: null,
+        matricula: matricula,
         celular: null,
-        tel_rec: null,
         senha: null,
         confirm_senha: null,
         logradouro: null,
@@ -2906,14 +2895,12 @@ __webpack_require__.r(__webpack_exports__);
       var aux_nome = this.form.nome;
       var aux_cpf = this.form.cpf;
       var aux_idade = this.form.idade;
-      var aux_sexo = this.form.senha;
-      var aux_email_part = this.form.email_part;
-      var aux_email_inst = this.form.email_inst;
+      var aux_matricula = this.form.matricula;
+      var aux_email = this.form.email;
       var aux_empresa = this.form.empresa;
       var aux_cargo = this.form.cargo;
       var aux_data_adm = this.form.data_adm;
       var aux_celular = this.form.celular;
-      var aux_tel_rec = this.form.tel_rec;
       var aux_senha = this.form.senha;
       var aux_confirm_senha = this.form.confirm_senha;
       var aux_logradouro = this.form.logradouro;
@@ -2922,7 +2909,7 @@ __webpack_require__.r(__webpack_exports__);
       var aux_cidade = this.form.cidade;
       var aux_estado = this.form.estado;
       var aux_cep = this.form.cep;
-      this.$inertia.post("/colaborador/registrar", this.form, {
+      this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,
@@ -2949,14 +2936,13 @@ __webpack_require__.r(__webpack_exports__);
           $("#inputBairro").val(aux_bairro);
           $("#inputNumero").val(aux_numero);
           $("#inputLogradouro").val(aux_logradouro);
-          $("#inputTelRecado").val(aux_tel_rec);
           $("#inputCelular").val(aux_celular);
           $("#inputDataAdmissao").val(aux_data_adm);
           $("#inputCargo").val(aux_cargo);
+          $("#inputMatricula").val(aux_matricula);
           $("#inputEmpresa").val(aux_empresa);
           $("#inputIdade").val(aux_idade);
-          $("#inputEmailInst").val(aux_email_part);
-          $("#inputEmail").val(aux_email_inst);
+          $("#inputEmail").val(aux_email);
         }
       });
     }
@@ -26557,7 +26543,7 @@ var render = function () {
       _c("div", { staticClass: "col-md-4" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4", attrs: { align: "center" } }, [
-        _c("h4", [_vm._v("Cadastro de Colaborador")]),
+        _c("h4", [_vm._v("Cadastro de Usuário")]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }),
@@ -26883,7 +26869,7 @@ var render = function () {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputEmail" } }, [
-                  _vm._v("Email Particular"),
+                  _vm._v("Email"),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
@@ -26898,8 +26884,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.email_part,
-                        expression: "form.email_part",
+                        value: _vm.form.email,
+                        expression: "form.email",
                       },
                     ],
                     staticClass: "form-control",
@@ -26907,66 +26893,21 @@ var render = function () {
                       type: "email",
                       id: "inputEmail",
                       placeholder: "Email",
-                      name: "txtEmailPart",
+                      name: "txtEmail",
                     },
-                    domProps: { value: _vm.form.email_part },
+                    domProps: { value: _vm.form.email },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "email_part", $event.target.value)
+                        _vm.$set(_vm.form, "email", $event.target.value)
                       },
                     },
                   }),
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputEmailInst" } }, [
-                  _vm._v("Email Institucional"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _c("div", { staticClass: "input-group-prepend" }, [
-                    _c("div", { staticClass: "input-group-text" }, [
-                      _vm._v("@"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.email_inst,
-                        expression: "form.email_inst",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "email",
-                      id: "inputEmailInst",
-                      placeholder: "Email",
-                      name: "txtEmailInst",
-                    },
-                    domProps: { value: _vm.form.email_inst },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "email_inst", $event.target.value)
-                      },
-                    },
-                  }),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputEmpresa" } }, [
                   _vm._v("Empresa"),
@@ -27035,7 +26976,11 @@ var render = function () {
                   ),
                 ]),
               ]),
-              _vm._v(" "),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputCargo" } }, [
                   _vm._v("Cargo"),
@@ -27149,12 +27094,8 @@ var render = function () {
                   }),
                 ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputCelular" } }, [
                   _vm._v("Celular"),
                 ]),
@@ -27200,16 +27141,18 @@ var render = function () {
                   }),
                 ]),
               ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "inputTelRecado" } }, [
-                  _vm._v("Telefone (recado)"),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputMatricula" } }, [
+                  _vm._v("Matrícula"),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _c("div", { staticClass: "input-group-prepend" }, [
                     _c("div", { staticClass: "input-group-text" }, [
-                      _c("i", { staticClass: "fas fa-phone" }),
+                      _c("i", { staticClass: "fas fa-mobile-alt" }),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -27218,36 +27161,32 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.tel_rec,
-                        expression: "form.tel_rec",
-                      },
-                      {
-                        name: "mask",
-                        rawName: "v-mask",
-                        value: ["(##) #####-####", "(##) ####-####"],
-                        expression: "['(##) #####-####', '(##) ####-####']",
+                        value: _vm.form.celular,
+                        expression: "form.celular",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputTelRecado",
-                      placeholder: "Telefone (recado)",
-                      name: "txtTelRec",
+                      id: "inputMatricula",
+                      placeholder: "Matrícula",
+                      name: "txtMatricula",
                     },
-                    domProps: { value: _vm.form.tel_rec },
+                    domProps: { value: _vm.form.celular },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "tel_rec", $event.target.value)
+                        _vm.$set(_vm.form, "celular", $event.target.value)
                       },
                     },
                   }),
                 ]),
               ]),
             ]),
+            _vm._v(" "),
+            _c("br"),
             _vm._v(" "),
             _c("br"),
             _c("br"),

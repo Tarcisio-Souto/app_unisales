@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Cadastro de Colaborador</h4>
+        <h4>Cadastro de Usuário</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -127,7 +127,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="inputEmail">Email Particular</label>
+              <label for="inputEmail">Email</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">@</div>
@@ -137,30 +137,12 @@
                   id="inputEmail"
                   class="form-control"
                   placeholder="Email"
-                  v-model="form.email_part"
-                  name="txtEmailPart"
+                  v-model="form.email"
+                  name="txtEmail"
                 />
               </div>
             </div>
-            <div class="col-md-4">
-              <label for="inputEmailInst">Email Institucional</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">@</div>
-                </div>
-                <input
-                  type="email"
-                  id="inputEmailInst"
-                  class="form-control"
-                  placeholder="Email"
-                  v-model="form.email_inst"
-                  name="txtEmailInst"
-                />
-              </div>
-            </div>
-          </div>
-          <br />
-          <div class="row">
+
             <div class="col-md-4">
               <label for="inputEmpresa">Empresa</label>
               <div class="input-group">
@@ -186,6 +168,12 @@
                 </select>
               </div>
             </div>
+
+
+          </div>
+          <br />
+          <div class="row">
+            
             <div class="col-md-4">
               <label for="inputCargo">Cargo</label>
               <div class="input-group">
@@ -230,10 +218,8 @@
                 />
               </div>
             </div>
-          </div>
-          <br />
-          <div class="row">
-            <div class="col-md-6">
+
+            <div class="col-md-4">
               <label for="inputCelular">Celular</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -252,26 +238,30 @@
                 />
               </div>
             </div>
-            <div class="col-md-6">
-              <label for="inputTelRecado">Telefone (recado)</label>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="inputMatricula">Matrícula</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-mobile-alt"></i>
                   </div>
                 </div>
                 <input
                   type="text"
-                  id="inputTelRecado"
+                  id="inputMatricula"
                   class="form-control"
-                  placeholder="Telefone (recado)"
-                  v-model="form.tel_rec"
-                  name="txtTelRec"
-                  v-mask="['(##) #####-####', '(##) ####-####']"
+                  placeholder="Matrícula"
+                  v-model="form.celular"
+                  name="txtMatricula"
                 />
               </div>
             </div>
           </div>
+
+          <br />
           <br /><br />
           <h4><span style="font-weight: bold">Endereço</span></h4>
           <hr />
@@ -509,13 +499,12 @@ export default {
         cpf: null,
         idade: null,
         sexo: null,
-        email_part: null,
-        email_inst: null,
+        email: null,
         empresa: null,
         cargo: null,
         data_adm: null,
+        matricula,
         celular: null,
-        tel_rec: null,
         senha: null,
         confirm_senha: null,
         logradouro: null,
@@ -532,14 +521,12 @@ export default {
       var aux_nome = this.form.nome;
       var aux_cpf = this.form.cpf;
       var aux_idade = this.form.idade;
-      var aux_sexo = this.form.senha;
-      var aux_email_part = this.form.email_part;
-      var aux_email_inst = this.form.email_inst;
+      var aux_matricula = this.form.matricula;
+      var aux_email = this.form.email;
       var aux_empresa = this.form.empresa;
       var aux_cargo = this.form.cargo;
       var aux_data_adm = this.form.data_adm;
       var aux_celular = this.form.celular;
-      var aux_tel_rec = this.form.tel_rec;
       var aux_senha = this.form.senha;
       var aux_confirm_senha = this.form.confirm_senha;
       var aux_logradouro = this.form.logradouro;
@@ -548,7 +535,7 @@ export default {
       var aux_cidade = this.form.cidade;
       var aux_estado = this.form.estado;
       var aux_cep = this.form.cep;
-      this.$inertia.post("/colaborador/registrar", this.form, {
+      this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,
@@ -579,14 +566,13 @@ export default {
           $("#inputBairro").val(aux_bairro);
           $("#inputNumero").val(aux_numero);
           $("#inputLogradouro").val(aux_logradouro);
-          $("#inputTelRecado").val(aux_tel_rec);
           $("#inputCelular").val(aux_celular);
           $("#inputDataAdmissao").val(aux_data_adm);
           $("#inputCargo").val(aux_cargo);
+          $("#inputMatricula").val(aux_matricula);
           $("#inputEmpresa").val(aux_empresa);
           $("#inputIdade").val(aux_idade);
-          $("#inputEmailInst").val(aux_email_part);
-          $("#inputEmail").val(aux_email_inst);
+          $("#inputEmail").val(aux_email);
           
         },
       });

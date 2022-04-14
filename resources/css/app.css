@@ -548,6 +548,14 @@ a[href*="#contact"]::before {
     margin-right: 10px;
 }
 
+.login-background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://ius-sdb.com/wp-content/uploads/2020/01/vitoria8.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
 .box-login {
     position: relative;
     top: 100px;
@@ -555,10 +563,20 @@ a[href*="#contact"]::before {
     height: 450px;
 }
 
+.box-login img {
+    filter: brightness(160%);
+}
+
 .box-login h5 {
     text-align: center;
     position: relative;
     top: 45px;
+    color: white;
+}
+
+.box-login label {
+    font-weight: 400;
+    color: white;
 }
 
 .form-login {

@@ -2855,6 +2855,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2877,7 +2878,7 @@ __webpack_require__.r(__webpack_exports__);
         empresa: null,
         cargo: null,
         data_adm: null,
-        matricula: matricula,
+        matricula: null,
         celular: null,
         senha: null,
         confirm_senha: null,
@@ -26383,7 +26384,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
+  return _c("div", { staticClass: "row login-background" }, [
     _c("div", { staticClass: "col-md-4" }),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-4 box-login" }, [
@@ -27143,6 +27144,8 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputMatricula" } }, [
@@ -27161,8 +27164,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.celular,
-                        expression: "form.celular",
+                        value: _vm.form.matricula,
+                        expression: "form.matricula",
                       },
                     ],
                     staticClass: "form-control",
@@ -27172,13 +27175,13 @@ var render = function () {
                       placeholder: "Matrícula",
                       name: "txtMatricula",
                     },
-                    domProps: { value: _vm.form.celular },
+                    domProps: { value: _vm.form.matricula },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "celular", $event.target.value)
+                        _vm.$set(_vm.form, "matricula", $event.target.value)
                       },
                     },
                   }),

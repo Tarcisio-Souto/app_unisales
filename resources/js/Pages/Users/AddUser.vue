@@ -239,6 +239,7 @@
               </div>
             </div>
           </div>
+          <br>
 
           <div class="row">
             <div class="col-md-4">
@@ -254,7 +255,7 @@
                   id="inputMatricula"
                   class="form-control"
                   placeholder="Matrícula"
-                  v-model="form.celular"
+                  v-model="form.matricula"
                   name="txtMatricula"
                 />
               </div>
@@ -503,7 +504,7 @@ export default {
         empresa: null,
         cargo: null,
         data_adm: null,
-        matricula,
+        matricula: null,
         celular: null,
         senha: null,
         confirm_senha: null,

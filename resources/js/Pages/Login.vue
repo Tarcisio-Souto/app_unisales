@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row login-background">
         <div class="col-md-4"></div>
         <div class="col-md-4 box-login">
             <div class="row">

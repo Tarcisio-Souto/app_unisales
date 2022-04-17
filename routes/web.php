@@ -18,4 +18,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('aut
 
 /* Usuários */
 
-Route::get('/usuario/registrar', [UsersController::class, 'create'])->name('/user/register')->middleware('auth');
+Route::get('/usuario/cadastro', [UsersController::class, 'create'])->name('usuario.cadastro')->middleware('auth');
+Route::post('/usuario/registrar', [UsersController::class, 'store'])->middleware('auth');
+
+

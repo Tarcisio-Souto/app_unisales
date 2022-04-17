@@ -466,6 +466,10 @@ a[href*="#contact"]::before {
     font-size: 15px;
 }
 
+.backg-color {
+    background-color: rgb(197, 197, 197);
+}
+
 .btnCadastrar {
     position: relative;
     float: right;

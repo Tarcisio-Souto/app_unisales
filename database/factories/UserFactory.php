@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'cpf' => '101.101.101-10', // password
             'remember_token' => Str::random(100),
             'dt_birth' => '1993-02-26',
+            'dt_adm' => '2021-09-13',
             'fk_address' => '1',
             'fk_department' => '2',
             'fk_position' => '5',

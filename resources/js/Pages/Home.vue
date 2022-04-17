@@ -4,6 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <H1>Bem-vindo!</H1>
+        <p>{{user}}</p>
       </div>
     </div>
   </layout>

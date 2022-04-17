@@ -20,6 +20,7 @@ class CreateUsers extends Migration
             $table->string('registration');
             $table->string('age');
             $table->date('dt_birth');
+            $table->date('dt_adm');
             $table->string('genre');
             $table->string('email');
             $table->string('phone_number');

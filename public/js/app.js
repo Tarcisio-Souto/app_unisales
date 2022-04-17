@@ -2272,6 +2272,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2864,52 +2865,52 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     errors: Object,
-    cargos: Array,
-    empresas: Array
+    positions: Array,
+    instituitions: Array
   },
   data: function data() {
     return {
       form: {
-        nome: null,
+        name: null,
         cpf: null,
-        idade: null,
-        sexo: null,
+        age: null,
+        genre: null,
         email: null,
-        empresa: null,
-        cargo: null,
-        data_adm: null,
-        matricula: null,
-        celular: null,
-        senha: null,
-        confirm_senha: null,
-        logradouro: null,
-        numero: null,
-        bairro: null,
-        cidade: null,
-        estado: null,
-        cep: null
+        instituition: null,
+        position: null,
+        dt_adm: null,
+        register: null,
+        phone_number: null,
+        password: null,
+        confirm_password: null,
+        street: null,
+        number: null,
+        district: null,
+        city: null,
+        state: null,
+        zipcode: null
       }
     };
   },
   methods: {
     sendForm: function sendForm() {
-      var aux_nome = this.form.nome;
+      var aux_name = this.form.name;
       var aux_cpf = this.form.cpf;
-      var aux_idade = this.form.idade;
-      var aux_matricula = this.form.matricula;
+      var aux_age = this.form.age;
+      var aux_register = this.form.register;
       var aux_email = this.form.email;
-      var aux_empresa = this.form.empresa;
-      var aux_cargo = this.form.cargo;
-      var aux_data_adm = this.form.data_adm;
-      var aux_celular = this.form.celular;
-      var aux_senha = this.form.senha;
-      var aux_confirm_senha = this.form.confirm_senha;
-      var aux_logradouro = this.form.logradouro;
-      var aux_numero = this.form.numero;
-      var aux_bairro = this.form.bairro;
-      var aux_cidade = this.form.cidade;
-      var aux_estado = this.form.estado;
-      var aux_cep = this.form.cep;
+      var aux_instituition = this.form.instituition;
+      var aux_position = this.form.position;
+      var aux_dt_adm = this.form.dt_adm;
+      var aux_phone_number = this.form.phone_number;
+      var aux_password = this.form.password;
+      var aux_confirm_password = this.form.confirm_password;
+      var aux_street = this.form.street;
+      var aux_number = this.form.number;
+      var aux_district = this.form.district;
+      var aux_city = this.form.city;
+      var aux_state = this.form.state;
+      var aux_zipcode = this.form.zipcode;
       this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
@@ -2927,22 +2928,22 @@ __webpack_require__.r(__webpack_exports__);
           $('#formAddUser').reset();
         },
         onError: function onError() {
-          $("#inputNome").val(aux_nome);
+          $("#inputName").val(aux_name);
           $("#inputCpf").val(aux_cpf);
-          $("#inputConfirmSenha").val(aux_confirm_senha);
-          $("#inputSenha").val(aux_senha);
-          $("#inputCep").val(aux_cep);
-          $("#inputEstado").val(aux_estado);
-          $("#inputCidade").val(aux_cidade);
-          $("#inputBairro").val(aux_bairro);
-          $("#inputNumero").val(aux_numero);
-          $("#inputLogradouro").val(aux_logradouro);
-          $("#inputCelular").val(aux_celular);
-          $("#inputDataAdmissao").val(aux_data_adm);
-          $("#inputCargo").val(aux_cargo);
-          $("#inputMatricula").val(aux_matricula);
-          $("#inputEmpresa").val(aux_empresa);
-          $("#inputIdade").val(aux_idade);
+          $("#inputConfirmSenha").val(aux_confirm_password);
+          $("#inputSenha").val(aux_password);
+          $("#inputCep").val(aux_zipcode);
+          $("#inputEstado").val(aux_state);
+          $("#inputCage").val(aux_city);
+          $("#inputBairro").val(aux_district);
+          $("#inputNumero").val(aux_number);
+          $("#inputLogradouro").val(aux_street);
+          $("#InputPhoneNumber").val(aux_phone_number);
+          $("#inputDataAdmissao").val(aux_dt_adm);
+          $("#inputPosition").val(aux_position);
+          $("#inputMatricula").val(aux_register);
+          $("#inputEmpresa").val(aux_instituition);
+          $("#inputAge").val(aux_age);
           $("#inputEmail").val(aux_email);
         }
       });
@@ -25957,7 +25958,7 @@ var render = function () {
                     _c(
                       "li",
                       [
-                        _c("Link", { attrs: { href: "/usuario/registrar" } }, [
+                        _c("Link", { attrs: { href: "/usuario/cadastro" } }, [
                           _c("i", {
                             staticClass: "fas fa-user-plus icons-menu",
                           }),
@@ -26353,7 +26354,11 @@ var render = function () {
         _c(
           "div",
           { staticClass: "col-md-12" },
-          [_c("H1", [_vm._v("Bem-vindo!")])],
+          [
+            _c("H1", [_vm._v("Bem-vindo!")]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(_vm.user))]),
+          ],
           1
         ),
       ]),
@@ -26539,7 +26544,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", [
+  return _c("layout", { staticClass: "backg-color" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-4" }),
       _vm._v(" "),
@@ -26579,7 +26584,7 @@ var render = function () {
                 "div",
                 { staticClass: "col-md-4" },
                 [
-                  _c("label", { attrs: { for: "inputNome" } }, [
+                  _c("label", { attrs: { for: "inputName" } }, [
                     _vm._v("Nome"),
                   ]),
                   _vm._v(" "),
@@ -26595,31 +26600,31 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.nome,
-                          expression: "form.nome",
+                          value: _vm.form.name,
+                          expression: "form.name",
                         },
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
-                        id: "inputNome",
+                        id: "inputName",
                         placeholder: "Nome",
                       },
-                      domProps: { value: _vm.form.nome },
+                      domProps: { value: _vm.form.name },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "nome", $event.target.value)
+                          _vm.$set(_vm.form, "name", $event.target.value)
                         },
                       },
                     }),
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.errors, function (erro, nome) {
-                    return _c("div", { key: nome }, [
-                      nome == "nome"
+                  _vm._l(_vm.errors, function (erro, name) {
+                    return _c("div", { key: name }, [
+                      name == "name"
                         ? _c("div", [
                             erro != ""
                               ? _c(
@@ -26713,7 +26718,7 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputSexo" } }, [_vm._v("Sexo")]),
+                _c("label", { attrs: { for: "InputGenre" } }, [_vm._v("Sexo")]),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-md-12" }, [
@@ -26723,21 +26728,21 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.sexo,
-                            expression: "form.sexo",
+                            value: _vm.form.genre,
+                            expression: "form.genre",
                           },
                         ],
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
                           name: "exampleRadios",
-                          id: "inputSexo1",
+                          id: "InputGenre1",
                           value: "m",
                         },
-                        domProps: { checked: _vm._q(_vm.form.sexo, "m") },
+                        domProps: { checked: _vm._q(_vm.form.genre, "m") },
                         on: {
                           change: function ($event) {
-                            return _vm.$set(_vm.form, "sexo", "m")
+                            return _vm.$set(_vm.form, "genre", "m")
                           },
                         },
                       }),
@@ -26762,21 +26767,21 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.form.sexo,
-                            expression: "form.sexo",
+                            value: _vm.form.genre,
+                            expression: "form.genre",
                           },
                         ],
                         staticClass: "form-check-input",
                         attrs: {
                           type: "radio",
                           name: "exampleRadios",
-                          id: "inputSexo2",
+                          id: "InputGenre2",
                           value: "f",
                         },
-                        domProps: { checked: _vm._q(_vm.form.sexo, "f") },
+                        domProps: { checked: _vm._q(_vm.form.genre, "f") },
                         on: {
                           change: function ($event) {
-                            return _vm.$set(_vm.form, "sexo", "f")
+                            return _vm.$set(_vm.form, "genre", "f")
                           },
                         },
                       }),
@@ -26806,7 +26811,7 @@ var render = function () {
                 "div",
                 { staticClass: "col-md-4" },
                 [
-                  _c("label", { attrs: { for: "inputIdade" } }, [
+                  _c("label", { attrs: { for: "inputAge" } }, [
                     _vm._v("Idade"),
                   ]),
                   _vm._v(" "),
@@ -26822,31 +26827,31 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.idade,
-                          expression: "form.idade",
+                          value: _vm.form.age,
+                          expression: "form.age",
                         },
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
-                        id: "inputIdade",
+                        id: "inputAge",
                         placeholder: "Idade",
                       },
-                      domProps: { value: _vm.form.idade },
+                      domProps: { value: _vm.form.age },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "idade", $event.target.value)
+                          _vm.$set(_vm.form, "age", $event.target.value)
                         },
                       },
                     }),
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.errors, function (erro, idade) {
-                    return _c("div", { key: idade }, [
-                      idade == "idade"
+                  _vm._l(_vm.errors, function (erro, age) {
+                    return _c("div", { key: age }, [
+                      age == "age"
                         ? _c("div", [
                             erro != ""
                               ? _c(
@@ -26910,8 +26915,8 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputEmpresa" } }, [
-                  _vm._v("Empresa"),
+                _c("label", { attrs: { for: "inputInstituition" } }, [
+                  _vm._v("Instituição"),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
@@ -26928,12 +26933,15 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.empresa,
-                          expression: "form.empresa",
+                          value: _vm.form.instituition,
+                          expression: "form.instituition",
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { id: "inputEmpresa", name: "txtEmpresa" },
+                      attrs: {
+                        id: "inputInstituition",
+                        name: "txtinstituition",
+                      },
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -26946,7 +26954,7 @@ var render = function () {
                             })
                           _vm.$set(
                             _vm.form,
-                            "empresa",
+                            "instituition",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -26956,17 +26964,20 @@ var render = function () {
                     },
                     [
                       _c("option", { attrs: { selected: "" } }, [
-                        _vm._v("Selecione a empresa"),
+                        _vm._v("Selecione a instituition"),
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.empresas, function (empresa) {
+                      _vm._l(_vm.instituitions, function (instituition) {
                         return _c(
                           "option",
-                          { key: empresa.id, domProps: { value: empresa.id } },
+                          {
+                            key: instituition.id,
+                            domProps: { value: instituition.id },
+                          },
                           [
                             _vm._v(
                               "\n                  " +
-                                _vm._s(empresa.nome) +
+                                _vm._s(instituition.social_name) +
                                 "\n                "
                             ),
                           ]
@@ -26983,7 +26994,7 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputCargo" } }, [
+                _c("label", { attrs: { for: "inputPosition" } }, [
                   _vm._v("Cargo"),
                 ]),
                 _vm._v(" "),
@@ -27001,12 +27012,12 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.cargo,
-                          expression: "form.cargo",
+                          value: _vm.form.position,
+                          expression: "form.position",
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { id: "inputCargo", name: "txtCargo" },
+                      attrs: { id: "inputPosition", name: "txtPosition" },
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -27019,7 +27030,7 @@ var render = function () {
                             })
                           _vm.$set(
                             _vm.form,
-                            "cargo",
+                            "position",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -27028,16 +27039,21 @@ var render = function () {
                       },
                     },
                     [
-                      _c("option", [_vm._v("Selecione o cargo")]),
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Selecione o cargo"),
+                      ]),
                       _vm._v(" "),
-                      _vm._l(_vm.cargos, function (cargo) {
+                      _vm._l(_vm.positions, function (position) {
                         return _c(
                           "option",
-                          { key: cargo.id, domProps: { value: cargo.id } },
+                          {
+                            key: position.id,
+                            domProps: { value: position.id },
+                          },
                           [
                             _vm._v(
                               "\n                  " +
-                                _vm._s(cargo.nome) +
+                                _vm._s(position.name) +
                                 "\n                "
                             ),
                           ]
@@ -27050,7 +27066,7 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputDataAdmissao" } }, [
+                _c("label", { attrs: { for: "inputDtAdmission" } }, [
                   _vm._v("Data de Admissão"),
                 ]),
                 _vm._v(" "),
@@ -27066,8 +27082,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.data_adm,
-                        expression: "form.data_adm",
+                        value: _vm.form.dt_adm,
+                        expression: "form.dt_adm",
                       },
                       {
                         name: "mask",
@@ -27080,16 +27096,16 @@ var render = function () {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputDataAdmissao",
-                      name: "txtDataAdm",
+                      id: "inputDtAdmission",
+                      name: "txtDtAdm",
                     },
-                    domProps: { value: _vm.form.data_adm },
+                    domProps: { value: _vm.form.dt_adm },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "data_adm", $event.target.value)
+                        _vm.$set(_vm.form, "dt_adm", $event.target.value)
                       },
                     },
                   }),
@@ -27097,8 +27113,8 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputCelular" } }, [
-                  _vm._v("Celular"),
+                _c("label", { attrs: { for: "InputPhoneNumber" } }, [
+                  _vm._v("Telefone"),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
@@ -27113,8 +27129,8 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.celular,
-                        expression: "form.celular",
+                        value: _vm.form.phone_number,
+                        expression: "form.phone_number",
                       },
                       {
                         name: "mask",
@@ -27126,17 +27142,17 @@ var render = function () {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputCelular",
-                      placeholder: "Celular",
-                      name: "txtCelular",
+                      id: "InputPhoneNumber",
+                      placeholder: "Telefone",
+                      name: "txtPhoneNumber",
                     },
-                    domProps: { value: _vm.form.celular },
+                    domProps: { value: _vm.form.phone_number },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "celular", $event.target.value)
+                        _vm.$set(_vm.form, "phone_number", $event.target.value)
                       },
                     },
                   }),
@@ -27148,7 +27164,7 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputMatricula" } }, [
+                _c("label", { attrs: { for: "inputRegister" } }, [
                   _vm._v("Matrícula"),
                 ]),
                 _vm._v(" "),
@@ -27164,24 +27180,24 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.matricula,
-                        expression: "form.matricula",
+                        value: _vm.form.register,
+                        expression: "form.register",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputMatricula",
+                      id: "inputRegister",
                       placeholder: "Matrícula",
-                      name: "txtMatricula",
+                      name: "txtRegister",
                     },
-                    domProps: { value: _vm.form.matricula },
+                    domProps: { value: _vm.form.register },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "matricula", $event.target.value)
+                        _vm.$set(_vm.form, "register", $event.target.value)
                       },
                     },
                   }),
@@ -27206,7 +27222,7 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "inputLogradouro" } }, [
+                _c("label", { attrs: { for: "inputStreet" } }, [
                   _vm._v("Logradouro"),
                 ]),
                 _vm._v(" "),
@@ -27222,24 +27238,24 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.logradouro,
-                        expression: "form.logradouro",
+                        value: _vm.form.street,
+                        expression: "form.street",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputLogradouro",
+                      id: "inputStreet",
                       placeholder: "Rua, Av., Rod.",
-                      name: "txtLogradouro",
+                      name: "txtStreet",
                     },
-                    domProps: { value: _vm.form.logradouro },
+                    domProps: { value: _vm.form.street },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "logradouro", $event.target.value)
+                        _vm.$set(_vm.form, "street", $event.target.value)
                       },
                     },
                   }),
@@ -27247,7 +27263,7 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
-                _c("label", { attrs: { for: "inputNumero" } }, [
+                _c("label", { attrs: { for: "inputNumber" } }, [
                   _vm._v("Número"),
                 ]),
                 _vm._v(" "),
@@ -27263,24 +27279,24 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.numero,
-                        expression: "form.numero",
+                        value: _vm.form.number,
+                        expression: "form.number",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputNumero",
+                      id: "inputNumber",
                       placeholder: "Número",
-                      name: "txtNumero",
+                      name: "txtNumber",
                     },
-                    domProps: { value: _vm.form.numero },
+                    domProps: { value: _vm.form.number },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "numero", $event.target.value)
+                        _vm.$set(_vm.form, "number", $event.target.value)
                       },
                     },
                   }),
@@ -27288,7 +27304,7 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputBairro" } }, [
+                _c("label", { attrs: { for: "inputDistrict" } }, [
                   _vm._v("Bairro"),
                 ]),
                 _vm._v(" "),
@@ -27304,24 +27320,24 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.bairro,
-                        expression: "form.bairro",
+                        value: _vm.form.district,
+                        expression: "form.district",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputBairro",
+                      id: "inputDistrict",
                       placeholder: "Informe o bairro",
-                      name: "txtBairro",
+                      name: "txtDistrict",
                     },
-                    domProps: { value: _vm.form.bairro },
+                    domProps: { value: _vm.form.district },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "bairro", $event.target.value)
+                        _vm.$set(_vm.form, "district", $event.target.value)
                       },
                     },
                   }),
@@ -27333,7 +27349,7 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputCidade" } }, [
+                _c("label", { attrs: { for: "inputCity" } }, [
                   _vm._v("Cidade"),
                 ]),
                 _vm._v(" "),
@@ -27349,24 +27365,24 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.cidade,
-                        expression: "form.cidade",
+                        value: _vm.form.city,
+                        expression: "form.city",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputCidade",
+                      id: "inputCity",
                       placeholder: "Informe a cidade",
-                      name: "txtCidade",
+                      name: "txtCity",
                     },
-                    domProps: { value: _vm.form.cidade },
+                    domProps: { value: _vm.form.city },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "cidade", $event.target.value)
+                        _vm.$set(_vm.form, "city", $event.target.value)
                       },
                     },
                   }),
@@ -27374,7 +27390,7 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputEstado" } }, [
+                _c("label", { attrs: { for: "inputState" } }, [
                   _vm._v("Estado"),
                 ]),
                 _vm._v(" "),
@@ -27392,12 +27408,12 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.estado,
-                          expression: "form.estado",
+                          value: _vm.form.state,
+                          expression: "form.state",
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { id: "inputEstado", name: "txtEstado" },
+                      attrs: { id: "inputState", name: "txtState" },
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -27410,7 +27426,7 @@ var render = function () {
                             })
                           _vm.$set(
                             _vm.form,
-                            "estado",
+                            "state",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -27546,7 +27562,9 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputCep" } }, [_vm._v("CEP")]),
+                _c("label", { attrs: { for: "inputZipCode" } }, [
+                  _vm._v("CEP"),
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _c("div", { staticClass: "input-group-prepend" }, [
@@ -27560,24 +27578,24 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.cep,
-                        expression: "form.cep",
+                        value: _vm.form.zipcode,
+                        expression: "form.zipcode",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "inputCep",
+                      id: "inputZipCode",
                       placeholder: "Informe o CEP",
-                      name: "txtCep",
+                      name: "txtZipCode",
                     },
-                    domProps: { value: _vm.form.cep },
+                    domProps: { value: _vm.form.zipcode },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "cep", $event.target.value)
+                        _vm.$set(_vm.form, "zipcode", $event.target.value)
                       },
                     },
                   }),
@@ -27601,7 +27619,7 @@ var render = function () {
                 "div",
                 { staticClass: "col-md-6" },
                 [
-                  _c("label", { attrs: { for: "inputSenha" } }, [
+                  _c("label", { attrs: { for: "inputPassword" } }, [
                     _vm._v("Senha Inicial"),
                   ]),
                   _vm._v(" "),
@@ -27617,32 +27635,32 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.senha,
-                          expression: "form.senha",
+                          value: _vm.form.password,
+                          expression: "form.password",
                         },
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "password",
-                        id: "inputSenha",
+                        id: "inputPassword",
                         placeholder: "Senha",
-                        name: "txtSenha",
+                        name: "txtPassword",
                       },
-                      domProps: { value: _vm.form.senha },
+                      domProps: { value: _vm.form.password },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "senha", $event.target.value)
+                          _vm.$set(_vm.form, "password", $event.target.value)
                         },
                       },
                     }),
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.errors, function (erro, senha) {
-                    return _c("div", { key: senha }, [
-                      senha == "senha"
+                  _vm._l(_vm.errors, function (erro, password) {
+                    return _c("div", { key: password }, [
+                      password == "password"
                         ? _c("div", [
                             erro != ""
                               ? _c(
@@ -27668,7 +27686,7 @@ var render = function () {
                 "div",
                 { staticClass: "col-md-6" },
                 [
-                  _c("label", { attrs: { for: "inputConfirmSenha" } }, [
+                  _c("label", { attrs: { for: "inputConfirmPassword" } }, [
                     _vm._v("Confirme a senha"),
                   ]),
                   _vm._v(" "),
@@ -27684,18 +27702,18 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.confirm_senha,
-                          expression: "form.confirm_senha",
+                          value: _vm.form.confirm_password,
+                          expression: "form.confirm_password",
                         },
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "password",
-                        id: "inputConfirmSenha",
+                        id: "inputConfirmPassword",
                         placeholder: "Senha",
-                        name: "txtConfirmSenha",
+                        name: "txtConfirmPassword",
                       },
-                      domProps: { value: _vm.form.confirm_senha },
+                      domProps: { value: _vm.form.confirm_password },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
@@ -27703,7 +27721,7 @@ var render = function () {
                           }
                           _vm.$set(
                             _vm.form,
-                            "confirm_senha",
+                            "confirm_password",
                             $event.target.value
                           )
                         },
@@ -27711,9 +27729,9 @@ var render = function () {
                     }),
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.errors, function (erro, senha) {
-                    return _c("div", { key: senha }, [
-                      senha == "senha"
+                  _vm._l(_vm.errors, function (erro, password) {
+                    return _c("div", { key: password }, [
+                      password == "password"
                         ? _c("div", [
                             erro != ""
                               ? _c(

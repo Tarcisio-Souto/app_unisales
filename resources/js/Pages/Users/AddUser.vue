@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <layout class="backg-color">
 
     <div class="row">
       <div class="col-md-4"></div>
@@ -17,7 +17,7 @@
           <h4><span style="font-weight: bold">Dados Pessoais</span></h4>
           <div class="row">
             <div class="col-md-4">
-              <label for="inputNome">Nome</label>
+              <label for="inputName">Nome</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -26,14 +26,14 @@
                 </div>
                 <input
                   type="text"
-                  id="inputNome"
+                  id="inputName"
                   class="form-control"
                   placeholder="Nome"
-                  v-model="form.nome"
+                  v-model="form.name"
                 />
               </div>
-              <div v-for="(erro, nome) in errors" :key="nome">
-                <div v-if="nome == 'nome'">
+              <div v-for="(erro, name) in errors" :key="name">
+                <div v-if="name == 'name'">
                   <span v-if="erro != ''" class="errors-label-notification">
                     <i class="fas fa-exclamation-circle"></i>{{ erro }}
                   </span>
@@ -67,7 +67,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="inputSexo">Sexo</label>
+              <label for="InputGenre">Sexo</label>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-check form-check-inline">
@@ -75,9 +75,9 @@
                     class="form-check-input"
                     type="radio"
                     name="exampleRadios"
-                    id="inputSexo1"
+                    id="InputGenre1"
                     value="m"
-                    v-model="form.sexo"
+                    v-model="form.genre"
                   />
                   <label class="form-check-label" for="exampleRadios1">
                     Masculino
@@ -88,8 +88,8 @@
                     class="form-check-input"
                     type="radio"
                     name="exampleRadios"
-                    id="inputSexo2"
-                    v-model="form.sexo"
+                    id="InputGenre2"
+                    v-model="form.genre"
                     value="f"
                   />
                   <label class="form-check-label" for="exampleRadios2">
@@ -103,7 +103,7 @@
           <br />
           <div class="row">
             <div class="col-md-4">
-              <label for="inputIdade">Idade</label>
+              <label for="inputAge">Idade</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -112,14 +112,14 @@
                 </div>
                 <input
                   type="text"
-                  id="inputIdade"
+                  id="inputAge"
                   class="form-control"
                   placeholder="Idade"
-                  v-model="form.idade"
+                  v-model="form.age"
                 />
               </div>
-              <div v-for="(erro, idade) in errors" :key="idade">
-                <div v-if="idade == 'idade'">
+              <div v-for="(erro, age) in errors" :key="age">
+                <div v-if="age == 'age'">
                   <span v-if="erro != ''" class="errors-label-notification">
                     <i class="fas fa-exclamation-circle"></i>{{ erro }}
                   </span>
@@ -144,7 +144,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="inputEmpresa">Empresa</label>
+              <label for="inputInstituition">Instituição</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -152,18 +152,18 @@
                   </div>
                 </div>
                 <select
-                  id="inputEmpresa"
+                  id="inputInstituition"
                   class="form-control"
-                  v-model="form.empresa"
-                  name="txtEmpresa"
+                  v-model="form.instituition"
+                  name="txtinstituition"
                 >
-                  <option selected>Selecione a empresa</option>
+                  <option selected>Selecione a instituition</option>
                   <option
-                    v-for="empresa in empresas"
-                    :key="empresa.id"
-                    :value="empresa.id"
+                    v-for="instituition in instituitions"
+                    :key="instituition.id"
+                    :value="instituition.id"
                   >
-                    {{ empresa.nome }}
+                    {{ instituition.social_name }}
                   </option>
                 </select>
               </div>
@@ -175,7 +175,7 @@
           <div class="row">
             
             <div class="col-md-4">
-              <label for="inputCargo">Cargo</label>
+              <label for="inputPosition">Cargo</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -183,24 +183,24 @@
                   </div>
                 </div>
                 <select
-                  id="inputCargo"
+                  id="inputPosition"
                   class="form-control"
-                  v-model="form.cargo"
-                  name="txtCargo"
+                  v-model="form.position"
+                  name="txtPosition"
                 >
-                  <option>Selecione o cargo</option>
+                  <option selected>Selecione o cargo</option>
                   <option
-                    v-for="cargo in cargos"
-                    :key="cargo.id"
-                    :value="cargo.id"
+                    v-for="position in positions"
+                    :key="position.id"
+                    :value="position.id"
                   >
-                    {{ cargo.nome }}
+                    {{ position.name }}
                   </option>
                 </select>
               </div>
             </div>
             <div class="col-md-4">
-              <label for="inputDataAdmissao">Data de Admissão</label>
+              <label for="inputDtAdmission">Data de Admissão</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -210,17 +210,17 @@
                 <input
                   key=""
                   type="text"
-                  id="inputDataAdmissao"
+                  id="inputDtAdmission"
                   class="form-control"
-                  v-model="form.data_adm"
-                  name="txtDataAdm"
+                  v-model="form.dt_adm"
+                  name="txtDtAdm"
                   v-mask="'##/##/####'"
                 />
               </div>
             </div>
 
             <div class="col-md-4">
-              <label for="inputCelular">Celular</label>
+              <label for="InputPhoneNumber">Telefone</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -229,11 +229,11 @@
                 </div>
                 <input
                   type="text"
-                  id="inputCelular"
+                  id="InputPhoneNumber"
                   class="form-control"
-                  placeholder="Celular"
-                  v-model="form.celular"
-                  name="txtCelular"
+                  placeholder="Telefone"
+                  v-model="form.phone_number"
+                  name="txtPhoneNumber"
                   v-mask="['(##) #####-####', '(##) ####-####']"
                 />
               </div>
@@ -243,7 +243,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="inputMatricula">Matrícula</label>
+              <label for="inputRegister">Matrícula</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -252,11 +252,11 @@
                 </div>
                 <input
                   type="text"
-                  id="inputMatricula"
+                  id="inputRegister"
                   class="form-control"
                   placeholder="Matrícula"
-                  v-model="form.matricula"
-                  name="txtMatricula"
+                  v-model="form.register"
+                  name="txtRegister"
                 />
               </div>
             </div>
@@ -269,7 +269,7 @@
           <br />
           <div class="row">
             <div class="col-md-6">
-              <label for="inputLogradouro">Logradouro</label>
+              <label for="inputStreet">Logradouro</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -278,32 +278,32 @@
                 </div>
                 <input
                   type="text"
-                  id="inputLogradouro"
+                  id="inputStreet"
                   class="form-control"
                   placeholder="Rua, Av., Rod."
-                  v-model="form.logradouro"
-                  name="txtLogradouro"
+                  v-model="form.street"
+                  name="txtStreet"
                 />
               </div>
             </div>
             <div class="col-md-2">
-              <label for="inputNumero">Número</label>
+              <label for="inputNumber">Número</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">Nº</div>
                 </div>
                 <input
                   type="text"
-                  id="inputNumero"
+                  id="inputNumber"
                   class="form-control"
                   placeholder="Número"
-                  v-model="form.numero"
-                  name="txtNumero"
+                  v-model="form.number"
+                  name="txtNumber"
                 />
               </div>
             </div>
             <div class="col-md-4">
-              <label for="inputBairro">Bairro</label>
+              <label for="inputDistrict">Bairro</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -312,11 +312,11 @@
                 </div>
                 <input
                   type="text"
-                  id="inputBairro"
+                  id="inputDistrict"
                   class="form-control"
                   placeholder="Informe o bairro"
-                  v-model="form.bairro"
-                  name="txtBairro"
+                  v-model="form.district"
+                  name="txtDistrict"
                 />
               </div>
             </div>
@@ -324,7 +324,7 @@
           <br />
           <div class="row">
             <div class="col-md-4">
-              <label for="inputCidade">Cidade</label>
+              <label for="inputCity">Cidade</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -333,16 +333,16 @@
                 </div>
                 <input
                   type="text"
-                  id="inputCidade"
+                  id="inputCity"
                   class="form-control"
                   placeholder="Informe a cidade"
-                  v-model="form.cidade"
-                  name="txtCidade"
+                  v-model="form.city"
+                  name="txtCity"
                 />
               </div>
             </div>
             <div class="col-md-4">
-              <label for="inputEstado">Estado</label>
+              <label for="inputState">Estado</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -350,10 +350,10 @@
                   </div>
                 </div>
                 <select
-                  id="inputEstado"
+                  id="inputState"
                   class="form-control"
-                  v-model="form.estado"
-                  name="txtEstado"
+                  v-model="form.state"
+                  name="txtState"
                 >
                   <option selected>Selecione o estado</option>
                   <option value="Acre">Acre</option>
@@ -390,18 +390,18 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="inputCep">CEP</label>
+              <label for="inputZipCode">CEP</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">CEP</div>
                 </div>
                 <input
                   type="text"
-                  id="inputCep"
+                  id="inputZipCode"
                   class="form-control"
                   placeholder="Informe o CEP"
-                  v-model="form.cep"
-                  name="txtCep"
+                  v-model="form.zipcode"
+                  name="txtZipCode"
                 />
               </div>
             </div>
@@ -411,7 +411,7 @@
           <hr />
           <div class="row">
             <div class="col-md-6">
-              <label for="inputSenha">Senha Inicial</label>
+              <label for="inputPassword">Senha Inicial</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -420,15 +420,15 @@
                 </div>
                 <input
                   type="password"
-                  id="inputSenha"
+                  id="inputPassword"
                   class="form-control"
                   placeholder="Senha"
-                  v-model="form.senha"
-                  name="txtSenha"
+                  v-model="form.password"
+                  name="txtPassword"
                 />
               </div>
-              <div v-for="(erro, senha) in errors" :key="senha">
-                <div v-if="senha == 'senha'">
+              <div v-for="(erro, password) in errors" :key="password">
+                <div v-if="password == 'password'">
                   <span v-if="erro != ''" class="errors-label-notification">
                     <i class="fas fa-exclamation-circle"></i>{{ erro }}
                   </span>
@@ -436,7 +436,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <label for="inputConfirmSenha">Confirme a senha</label>
+              <label for="inputConfirmPassword">Confirme a senha</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -445,15 +445,15 @@
                 </div>
                 <input
                   type="password"
-                  id="inputConfirmSenha"
+                  id="inputConfirmPassword"
                   class="form-control"
                   placeholder="Senha"
-                  v-model="form.confirm_senha"
-                  name="txtConfirmSenha"
+                  v-model="form.confirm_password"
+                  name="txtConfirmPassword"
                 />
               </div>
-              <div v-for="(erro, senha) in errors" :key="senha">
-                <div v-if="senha == 'senha'">
+              <div v-for="(erro, password) in errors" :key="password">
+                <div v-if="password == 'password'">
                   <span v-if="erro != ''" class="errors-label-notification">
                     <i class="fas fa-exclamation-circle"></i>{{ erro }}
                   </span>
@@ -490,52 +490,52 @@ export default {
   },
   props: {
     errors: Object,
-    cargos: Array,
-    empresas: Array
+    positions: Array,
+    instituitions: Array
   },
   data: () => {
     return {
       form: {
-        nome: null,
+        name: null,
         cpf: null,
-        idade: null,
-        sexo: null,
+        age: null,
+        genre: null,
         email: null,
-        empresa: null,
-        cargo: null,
-        data_adm: null,
-        matricula: null,
-        celular: null,
-        senha: null,
-        confirm_senha: null,
-        logradouro: null,
-        numero: null,
-        bairro: null,
-        cidade: null,
-        estado: null,
-        cep: null
+        instituition: null,
+        position: null,
+        dt_adm: null,
+        register: null,
+        phone_number: null,
+        password: null,
+        confirm_password: null,
+        street: null,
+        number: null,
+        district: null,
+        city: null,
+        state: null,
+        zipcode: null        
       },
     };
   },
   methods: {
     sendForm() {
-      var aux_nome = this.form.nome;
+      var aux_name = this.form.name;
       var aux_cpf = this.form.cpf;
-      var aux_idade = this.form.idade;
-      var aux_matricula = this.form.matricula;
+      var aux_age = this.form.age;
+      var aux_register = this.form.register;
       var aux_email = this.form.email;
-      var aux_empresa = this.form.empresa;
-      var aux_cargo = this.form.cargo;
-      var aux_data_adm = this.form.data_adm;
-      var aux_celular = this.form.celular;
-      var aux_senha = this.form.senha;
-      var aux_confirm_senha = this.form.confirm_senha;
-      var aux_logradouro = this.form.logradouro;
-      var aux_numero = this.form.numero;
-      var aux_bairro = this.form.bairro;
-      var aux_cidade = this.form.cidade;
-      var aux_estado = this.form.estado;
-      var aux_cep = this.form.cep;
+      var aux_instituition = this.form.instituition;
+      var aux_position = this.form.position;
+      var aux_dt_adm = this.form.dt_adm;
+      var aux_phone_number = this.form.phone_number;
+      var aux_password = this.form.password;
+      var aux_confirm_password = this.form.confirm_password;
+      var aux_street = this.form.street;
+      var aux_number = this.form.number;
+      var aux_district = this.form.district;
+      var aux_city = this.form.city;
+      var aux_state = this.form.state;
+      var aux_zipcode = this.form.zipcode;
       this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
@@ -557,22 +557,22 @@ export default {
           
         },
         onError: () => {
-          $("#inputNome").val(aux_nome);
+          $("#inputName").val(aux_name);
           $("#inputCpf").val(aux_cpf);
-          $("#inputConfirmSenha").val(aux_confirm_senha);
-          $("#inputSenha").val(aux_senha);
-          $("#inputCep").val(aux_cep);
-          $("#inputEstado").val(aux_estado);
-          $("#inputCidade").val(aux_cidade);
-          $("#inputBairro").val(aux_bairro);
-          $("#inputNumero").val(aux_numero);
-          $("#inputLogradouro").val(aux_logradouro);
-          $("#inputCelular").val(aux_celular);
-          $("#inputDataAdmissao").val(aux_data_adm);
-          $("#inputCargo").val(aux_cargo);
-          $("#inputMatricula").val(aux_matricula);
-          $("#inputEmpresa").val(aux_empresa);
-          $("#inputIdade").val(aux_idade);
+          $("#inputConfirmSenha").val(aux_confirm_password);
+          $("#inputSenha").val(aux_password);
+          $("#inputCep").val(aux_zipcode);
+          $("#inputEstado").val(aux_state);
+          $("#inputCage").val(aux_city);
+          $("#inputBairro").val(aux_district);
+          $("#inputNumero").val(aux_number);
+          $("#inputLogradouro").val(aux_street);
+          $("#InputPhoneNumber").val(aux_phone_number);
+          $("#inputDataAdmissao").val(aux_dt_adm);
+          $("#inputPosition").val(aux_position);
+          $("#inputMatricula").val(aux_register);
+          $("#inputEmpresa").val(aux_instituition);
+          $("#inputAge").val(aux_age);
           $("#inputEmail").val(aux_email);
           
         },

@@ -28,6 +28,7 @@ class UserFactory extends Factory
             'dt_adm' => '2021-09-13',
             'fk_address' => '1',
             'fk_department' => '2',
+            'fk_instituition' => '1',
             'fk_position' => '5',
             'genre' => 'm',
             'password' => Hash::make($key),

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Addresses;
+use App\Models\Departments;
 use App\Models\Instituitions;
 use App\Models\Positions;
+use App\Models\Races;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,9 +27,12 @@ class UsersController extends Controller
         
         $positions = Positions::getPositions();
         $instituitions = Instituitions::getInstituitions();
+        $races = Races::getRaces();
+        $departments = Departments::getDeparments();
 
         return Inertia::render('Users/AddUser.vue', 
-        ['positions' => $positions, 'instituitions' => $instituitions]);
+        ['positions' => $positions, 'instituitions' => $instituitions,
+        'races' => $races, 'departments' => $departments]);
 
     }
 
@@ -82,7 +87,8 @@ class UsersController extends Controller
             $address->city = $req->city;
             $address->street = $req->street;
             $address->number = $req->number;
-            $address->state = $req->state;
+            $address->fk_state = $req->state;
+            $address->complement = $req->complement;
             $address->save();
 
             # Obter o ID do último registro da tabela:
@@ -96,11 +102,13 @@ class UsersController extends Controller
             $user->age = $req->age;
             $user->genre = $req->genre;           
             $user->email = $req->email;
-            $user->instituition = $req->instituition;
+            $user->fk_instituition = $req->instituition;
             $user->fk_position = $req->position;
             $user->fk_race = $req->race;
-            $user->register = $req->register;
+            $user->registration = $req->registration;
             $user->phone_number = $req->phone_number;
+            $user->fk_department = $req->department;
+            $user->fk_race = $req->race;
 
             $user->password = Hash::make($req->password);          
 
@@ -113,6 +121,17 @@ class UsersController extends Controller
             $data_old = date($data_format);
             $user->dt_adm = $data_old;
 
+
+            $date = explode("/",$req->dt_birth);
+            $day = $date[0];
+            $mouth = $date[1];
+            $year = $date[2];            
+            $data_format = $year.'-'.$mouth.'-'.$day;
+
+            $data_old = date($data_format);
+            $user->dt_birth = $data_old;
+
+            $user->status = 1;
             $user->fk_address = $fk_address;
             
             $user->save();

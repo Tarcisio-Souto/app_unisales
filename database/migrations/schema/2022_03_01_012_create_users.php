@@ -29,11 +29,13 @@ class CreateUsers extends Migration
             $table->string('password');
             $table->rememberToken()->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('fk_instituition');
             $table->unsignedBigInteger('fk_department');
             $table->unsignedBigInteger('fk_address');
             $table->unsignedBigInteger('fk_position');
             $table->unsignedBigInteger('fk_race');
 
+            $table->foreign('fk_instituition')->references('id')->on('instituitions');
             $table->foreign('fk_department')->references('id')->on('departments');
             $table->foreign('fk_address')->references('id')->on('addresses');
             $table->foreign('fk_position')->references('id')->on('positions');

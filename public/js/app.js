@@ -2857,6 +2857,107 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2866,7 +2967,9 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     errors: Object,
     positions: Array,
-    instituitions: Array
+    instituitions: Array,
+    races: Array,
+    departments: Array
   },
   data: function data() {
     return {
@@ -2879,7 +2982,7 @@ __webpack_require__.r(__webpack_exports__);
         instituition: null,
         position: null,
         dt_adm: null,
-        register: null,
+        registration: null,
         phone_number: null,
         password: null,
         confirm_password: null,
@@ -2888,7 +2991,11 @@ __webpack_require__.r(__webpack_exports__);
         district: null,
         city: null,
         state: null,
-        zipcode: null
+        zipcode: null,
+        complement: null,
+        department: null,
+        race: null,
+        dt_birth: null
       }
     };
   },
@@ -2897,7 +3004,7 @@ __webpack_require__.r(__webpack_exports__);
       var aux_name = this.form.name;
       var aux_cpf = this.form.cpf;
       var aux_age = this.form.age;
-      var aux_register = this.form.register;
+      var aux_registration = this.form.registration;
       var aux_email = this.form.email;
       var aux_instituition = this.form.instituition;
       var aux_position = this.form.position;
@@ -2911,6 +3018,11 @@ __webpack_require__.r(__webpack_exports__);
       var aux_city = this.form.city;
       var aux_state = this.form.state;
       var aux_zipcode = this.form.zipcode;
+      var aux_complement = this.form.complement;
+      var aux_department = this.form.department;
+      var aux_race = this.form.race;
+      var aux_dt_birth = this.form.dt_birth;
+      var aux_genre = this.form.aux_genre;
       this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
@@ -2922,29 +3034,36 @@ __webpack_require__.r(__webpack_exports__);
             backdrop: true,
             closeButton: false,
             size: "large",
-            title: "<img src='http://denuncia.vitoriahospitalar.com.br/dist/logo.png?343b76e5e3d8038a9c8e00e61671535e'>",
+            title: "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
             message: "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" + "<span style='font-weight:bold; position: relative; top: 5px;'>Colaborador registrado com sucesso!</span>"
-          });
-          $('#formAddUser').reset();
+          }); //$('#formAddUser').reset();
         },
         onError: function onError() {
           $("#inputName").val(aux_name);
           $("#inputCpf").val(aux_cpf);
-          $("#inputConfirmSenha").val(aux_confirm_password);
-          $("#inputSenha").val(aux_password);
-          $("#inputCep").val(aux_zipcode);
-          $("#inputEstado").val(aux_state);
-          $("#inputCage").val(aux_city);
-          $("#inputBairro").val(aux_district);
-          $("#inputNumero").val(aux_number);
-          $("#inputLogradouro").val(aux_street);
+          $("#inputConfirmPassword").val(aux_confirm_password);
+          $("#inputPassword").val(aux_password);
+          $("#inputZipCode").val(aux_zipcode);
+          $("#inputState").val(aux_state);
+          $("#inputCity").val(aux_city);
+          $("#inputDistrict").val(aux_district);
+          $("#inputNumber").val(aux_number);
+          $("#inputStreet").val(aux_street);
           $("#InputPhoneNumber").val(aux_phone_number);
-          $("#inputDataAdmissao").val(aux_dt_adm);
+          $("#inputDtAdmission").val(aux_dt_adm);
           $("#inputPosition").val(aux_position);
-          $("#inputMatricula").val(aux_register);
+          $("#inputMatricula").val(aux_registration);
           $("#inputEmpresa").val(aux_instituition);
           $("#inputAge").val(aux_age);
           $("#inputEmail").val(aux_email);
+          $("#inputComplement").val(aux_complement);
+          $("#inputDepartment").val(aux_department);
+          $("#inputInstituition").val(aux_instituition);
+          $("#inputRace").val(aux_race);
+          $("#inputDtBirth").val(aux_dt_birth);
+          $("#InputGenre").val(aux_genre);
+          $("#inputAge").val(aux_age);
+          $("#inputRegistration").val(aux_registration);
         }
       });
     }
@@ -26874,14 +26993,14 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputEmail" } }, [
-                  _vm._v("Email"),
+                _c("label", { attrs: { for: "inputDtBirth" } }, [
+                  _vm._v("Data de Nascimento"),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _c("div", { staticClass: "input-group-prepend" }, [
                     _c("div", { staticClass: "input-group-text" }, [
-                      _vm._v("@"),
+                      _c("i", { staticClass: "fas fa-calendar-alt" }),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -26890,30 +27009,107 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.email,
-                        expression: "form.email",
+                        value: _vm.form.dt_birth,
+                        expression: "form.dt_birth",
+                      },
+                      {
+                        name: "mask",
+                        rawName: "v-mask",
+                        value: "##/##/####",
+                        expression: "'##/##/####'",
                       },
                     ],
+                    key: "",
                     staticClass: "form-control",
                     attrs: {
-                      type: "email",
-                      id: "inputEmail",
-                      placeholder: "Email",
-                      name: "txtEmail",
+                      type: "text",
+                      id: "inputDtBirth",
+                      name: "txtDtBirth",
                     },
-                    domProps: { value: _vm.form.email },
+                    domProps: { value: _vm.form.dt_birth },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "email", $event.target.value)
+                        _vm.$set(_vm.form, "dt_birth", $event.target.value)
                       },
                     },
                   }),
                 ]),
               ]),
               _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputRace" } }, [_vm._v("Raça")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fas fa-briefcase" }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.race,
+                          expression: "form.race",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "inputRace", name: "txtRace" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "race",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Selecione a raça"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.races, function (race) {
+                        return _c(
+                          "option",
+                          { key: race.id, domProps: { value: race.id } },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(race.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputInstituition" } }, [
                   _vm._v("Instituição"),
@@ -26988,11 +27184,7 @@ var render = function () {
                   ),
                 ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
+              _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputPosition" } }, [
                   _vm._v("Cargo"),
@@ -27111,6 +27303,123 @@ var render = function () {
                   }),
                 ]),
               ]),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputDepartment" } }, [
+                  _vm._v("Departamento"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fas fa-briefcase" }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.department,
+                          expression: "form.department",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "inputDepartment", name: "txtDepartment" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "department",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Selecione o departmento"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.departments, function (department) {
+                        return _c(
+                          "option",
+                          {
+                            key: department.id,
+                            domProps: { value: department.id },
+                          },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(department.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputRegistration" } }, [
+                  _vm._v("Matrícula"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fas fa-mobile-alt" }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.registration,
+                        expression: "form.registration",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "inputRegistration",
+                      placeholder: "Matrícula",
+                      name: "txtRegistration",
+                    },
+                    domProps: { value: _vm.form.registration },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "registration", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "InputPhoneNumber" } }, [
@@ -27164,14 +27473,14 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputRegister" } }, [
-                  _vm._v("Matrícula"),
+                _c("label", { attrs: { for: "inputEmail" } }, [
+                  _vm._v("Email"),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
                   _c("div", { staticClass: "input-group-prepend" }, [
                     _c("div", { staticClass: "input-group-text" }, [
-                      _c("i", { staticClass: "fas fa-mobile-alt" }),
+                      _vm._v("@"),
                     ]),
                   ]),
                   _vm._v(" "),
@@ -27180,29 +27489,33 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.register,
-                        expression: "form.register",
+                        value: _vm.form.email,
+                        expression: "form.email",
                       },
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "text",
-                      id: "inputRegister",
-                      placeholder: "Matrícula",
-                      name: "txtRegister",
+                      type: "email",
+                      id: "inputEmail",
+                      placeholder: "Email",
+                      name: "txtEmail",
                     },
-                    domProps: { value: _vm.form.register },
+                    domProps: { value: _vm.form.email },
                     on: {
                       input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "register", $event.target.value)
+                        _vm.$set(_vm.form, "email", $event.target.value)
                       },
                     },
                   }),
                 ]),
               ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }),
             ]),
             _vm._v(" "),
             _c("br"),
@@ -27349,6 +27662,47 @@ var render = function () {
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputComplement" } }, [
+                  _vm._v("Complemento"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _vm._v("Complemento"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.complement,
+                        expression: "form.complement",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "inputComplement",
+                      placeholder: "Informe o complemento",
+                      name: "txtComplemento",
+                    },
+                    domProps: { value: _vm.form.complement },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "complement", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputCity" } }, [
                   _vm._v("Cidade"),
                 ]),
@@ -27439,128 +27793,126 @@ var render = function () {
                         _vm._v("Selecione o estado"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Acre" } }, [
-                        _vm._v("Acre"),
-                      ]),
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("Acre")]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Alagoas" } }, [
+                      _c("option", { attrs: { value: "2" } }, [
                         _vm._v("Alagoas"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Amapá" } }, [
+                      _c("option", { attrs: { value: "3" } }, [
                         _vm._v("Amapá"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Amazonas" } }, [
+                      _c("option", { attrs: { value: "4" } }, [
                         _vm._v("Amazonas"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Bahia" } }, [
+                      _c("option", { attrs: { value: "5" } }, [
                         _vm._v("Bahia"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Ceará" } }, [
+                      _c("option", { attrs: { value: "6" } }, [
                         _vm._v("Ceará"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Distrito Federal" } }, [
+                      _c("option", { attrs: { value: "7" } }, [
                         _vm._v("Distrito Federal"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Espírito Santo" } }, [
+                      _c("option", { attrs: { value: "8" } }, [
                         _vm._v("Espírito Santo"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Goiás" } }, [
+                      _c("option", { attrs: { value: "9" } }, [
                         _vm._v("Goiás"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Maranhão" } }, [
+                      _c("option", { attrs: { value: "10" } }, [
                         _vm._v("Maranhão"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Mato Grosso" } }, [
+                      _c("option", { attrs: { value: "11" } }, [
                         _vm._v("Mato Grosso"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Mato Grosso do Sul" } }, [
+                      _c("option", { attrs: { value: "12" } }, [
                         _vm._v("Mato Grosso do Sul"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Minas Gerais" } }, [
+                      _c("option", { attrs: { value: "13" } }, [
                         _vm._v("Minas Gerais"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Pará" } }, [
+                      _c("option", { attrs: { value: "14" } }, [
                         _vm._v("Pará"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Paraíba" } }, [
+                      _c("option", { attrs: { value: "15" } }, [
                         _vm._v("Paraíba"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Paraná" } }, [
+                      _c("option", { attrs: { value: "16" } }, [
                         _vm._v("Paraná"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Pernambuco" } }, [
+                      _c("option", { attrs: { value: "17" } }, [
                         _vm._v("Pernambuco"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Piauí" } }, [
+                      _c("option", { attrs: { value: "18" } }, [
                         _vm._v("Piauí"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Rio de Janeiro" } }, [
+                      _c("option", { attrs: { value: "19" } }, [
                         _vm._v("Rio de Janeiro"),
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "option",
-                        { attrs: { value: "Rio Grande do Norte" } },
-                        [
-                          _vm._v(
-                            "\n                  Rio Grande do Norte\n                "
-                          ),
-                        ]
-                      ),
+                      _c("option", { attrs: { value: "20" } }, [
+                        _vm._v(
+                          "\n                  Rio Grande do Norte\n                "
+                        ),
+                      ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Rio Grande do Sul" } }, [
+                      _c("option", { attrs: { value: "21" } }, [
                         _vm._v("Rio Grande do Sul"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Rondônia" } }, [
+                      _c("option", { attrs: { value: "22" } }, [
                         _vm._v("Rondônia"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Roraima" } }, [
+                      _c("option", { attrs: { value: "23" } }, [
                         _vm._v("Roraima"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Santa Catarina" } }, [
+                      _c("option", { attrs: { value: "24" } }, [
                         _vm._v("Santa Catarina"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "São Paulo" } }, [
+                      _c("option", { attrs: { value: "25" } }, [
                         _vm._v("São Paulo"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Sergipe" } }, [
+                      _c("option", { attrs: { value: "26" } }, [
                         _vm._v("Sergipe"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Tocantins" } }, [
+                      _c("option", { attrs: { value: "27" } }, [
                         _vm._v("Tocantins"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "Estrangeiro" } }, [
+                      _c("option", { attrs: { value: "28" } }, [
                         _vm._v("Estrangeiro"),
                       ]),
                     ]
                   ),
                 ]),
               ]),
-              _vm._v(" "),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputZipCode" } }, [
                   _vm._v("CEP"),
@@ -27601,6 +27953,10 @@ var render = function () {
                   }),
                 ]),
               ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }),
             ]),
             _vm._v(" "),
             _c("br"),

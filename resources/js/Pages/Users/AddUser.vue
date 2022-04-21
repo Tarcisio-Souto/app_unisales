@@ -126,22 +126,56 @@
                 </div>
               </div>
             </div>
+
             <div class="col-md-4">
-              <label for="inputEmail">Email</label>
+              <label for="inputDtBirth">Data de Nascimento</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">@</div>
+                  <div class="input-group-text">
+                    <i class="fas fa-calendar-alt"></i>
+                  </div>
                 </div>
                 <input
-                  type="email"
-                  id="inputEmail"
+                  key=""
+                  type="text"
+                  id="inputDtBirth"
                   class="form-control"
-                  placeholder="Email"
-                  v-model="form.email"
-                  name="txtEmail"
+                  v-model="form.dt_birth"
+                  name="txtDtBirth"
+                  v-mask="'##/##/####'"
                 />
               </div>
             </div>
+
+            <div class="col-md-4">
+              <label for="inputRace">Raça</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
+                </div>
+                <select
+                  id="inputRace"
+                  class="form-control"
+                  v-model="form.race"
+                  name="txtRace"
+                >
+                  <option selected>Selecione a raça</option>
+                  <option
+                    v-for="race in races"
+                    :key="race.id"
+                    :value="race.id"
+                  >
+                    {{ race.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <br />
+          <div class="row">
 
             <div class="col-md-4">
               <label for="inputInstituition">Instituição</label>
@@ -168,11 +202,6 @@
                 </select>
               </div>
             </div>
-
-
-          </div>
-          <br />
-          <div class="row">
             
             <div class="col-md-4">
               <label for="inputPosition">Cargo</label>
@@ -218,6 +247,55 @@
                 />
               </div>
             </div>
+            
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="inputDepartment">Departamento</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
+                </div>
+                <select
+                  id="inputDepartment"
+                  class="form-control"
+                  v-model="form.department"
+                  name="txtDepartment"
+                >
+                  <option selected>Selecione o departmento</option>
+                  <option
+                    v-for="department in departments"
+                    :key="department.id"
+                    :value="department.id"
+                  >
+                    {{ department.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputRegistration">Matrícula</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  id="inputRegistration"
+                  class="form-control"
+                  placeholder="Matrícula"
+                  v-model="form.registration"
+                  name="txtRegistration"
+                />
+              </div>
+            </div>
 
             <div class="col-md-4">
               <label for="InputPhoneNumber">Telefone</label>
@@ -237,30 +315,31 @@
                   v-mask="['(##) #####-####', '(##) ####-####']"
                 />
               </div>
-            </div>
+            </div>            
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div class="col-md-4">
-              <label for="inputRegister">Matrícula</label>
+              <label for="inputEmail">Email</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-mobile-alt"></i>
-                  </div>
+                  <div class="input-group-text">@</div>
                 </div>
                 <input
-                  type="text"
-                  id="inputRegister"
+                  type="email"
+                  id="inputEmail"
                   class="form-control"
-                  placeholder="Matrícula"
-                  v-model="form.register"
-                  name="txtRegister"
+                  placeholder="Email"
+                  v-model="form.email"
+                  name="txtEmail"
                 />
               </div>
             </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
           </div>
+
 
           <br />
           <br /><br />
@@ -324,6 +403,22 @@
           <br />
           <div class="row">
             <div class="col-md-4">
+              <label for="inputComplement">Complemento</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Complemento</div>
+                </div>
+                <input
+                  type="text"
+                  id="inputComplement"
+                  class="form-control"
+                  placeholder="Informe o complemento"
+                  v-model="form.complement"
+                  name="txtComplemento"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
               <label for="inputCity">Cidade</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -356,39 +451,42 @@
                   name="txtState"
                 >
                   <option selected>Selecione o estado</option>
-                  <option value="Acre">Acre</option>
-                  <option value="Alagoas">Alagoas</option>
-                  <option value="Amapá">Amapá</option>
-                  <option value="Amazonas">Amazonas</option>
-                  <option value="Bahia">Bahia</option>
-                  <option value="Ceará">Ceará</option>
-                  <option value="Distrito Federal">Distrito Federal</option>
-                  <option value="Espírito Santo">Espírito Santo</option>
-                  <option value="Goiás">Goiás</option>
-                  <option value="Maranhão">Maranhão</option>
-                  <option value="Mato Grosso">Mato Grosso</option>
-                  <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
-                  <option value="Minas Gerais">Minas Gerais</option>
-                  <option value="Pará">Pará</option>
-                  <option value="Paraíba">Paraíba</option>
-                  <option value="Paraná">Paraná</option>
-                  <option value="Pernambuco">Pernambuco</option>
-                  <option value="Piauí">Piauí</option>
-                  <option value="Rio de Janeiro">Rio de Janeiro</option>
-                  <option value="Rio Grande do Norte">
+                  <option value="1">Acre</option>
+                  <option value="2">Alagoas</option>
+                  <option value="3">Amapá</option>
+                  <option value="4">Amazonas</option>
+                  <option value="5">Bahia</option>
+                  <option value="6">Ceará</option>
+                  <option value="7">Distrito Federal</option>
+                  <option value="8">Espírito Santo</option>
+                  <option value="9">Goiás</option>
+                  <option value="10">Maranhão</option>
+                  <option value="11">Mato Grosso</option>
+                  <option value="12">Mato Grosso do Sul</option>
+                  <option value="13">Minas Gerais</option>
+                  <option value="14">Pará</option>
+                  <option value="15">Paraíba</option>
+                  <option value="16">Paraná</option>
+                  <option value="17">Pernambuco</option>
+                  <option value="18">Piauí</option>
+                  <option value="19">Rio de Janeiro</option>
+                  <option value="20">
                     Rio Grande do Norte
                   </option>
-                  <option value="Rio Grande do Sul">Rio Grande do Sul</option>
-                  <option value="Rondônia">Rondônia</option>
-                  <option value="Roraima">Roraima</option>
-                  <option value="Santa Catarina">Santa Catarina</option>
-                  <option value="São Paulo">São Paulo</option>
-                  <option value="Sergipe">Sergipe</option>
-                  <option value="Tocantins">Tocantins</option>
-                  <option value="Estrangeiro">Estrangeiro</option>
+                  <option value="21">Rio Grande do Sul</option>
+                  <option value="22">Rondônia</option>
+                  <option value="23">Roraima</option>
+                  <option value="24">Santa Catarina</option>
+                  <option value="25">São Paulo</option>
+                  <option value="26">Sergipe</option>
+                  <option value="27">Tocantins</option>
+                  <option value="28">Estrangeiro</option>
                 </select>
               </div>
-            </div>
+            </div>            
+          </div>
+          <br>
+          <div class="row">
             <div class="col-md-4">
               <label for="inputZipCode">CEP</label>
               <div class="input-group">
@@ -405,7 +503,10 @@
                 />
               </div>
             </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
           </div>
+
           <br /><br />
           <h4><span style="font-weight: bold">Senha</span></h4>
           <hr />
@@ -491,7 +592,9 @@ export default {
   props: {
     errors: Object,
     positions: Array,
-    instituitions: Array
+    instituitions: Array,
+    races: Array,
+    departments: Array
   },
   data: () => {
     return {
@@ -504,7 +607,7 @@ export default {
         instituition: null,
         position: null,
         dt_adm: null,
-        register: null,
+        registration: null,
         phone_number: null,
         password: null,
         confirm_password: null,
@@ -513,16 +616,21 @@ export default {
         district: null,
         city: null,
         state: null,
-        zipcode: null        
+        zipcode: null,
+        complement: null,
+        department: null,
+        race: null,
+        dt_birth: null   
       },
     };
   },
   methods: {
     sendForm() {
+
       var aux_name = this.form.name;
       var aux_cpf = this.form.cpf;
       var aux_age = this.form.age;
-      var aux_register = this.form.register;
+      var aux_registration = this.form.registration;
       var aux_email = this.form.email;
       var aux_instituition = this.form.instituition;
       var aux_position = this.form.position;
@@ -536,6 +644,12 @@ export default {
       var aux_city = this.form.city;
       var aux_state = this.form.state;
       var aux_zipcode = this.form.zipcode;
+      var aux_complement = this.form.complement;
+      var aux_department = this.form.department;
+      var aux_race = this.form.race;
+      var aux_dt_birth = this.form.dt_birth;
+      var aux_genre = this.form.aux_genre;
+
       this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
@@ -548,32 +662,41 @@ export default {
             closeButton: false,
             size: "large",
             title:
-              "<img src='http://denuncia.vitoriahospitalar.com.br/dist/logo.png?343b76e5e3d8038a9c8e00e61671535e'>",
+              "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
             message:
               "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
               "<span style='font-weight:bold; position: relative; top: 5px;'>Colaborador registrado com sucesso!</span>",
           });
-          $('#formAddUser').reset();
+          //$('#formAddUser').reset();
           
         },
         onError: () => {
+
           $("#inputName").val(aux_name);
           $("#inputCpf").val(aux_cpf);
-          $("#inputConfirmSenha").val(aux_confirm_password);
-          $("#inputSenha").val(aux_password);
-          $("#inputCep").val(aux_zipcode);
-          $("#inputEstado").val(aux_state);
-          $("#inputCage").val(aux_city);
-          $("#inputBairro").val(aux_district);
-          $("#inputNumero").val(aux_number);
-          $("#inputLogradouro").val(aux_street);
+          $("#inputConfirmPassword").val(aux_confirm_password);
+          $("#inputPassword").val(aux_password);
+          $("#inputZipCode").val(aux_zipcode);
+          $("#inputState").val(aux_state);
+          $("#inputCity").val(aux_city);
+          $("#inputDistrict").val(aux_district);
+          $("#inputNumber").val(aux_number);
+          $("#inputStreet").val(aux_street);
           $("#InputPhoneNumber").val(aux_phone_number);
-          $("#inputDataAdmissao").val(aux_dt_adm);
+          $("#inputDtAdmission").val(aux_dt_adm);
           $("#inputPosition").val(aux_position);
-          $("#inputMatricula").val(aux_register);
+          $("#inputMatricula").val(aux_registration);
           $("#inputEmpresa").val(aux_instituition);
           $("#inputAge").val(aux_age);
           $("#inputEmail").val(aux_email);
+          $("#inputComplement").val(aux_complement);
+          $("#inputDepartment").val(aux_department);
+          $("#inputInstituition").val(aux_instituition);
+          $("#inputRace").val(aux_race);
+          $("#inputDtBirth").val(aux_dt_birth);
+          $("#InputGenre").val(aux_genre);
+          $("#inputAge").val(aux_age);
+          $("#inputRegistration").val(aux_registration);
           
         },
       });

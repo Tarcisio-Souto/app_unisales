@@ -627,34 +627,11 @@ export default {
   methods: {
     sendForm() {
 
-      var aux_name = this.form.name;
-      var aux_cpf = this.form.cpf;
-      var aux_age = this.form.age;
-      var aux_registration = this.form.registration;
-      var aux_email = this.form.email;
-      var aux_instituition = this.form.instituition;
-      var aux_position = this.form.position;
-      var aux_dt_adm = this.form.dt_adm;
-      var aux_phone_number = this.form.phone_number;
-      var aux_password = this.form.password;
-      var aux_confirm_password = this.form.confirm_password;
-      var aux_street = this.form.street;
-      var aux_number = this.form.number;
-      var aux_district = this.form.district;
-      var aux_city = this.form.city;
-      var aux_state = this.form.state;
-      var aux_zipcode = this.form.zipcode;
-      var aux_complement = this.form.complement;
-      var aux_department = this.form.department;
-      var aux_race = this.form.race;
-      var aux_dt_birth = this.form.dt_birth;
-      var aux_genre = this.form.aux_genre;
-
       this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,
-        preserveState: false,
+        preserveState: true,
         onSuccess: () => {
           bootbox.alert({
             centerVertical: true,
@@ -667,38 +644,33 @@ export default {
               "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
               "<span style='font-weight:bold; position: relative; top: 5px;'>Colaborador registrado com sucesso!</span>",
           });
-          //$('#formAddUser').reset();
           
-        },
-        onError: () => {
+          this.form.name = null;
+          this.form.cpf = null;
+          this.form.age = null;
+          this.form.registration = null;
+          this.form.email = null;
+          this.form.instituition = null;
+          this.form.position = null;
+          this.form.dt_adm = null;
+          this.form.phone_number = null;
+          this.form.password = null;
+          this.form.confirm_password = null;
+          this.form.street = null;
+          this.form.number = null;
+          this.form.district = null;
+          this.form.city = null;
+          this.form.state = null;
+          this.form.zipcode = null;
+          this.form.complement = null;
+          this.form.department = null;
+          this.form.race = null;
+          this.form.dt_birth = null;
+          this.form.genre = null;  
 
-          $("#inputName").val(aux_name);
-          $("#inputCpf").val(aux_cpf);
-          $("#inputConfirmPassword").val(aux_confirm_password);
-          $("#inputPassword").val(aux_password);
-          $("#inputZipCode").val(aux_zipcode);
-          $("#inputState").val(aux_state);
-          $("#inputCity").val(aux_city);
-          $("#inputDistrict").val(aux_district);
-          $("#inputNumber").val(aux_number);
-          $("#inputStreet").val(aux_street);
-          $("#InputPhoneNumber").val(aux_phone_number);
-          $("#inputDtAdmission").val(aux_dt_adm);
-          $("#inputPosition").val(aux_position);
-          $("#inputMatricula").val(aux_registration);
-          $("#inputEmpresa").val(aux_instituition);
-          $("#inputAge").val(aux_age);
-          $("#inputEmail").val(aux_email);
-          $("#inputComplement").val(aux_complement);
-          $("#inputDepartment").val(aux_department);
-          $("#inputInstituition").val(aux_instituition);
-          $("#inputRace").val(aux_race);
-          $("#inputDtBirth").val(aux_dt_birth);
-          $("#InputGenre").val(aux_genre);
-          $("#inputAge").val(aux_age);
-          $("#inputRegistration").val(aux_registration);
-          
+
         },
+        
       });
     },
   },

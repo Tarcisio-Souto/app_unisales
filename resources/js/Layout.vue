@@ -31,7 +31,7 @@
               <ul class="dropdown-menu animated fadeInLeft menuUsuarios" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
                 <li><Link href="/usuario/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="#/users/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="/usuarios/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
               </ul>
             </li>
 

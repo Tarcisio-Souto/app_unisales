@@ -19,7 +19,8 @@ class UsersController extends Controller
     
     public function index() {
 
-        
+        $users = User::listAllUsers();
+        return Inertia::render('Users/ListAllUsers.vue', ['users' => $users]);
 
     }
 

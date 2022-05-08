@@ -103,7 +103,7 @@ table.dataTable {
     clear: both;
     border-collapse: separate;
     border-spacing: 0;
-    background-color: rgb(73, 182, 255);
+    background-color: rgb(20, 73, 141);
     position: relative;
     top: 50px !important;
 }
@@ -1072,7 +1072,7 @@ a[href*="#contact"]::before {
 /* DataTables */
 
 #myTable th {
-    background-color: #af4a4a;
+    background-color: #2059af;
     font-weight: 500;
     height: 5px !important;
     font-size: 12px;

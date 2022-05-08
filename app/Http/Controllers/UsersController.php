@@ -143,5 +143,13 @@ class UsersController extends Controller
 
     }
 
+    public function show($id) {
+
+        $user = User::showUser($id);        
+        return Inertia::render('Users/ViewUser.vue', ['user' => $user]);
+
+
+    }
+
 
 }

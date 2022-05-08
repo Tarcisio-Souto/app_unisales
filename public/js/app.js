@@ -26506,7 +26506,7 @@ var render = function () {
               _c(
                 "li",
                 [
-                  _c("Link", { attrs: { href: "#/logout" } }, [
+                  _c("Link", { attrs: { href: "/logout" } }, [
                     _c("i", { staticClass: "fas fa-sign-out-alt icons-menu" }),
                     _vm._v("Sair"),
                   ]),

@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('auth', [AuthController::class, 'auth'])->name('auth.user');  
 
+/* Logout */
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 

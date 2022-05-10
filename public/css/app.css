@@ -1268,3 +1268,7 @@ a[href*="#contact"]::before {
 .fa-caret-down:hover {
     opacity: 40%;
 }
+
+.btn-edit-user {
+    width: 100%;
+}

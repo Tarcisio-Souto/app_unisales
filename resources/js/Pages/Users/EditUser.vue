@@ -1,15 +1,10 @@
 <template>
-  <layout>
-    <!--<div v-if="$page.props.flash.success"></div>-->
-
-    <!-- Modal Success -->
-
-    <!-- Modal -->
+  <layout class="backg-color">
 
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Cadastro de Usuário</h4>
+        <h4>Editar Usuário</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -18,12 +13,11 @@
     <br />
     <div class="row">
       <div class="col-md-12">
-        <form v-for="user in user" :key="user.us_id">          
-          <br /><br />
+        <form @submit.prevent="sendForm" enctype="multipart/form-data" id="formAddUser">
           <h4><span style="font-weight: bold">Dados Pessoais</span></h4>
           <div class="row">
             <div class="col-md-4">
-              <label for="inputname">Nome</label>
+              <label for="inputName">Nome</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -34,8 +28,8 @@
                   type="text"
                   id="inputName"
                   class="form-control"
-                  :value="user.name_user"
-                  disabled
+                  placeholder="Nome"
+                  v-model="form.name"
                 />
               </div>
               <div v-for="(erro, name) in errors" :key="name">
@@ -58,9 +52,10 @@
                   type="text"
                   id="inputCpf"
                   class="form-control"
-                  :value="user.cpf"
+                  placeholder="CPF (só números)"
+                  v-model="form.cpf"
+                  name="txtCpf"
                   v-mask="'###.###.###-##'"
-                  disabled
                 />
               </div>
               <div v-for="(erro, cpf) in errors" :key="cpf">
@@ -72,78 +67,43 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="inputGenre">Sexo</label>
+              <label for="InputGenre">Sexo</label>
               <div class="row">
                 <div class="col-md-12">
-                  <div
-                    class="form-check form-check-inline"
-                    v-if="user.genre == 'm'"
-                  >
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="inputGenre1"
-                      value="m"
-                      checked
-                      disabled
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Masculino
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline" v-else>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="inputGenre1"
-                      value="m"
-                      disabled
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Masculino
-                    </label>
-                  </div>
-
-                  <div
-                    class="form-check form-check-inline"
-                    v-if="user.genre == 'f'"
-                  >
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="inputGenre2"
-                      value="f"
-                      checked
-                      disabled
-                    />
-                    <label class="form-check-label" for="exampleRadios2">
-                      Feminino
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline" v-else>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="exampleRadios"
-                      id="inputGenre2"
-                      value="f"
-                      disabled
-                    />
-                    <label class="form-check-label" for="exampleRadios1">
-                      Feminino
-                    </label>
-                  </div>
+                  <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="exampleRadios"
+                    id="InputGenre1"
+                    value="m"
+                    v-model="form.genre"
+                  />
+                  <label class="form-check-label" for="exampleRadios1">
+                    Masculino
+                  </label>
                 </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="exampleRadios"
+                    id="InputGenre2"
+                    v-model="form.genre"
+                    value="f"
+                  />
+                  <label class="form-check-label" for="exampleRadios2">
+                    Feminino
+                  </label>
+                </div>
+                </div>                
               </div>
             </div>
           </div>
           <br />
           <div class="row">
             <div class="col-md-4">
-              <label for="inputIdade">Idade</label>
+              <label for="inputAge">Idade</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -154,8 +114,8 @@
                   type="text"
                   id="inputAge"
                   class="form-control"
-                  :value="user.age"
-                  disabled
+                  placeholder="Idade"
+                  v-model="form.age"
                 />
               </div>
               <div v-for="(erro, age) in errors" :key="age">
@@ -180,13 +140,13 @@
                   type="text"
                   id="inputDtBirth"
                   class="form-control"
-                  :value="user.dt_birth_format"
+                  v-model="form.dt_birth"
+                  name="txtDtBirth"
                   v-mask="'##/##/####'"
-                  disabled
                 />
               </div>
             </div>
-          
+
             <div class="col-md-4">
               <label for="inputRace">Raça</label>
               <div class="input-group">
@@ -198,16 +158,23 @@
                 <select
                   id="inputRace"
                   class="form-control"
-                  name="txtCargo"
-                  disabled
+                  v-model="form.race"
+                  name="txtRace"
                 >
-                  <option>{{ user.race_name }}</option>
+                  <option selected :value="form.race" style="background-color:gainsboro">{{ form.race }}</option>                  
+                  <option
+                    v-for="race in races"
+                    :key="race.id"
+                    :value="race.id"
+                  >
+                    {{ race.name }}
+                  </option>
                 </select>
               </div>
             </div>
+
           </div>
           <br />
-
           <div class="row">
 
             <div class="col-md-4">
@@ -215,36 +182,52 @@
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                    <i class="fas fa-briefcase"></i>
+                    <i class="fas fa-building"></i>
                   </div>
                 </div>
                 <select
                   id="inputInstituition"
                   class="form-control"
-                  name="txtCargo"
-                  disabled
+                  v-model="form.instituition"
+                  name="txtinstituition"
                 >
-                  <option>{{ user.fantasy_name }}</option>
+                  <option selected :value="form.instituition" style="background-color:gainsboro">{{ form.instituition }}</option>                  
+                  <option
+                    v-for="instituition in instituitions"
+                    :key="instituition.id"
+                    :value="instituition.id"
+                  >
+                    {{ instituition.social_name }}
+                  </option>
                 </select>
               </div>
             </div>
-
+            
             <div class="col-md-4">
               <label for="inputPosition">Cargo</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">@</div>
+                  <div class="input-group-text">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
                 </div>
-                <input
-                  type="email"
+                <select
                   id="inputPosition"
                   class="form-control"
-                  :value="user.name_pos"
-                  disabled
-                />
+                  v-model="form.position"
+                  name="txtPosition"
+                >
+                  <option selected :value="form.position" style="background-color:gainsboro">{{ form.position }}</option>                  
+                  <option
+                    v-for="position in positions"
+                    :key="position.id"
+                    :value="position.id"
+                  >
+                    {{ position.name }}
+                  </option>
+                </select>
               </div>
             </div>
-
             <div class="col-md-4">
               <label for="inputDtAdmission">Data de Admissão</label>
               <div class="input-group">
@@ -258,17 +241,17 @@
                   type="text"
                   id="inputDtAdmission"
                   class="form-control"
-                  :value="user.dt_adm"
+                  v-model="form.dt_adm"
+                  name="txtDtAdm"
                   v-mask="'##/##/####'"
-                  disabled
                 />
               </div>
             </div>
             
           </div>
-          <br />
-          <div class="row">
+          <br>
 
+          <div class="row">
             <div class="col-md-4">
               <label for="inputDepartment">Departamento</label>
               <div class="input-group">
@@ -280,10 +263,17 @@
                 <select
                   id="inputDepartment"
                   class="form-control"
+                  v-model="form.department"
                   name="txtDepartment"
-                  disabled
                 >
-                  <option>{{ user.dept_name }}</option>
+                  <option selected :value="form.department" style="background-color:gainsboro">{{ form.department }}</option>                  
+                  <option
+                    v-for="department in departments"
+                    :key="department.id"
+                    :value="department.id"
+                  >
+                    {{ department.name }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -292,14 +282,17 @@
               <label for="inputRegistration">Matrícula</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">@</div>
+                  <div class="input-group-text">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
                 </div>
                 <input
-                  type="email"
+                  type="text"
                   id="inputRegistration"
                   class="form-control"
-                  :value="user.registration"
-                  disabled
+                  placeholder="Matrícula"
+                  v-model="form.registration"
+                  name="txtRegistration"
                 />
               </div>
             </div>
@@ -316,17 +309,17 @@
                   type="text"
                   id="InputPhoneNumber"
                   class="form-control"
+                  placeholder="Telefone"
+                  v-model="form.phone_number"
+                  name="txtPhoneNumber"
                   v-mask="['(##) #####-####', '(##) ####-####']"
-                  :value="user.phone_number"
-                  disabled
                 />
               </div>
-            </div>
+            </div>            
           </div>
           <br />
-          
-          <div class="row">
 
+          <div class="row">
             <div class="col-md-4">
               <label for="inputEmail">Email</label>
               <div class="input-group">
@@ -337,16 +330,18 @@
                   type="email"
                   id="inputEmail"
                   class="form-control"
-                  :value="user.email"
-                  disabled
+                  placeholder="Email"
+                  v-model="form.email"
+                  name="txtEmail"
                 />
               </div>
-            </div>            
+            </div>
             <div class="col-md-4"></div>
             <div class="col-md-4"></div>
           </div>
+
+
           <br />
-          
           <br /><br />
           <h4><span style="font-weight: bold">Endereço</span></h4>
           <hr />
@@ -365,9 +360,8 @@
                   id="inputStreet"
                   class="form-control"
                   placeholder="Rua, Av., Rod."
-                  name="txtLogradouro"
-                  :value="user.street"
-                  disabled
+                  v-model="form.street"
+                  name="txtStreet"
                 />
               </div>
             </div>
@@ -382,9 +376,8 @@
                   id="inputNumber"
                   class="form-control"
                   placeholder="Número"
-                  name="txtNumero"
-                  :value="user.number"
-                  disabled
+                  v-model="form.number"
+                  name="txtNumber"
                 />
               </div>
             </div>
@@ -401,36 +394,30 @@
                   id="inputDistrict"
                   class="form-control"
                   placeholder="Informe o bairro"
-                  name="txtBairro"
-                  :value="user.district"
-                  disabled
+                  v-model="form.district"
+                  name="txtDistrict"
                 />
               </div>
             </div>
           </div>
           <br />
           <div class="row">
-
             <div class="col-md-4">
               <label for="inputComplement">Complemento</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-city"></i>
-                  </div>
+                  <div class="input-group-text">Complemento</div>
                 </div>
                 <input
                   type="text"
                   id="inputComplement"
                   class="form-control"
                   placeholder="Informe o complemento"
-                  name="txtDistrict"
-                  :value="user.complement"
-                  disabled
+                  v-model="form.complement"
+                  name="txtComplemento"
                 />
               </div>
             </div>
-
             <div class="col-md-4">
               <label for="inputCity">Cidade</label>
               <div class="input-group">
@@ -444,9 +431,8 @@
                   id="inputCity"
                   class="form-control"
                   placeholder="Informe a cidade"
-                  name="txtCidade"
-                  :value="user.city"
-                  disabled
+                  v-model="form.city"
+                  name="txtCity"
                 />
               </div>
             </div>
@@ -461,16 +447,45 @@
                 <select
                   id="inputState"
                   class="form-control"
+                  v-model="form.state"
                   name="txtState"
-                  disabled
                 >
-                  <option selected>{{ user.state }}</option>
+                  <option selected :value="form.state" style="background-color:gainsboro">{{ form.state }}</option>                  
+                  <option value="1">Acre</option>
+                  <option value="2">Alagoas</option>
+                  <option value="3">Amapá</option>
+                  <option value="4">Amazonas</option>
+                  <option value="5">Bahia</option>
+                  <option value="6">Ceará</option>
+                  <option value="7">Distrito Federal</option>
+                  <option value="8">Espírito Santo</option>
+                  <option value="9">Goiás</option>
+                  <option value="10">Maranhão</option>
+                  <option value="11">Mato Grosso</option>
+                  <option value="12">Mato Grosso do Sul</option>
+                  <option value="13">Minas Gerais</option>
+                  <option value="14">Pará</option>
+                  <option value="15">Paraíba</option>
+                  <option value="16">Paraná</option>
+                  <option value="17">Pernambuco</option>
+                  <option value="18">Piauí</option>
+                  <option value="19">Rio de Janeiro</option>
+                  <option value="20">
+                    Rio Grande do Norte
+                  </option>
+                  <option value="21">Rio Grande do Sul</option>
+                  <option value="22">Rondônia</option>
+                  <option value="23">Roraima</option>
+                  <option value="24">Santa Catarina</option>
+                  <option value="25">São Paulo</option>
+                  <option value="26">Sergipe</option>
+                  <option value="27">Tocantins</option>
+                  <option value="28">Estrangeiro</option>
                 </select>
               </div>
-            </div>
+            </div>            
           </div>
-          <br />
-
+          <br>
           <div class="row">
             <div class="col-md-4">
               <label for="inputZipCode">CEP</label>
@@ -483,21 +498,76 @@
                   id="inputZipCode"
                   class="form-control"
                   placeholder="Informe o CEP"
+                  v-model="form.zipcode"
                   name="txtZipCode"
-                  :value="user.zipcode"
-                  disabled
                 />
               </div>
             </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
           </div>
+
           <br /><br />
+          <!--<h4><span style="font-weight: bold">Senha</span></h4>
+          <hr />
           <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4" align="right">
-              <Link :href="'/usuario/editar/'+user.us_id" class="btn btn-warning btn-edit-user">Editar</Link>
-              <!--<Link href="" class="btn btn-danger btnDeletar">Deletarr</Link>-->
-              
+            <div class="col-md-6">
+              <label for="inputPassword">Senha Inicial</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-key"></i>
+                  </div>
+                </div>
+                <input
+                  type="password"
+                  id="inputPassword"
+                  class="form-control"
+                  placeholder="Senha"
+                  v-model="form.password"
+                  name="txtPassword"
+                />
+              </div>
+              <div v-for="(erro, password) in errors" :key="password">
+                <div v-if="password == 'password'">
+                  <span v-if="erro != ''" class="errors-label-notification">
+                    <i class="fas fa-exclamation-circle"></i>{{ erro }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="inputConfirmPassword">Confirme a senha</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-key"></i>
+                  </div>
+                </div>
+                <input
+                  type="password"
+                  id="inputConfirmPassword"
+                  class="form-control"
+                  placeholder="Senha"
+                  v-model="form.confirm_password"
+                  name="txtConfirmPassword"
+                />
+              </div>
+              <div v-for="(erro, password) in errors" :key="password">
+                <div v-if="password == 'password'">
+                  <span v-if="erro != ''" class="errors-label-notification">
+                    <i class="fas fa-exclamation-circle"></i>{{ erro }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br /><br />-->
+          <div class="row">
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-success btnCadastrar">
+                Editar
+              </button>
             </div>
           </div>
         </form>
@@ -512,6 +582,7 @@
   </layout>
 </template>
 
+
 <script>
 import Layout from "../../Layout.vue";
 import { Link } from "@inertiajs/inertia-vue";
@@ -523,33 +594,92 @@ export default {
   },
   props: {
     errors: Object,
-    /*cargos: Array,
-    empresas: Array*/
-    user: Array,
-    foto_user: String,
+    positions: Array,
+    instituitions: Array,
+    races: Array,
+    departments: Array,
+    user: Array
+  },
+  data: () => {
+    return {
+      form: {
+        id: null,
+        name: null,
+        cpf: null,
+        age: null,
+        genre: null,
+        email: null,
+        instituition: null,
+        position: null,
+        dt_adm: null,
+        registration: null,
+        phone_number: null,
+        password: null,
+        confirm_password: null,
+        street: null,
+        number: null,
+        district: null,
+        city: null,
+        state: null,
+        zipcode: null,
+        complement: null,
+        department: null,
+        race: null,
+        dt_birth: null,
+        preserveState: true,
+      },
+    };
+  },
+  created() {
+    
+    this.form.id = this.$page.props.user[0].us_id,
+    this.form.name = this.$page.props.user[0].name_user,
+    this.form.cpf = this.$page.props.user[0].cpf,
+    this.form.age = this.$page.props.user[0].age,
+    this.form.genre = this.$page.props.user[0].genre,
+    this.form.email = this.$page.props.user[0].email,
+    this.form.instituition = this.$page.props.user[0].fantasy_name,
+    this.form.position = this.$page.props.user[0].name_pos,
+    this.form.dt_adm = this.$page.props.user[0].dt_adm_format,
+    this.form.registration = this.$page.props.user[0].registration,
+    this.form.phone_number = this.$page.props.user[0].phone_number,
+    this.form.street = this.$page.props.user[0].street,
+    this.form.number = this.$page.props.user[0].number,
+    this.form.district = this.$page.props.user[0].district,
+    this.form.city = this.$page.props.user[0].city,
+    this.form.state = this.$page.props.user[0].state
+    this.form.zipcode = this.$page.props.user[0].zipcode,
+    this.form.complement = this.$page.props.user[0].complement,
+    this.form.department = this.$page.props.user[0].dept_name,
+    this.form.race = this.$page.props.user[0].race_name,
+    this.form.dt_birth = this.$page.props.user[0].dt_birth
+
+
   },
   methods: {
     sendForm() {
-      this.$inertia.post("/usuario/registrar", this.form, {
-        forceFormData: true,
-        preserveScroll: false,
-        _token: this.$page.props.csrf_token,
-        /*onSuccess: () => {
-          bootbox.alert({
-            centerVertical: true,
-            backdrop: true,
-            closeButton: false,
-            size: "large",
-            title:
-              "<img src='https://i0.wp.com/www.roteirospe.com/wp-content/uploads/2017/02/SEU-LOGO-AQUI-300x81-1-300x81-1.png?ssl=1'>",
-            message:
-              "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
-              "<span style='font-weight:bold; position: relative; top: 5px;'>userorador registrado com sucesso!</span>",
-          });
-                  
-          
-        },*/
-      });
+      this.$inertia.post("/usuario/update/"+this.form.id,
+        this.form,
+        {
+          forceFormData: true,
+          preserveScroll: false,
+          _token: this.$page.props.csrf_token,
+          _method: "PUT",
+          onSuccess: () => {
+            bootbox.alert({
+              centerVertical: true,
+              backdrop: true,
+              closeButton: false,
+              size: "large",
+              title:
+                "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+              message:
+                "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
+                "<span style='font-weight:bold; position: relative; top: 5px;'>Cadastro atualizado com sucesso!</span>",
+            });
+          },
+        }
+      );
     },
   },
 };

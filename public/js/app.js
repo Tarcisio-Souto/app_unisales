@@ -2958,6 +2958,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3002,11 +3006,8 @@ __webpack_require__.r(__webpack_exports__);
                 //Atualiza os campos com os valores da consulta.
                 $("#inputStreet").val(dados.logradouro);
                 $("#inputDistrict").val(dados.bairro);
-                $("#inputCity").val(dados.localidade); //$("#inputState").val(dados.uf);
-
-                $("#inputState option").filter(function () {
-                  return this.text == dados.uf;
-                }).attr('selected', true);
+                $("#inputCity").val(dados.localidade);
+                document.getElementById('inputState').value = dados.uf;
               } //end if.
               else {
                 //CEP pesquisado não foi encontrado.
@@ -29164,6 +29165,57 @@ var render = function () {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputZipCode" } }, [
+                  _vm._v("CEP"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _vm._v("CEP"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.zipcode,
+                        expression: "form.zipcode",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "inputZipCode",
+                      placeholder: "Informe o CEP",
+                      name: "txtZipCode",
+                    },
+                    domProps: { value: _vm.form.zipcode },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "zipcode", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-1 col-spinner" }, [
+                _c("div", { staticClass: "fa fa-spinner fa-spin" }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-6" }, [
                 _c("label", { attrs: { for: "inputStreet" } }, [
                   _vm._v("Logradouro"),
@@ -29419,174 +29471,123 @@ var render = function () {
                       },
                     },
                     [
-                      _c("option", { attrs: { selected: "" } }, [
-                        _vm._v("Selecione o estado"),
+                      _c("option", { attrs: { value: "AC" } }, [
+                        _vm._v("Acre"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [_vm._v("Acre")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [
+                      _c("option", { attrs: { value: "AL" } }, [
                         _vm._v("Alagoas"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "3" } }, [
+                      _c("option", { attrs: { value: "AP" } }, [
                         _vm._v("Amapá"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "4" } }, [
+                      _c("option", { attrs: { value: "AM" } }, [
                         _vm._v("Amazonas"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "5" } }, [
+                      _c("option", { attrs: { value: "BA" } }, [
                         _vm._v("Bahia"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "6" } }, [
+                      _c("option", { attrs: { value: "CE" } }, [
                         _vm._v("Ceará"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "7" } }, [
+                      _c("option", { attrs: { value: "DF" } }, [
                         _vm._v("Distrito Federal"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "8" } }, [
+                      _c("option", { attrs: { value: "ES" } }, [
                         _vm._v("Espírito Santo"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "9" } }, [
+                      _c("option", { attrs: { value: "GO" } }, [
                         _vm._v("Goiás"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "10" } }, [
+                      _c("option", { attrs: { value: "MA" } }, [
                         _vm._v("Maranhão"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "11" } }, [
+                      _c("option", { attrs: { value: "MT" } }, [
                         _vm._v("Mato Grosso"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "12" } }, [
+                      _c("option", { attrs: { value: "MS" } }, [
                         _vm._v("Mato Grosso do Sul"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "13" } }, [
+                      _c("option", { attrs: { value: "MG" } }, [
                         _vm._v("Minas Gerais"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "14" } }, [
+                      _c("option", { attrs: { value: "PA" } }, [
                         _vm._v("Pará"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "15" } }, [
+                      _c("option", { attrs: { value: "PB" } }, [
                         _vm._v("Paraíba"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "16" } }, [
+                      _c("option", { attrs: { value: "PR" } }, [
                         _vm._v("Paraná"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "17" } }, [
+                      _c("option", { attrs: { value: "PE" } }, [
                         _vm._v("Pernambuco"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "18" } }, [
+                      _c("option", { attrs: { value: "PI" } }, [
                         _vm._v("Piauí"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "19" } }, [
+                      _c("option", { attrs: { value: "RJ" } }, [
                         _vm._v("Rio de Janeiro"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "20" } }, [
+                      _c("option", { attrs: { value: "RN" } }, [
                         _vm._v(
                           "\n                  Rio Grande do Norte\n                "
                         ),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "21" } }, [
+                      _c("option", { attrs: { value: "RS" } }, [
                         _vm._v("Rio Grande do Sul"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "22" } }, [
+                      _c("option", { attrs: { value: "RO" } }, [
                         _vm._v("Rondônia"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "23" } }, [
+                      _c("option", { attrs: { value: "RR" } }, [
                         _vm._v("Roraima"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "24" } }, [
+                      _c("option", { attrs: { value: "SC" } }, [
                         _vm._v("Santa Catarina"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "25" } }, [
+                      _c("option", { attrs: { value: "SP" } }, [
                         _vm._v("São Paulo"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "26" } }, [
+                      _c("option", { attrs: { value: "SE" } }, [
                         _vm._v("Sergipe"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "27" } }, [
+                      _c("option", { attrs: { value: "TO" } }, [
                         _vm._v("Tocantins"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "28" } }, [
+                      _c("option", { attrs: { value: "Estrangeiro" } }, [
                         _vm._v("Estrangeiro"),
                       ]),
                     ]
                   ),
                 ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputZipCode" } }, [
-                  _vm._v("CEP"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _c("div", { staticClass: "input-group-prepend" }, [
-                    _c("div", { staticClass: "input-group-text" }, [
-                      _vm._v("CEP"),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.zipcode,
-                        expression: "form.zipcode",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "inputZipCode",
-                      placeholder: "Informe o CEP",
-                      name: "txtZipCode",
-                    },
-                    domProps: { value: _vm.form.zipcode },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "zipcode", $event.target.value)
-                      },
-                    },
-                  }),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }),
             ]),
             _vm._v(" "),
             _c("br"),

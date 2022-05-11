@@ -1272,3 +1272,12 @@ a[href*="#contact"]::before {
 .btn-edit-user {
     width: 100%;
 }
+
+.col-spinner {
+    position: relative;
+    top: 30px;
+}
+
+.fa-spinner {
+    color: rgb(79, 105, 219);
+}

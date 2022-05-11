@@ -346,6 +346,32 @@
           <h4><span style="font-weight: bold">Endereço</span></h4>
           <hr />
           <br />
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="inputZipCode">CEP</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">CEP</div>
+                </div>
+                <input
+                  type="text"
+                  id="inputZipCode"
+                  class="form-control"
+                  placeholder="Informe o CEP"
+                  v-model="form.zipcode"
+                  name="txtZipCode"
+                />
+                
+              </div>
+            </div>
+            <div class="col-md-1 col-spinner">
+              <div class="fa fa-spinner fa-spin"></div>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+          <br>
+
           <div class="row">
             <div class="col-md-6">
               <label for="inputStreet">Logradouro</label>
@@ -450,61 +476,39 @@
                   v-model="form.state"
                   name="txtState"
                 >
-                  <option selected>Selecione o estado</option>
-                  <option value="1">Acre</option>
-                  <option value="2">Alagoas</option>
-                  <option value="3">Amapá</option>
-                  <option value="4">Amazonas</option>
-                  <option value="5">Bahia</option>
-                  <option value="6">Ceará</option>
-                  <option value="7">Distrito Federal</option>
-                  <option value="8">Espírito Santo</option>
-                  <option value="9">Goiás</option>
-                  <option value="10">Maranhão</option>
-                  <option value="11">Mato Grosso</option>
-                  <option value="12">Mato Grosso do Sul</option>
-                  <option value="13">Minas Gerais</option>
-                  <option value="14">Pará</option>
-                  <option value="15">Paraíba</option>
-                  <option value="16">Paraná</option>
-                  <option value="17">Pernambuco</option>
-                  <option value="18">Piauí</option>
-                  <option value="19">Rio de Janeiro</option>
-                  <option value="20">
+                  <option value="AC">Acre</option>
+                  <option value="AL">Alagoas</option>
+                  <option value="AP">Amapá</option>
+                  <option value="AM">Amazonas</option>
+                  <option value="BA">Bahia</option>
+                  <option value="CE">Ceará</option>
+                  <option value="DF">Distrito Federal</option>
+                  <option value="ES">Espírito Santo</option>
+                  <option value="GO">Goiás</option>
+                  <option value="MA">Maranhão</option>
+                  <option value="MT">Mato Grosso</option>
+                  <option value="MS">Mato Grosso do Sul</option>
+                  <option value="MG">Minas Gerais</option>
+                  <option value="PA">Pará</option>
+                  <option value="PB">Paraíba</option>
+                  <option value="PR">Paraná</option>
+                  <option value="PE">Pernambuco</option>
+                  <option value="PI">Piauí</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                  <option value="RN">
                     Rio Grande do Norte
                   </option>
-                  <option value="21">Rio Grande do Sul</option>
-                  <option value="22">Rondônia</option>
-                  <option value="23">Roraima</option>
-                  <option value="24">Santa Catarina</option>
-                  <option value="25">São Paulo</option>
-                  <option value="26">Sergipe</option>
-                  <option value="27">Tocantins</option>
-                  <option value="28">Estrangeiro</option>
+                  <option value="RS">Rio Grande do Sul</option>
+                  <option value="RO">Rondônia</option>
+                  <option value="RR">Roraima</option>
+                  <option value="SC">Santa Catarina</option>
+                  <option value="SP">São Paulo</option>
+                  <option value="SE">Sergipe</option>
+                  <option value="TO">Tocantins</option>
+                  <option value="Estrangeiro">Estrangeiro</option>
                 </select>
               </div>
             </div>            
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-4">
-              <label for="inputZipCode">CEP</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">CEP</div>
-                </div>
-                <input
-                  type="text"
-                  id="inputZipCode"
-                  class="form-control"
-                  placeholder="Informe o CEP"
-                  v-model="form.zipcode"
-                  name="txtZipCode"
-                />
-              </div>
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
           </div>
 
           <br /><br />
@@ -640,10 +644,8 @@ export default {
                                 $("#inputStreet").val(dados.logradouro);
                                 $("#inputDistrict").val(dados.bairro);
                                 $("#inputCity").val(dados.localidade);
-                                //$("#inputState").val(dados.uf);
-                                $("#inputState option").filter(function() {
-                                  return this.text == dados.uf; 
-                                }).attr('selected', true);
+                                document.getElementById('inputState').value = dados.uf;
+
 
                             } //end if.
                             else {

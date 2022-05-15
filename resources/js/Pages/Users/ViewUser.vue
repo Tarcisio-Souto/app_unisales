@@ -352,6 +352,26 @@
           <hr />
           <br />
           <div class="row">
+            <div class="col-md-4">
+              <label for="inputZipCode">CEP</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">CEP</div>
+                </div>
+                <input
+                  type="text"
+                  id="inputZipCode"
+                  class="form-control"
+                  placeholder="Informe o CEP"
+                  name="txtZipCode"
+                  :value="user.zipcode"
+                  disabled
+                />
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
             <div class="col-md-6">
               <label for="inputStreet">Logradouro</label>
               <div class="input-group">
@@ -469,27 +489,7 @@
               </div>
             </div>
           </div>
-          <br />
 
-          <div class="row">
-            <div class="col-md-4">
-              <label for="inputZipCode">CEP</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">CEP</div>
-                </div>
-                <input
-                  type="text"
-                  id="inputZipCode"
-                  class="form-control"
-                  placeholder="Informe o CEP"
-                  name="txtZipCode"
-                  :value="user.zipcode"
-                  disabled
-                />
-              </div>
-            </div>
-          </div>
           <br /><br />
           <div class="row">
             <div class="col-md-4"></div>

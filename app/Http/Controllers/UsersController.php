@@ -283,6 +283,18 @@ class UsersController extends Controller
 
     }
 
+    public function destroy($id) {
+
+        $user = User::where('id', '=', $id)->get();
+        User::destroy($user);
+
+        $users = User::listAllUsers();
+        return Redirect::route('usuarios.lista', ['users' => $users]); 
+
+
+
+    }
+
 
 
 }

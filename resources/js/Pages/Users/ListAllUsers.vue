@@ -36,7 +36,7 @@
               ></span>
             </td>
           </tr>
-        </tbody>
+        </tbody> 
         <tfoot>
           <tr align="center">
             <th>Nome</th>

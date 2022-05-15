@@ -1,6 +1,5 @@
 <template>
   <layout class="backg-color">
-
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
@@ -13,7 +12,11 @@
     <br />
     <div class="row">
       <div class="col-md-12">
-        <form @submit.prevent="sendForm" enctype="multipart/form-data" id="formAddUser">
+        <form
+          @submit.prevent="sendForm"
+          enctype="multipart/form-data"
+          id="formAddUser"
+        >
           <h4><span style="font-weight: bold">Dados Pessoais</span></h4>
           <div class="row">
             <div class="col-md-4">
@@ -71,32 +74,32 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    id="InputGenre1"
-                    value="m"
-                    v-model="form.genre"
-                  />
-                  <label class="form-check-label" for="exampleRadios1">
-                    Masculino
-                  </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="InputGenre1"
+                      value="m"
+                      v-model="form.genre"
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Masculino
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="InputGenre2"
+                      v-model="form.genre"
+                      value="f"
+                    />
+                    <label class="form-check-label" for="exampleRadios2">
+                      Feminino
+                    </label>
+                  </div>
                 </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    id="InputGenre2"
-                    v-model="form.genre"
-                    value="f"
-                  />
-                  <label class="form-check-label" for="exampleRadios2">
-                    Feminino
-                  </label>
-                </div>
-                </div>                
               </div>
             </div>
           </div>
@@ -162,21 +165,15 @@
                   name="txtRace"
                 >
                   <option selected>Selecione a raça</option>
-                  <option
-                    v-for="race in races"
-                    :key="race.id"
-                    :value="race.id"
-                  >
+                  <option v-for="race in races" :key="race.id" :value="race.id">
                     {{ race.name }}
                   </option>
                 </select>
               </div>
             </div>
-
           </div>
           <br />
           <div class="row">
-
             <div class="col-md-4">
               <label for="inputInstituition">Instituição</label>
               <div class="input-group">
@@ -202,7 +199,7 @@
                 </select>
               </div>
             </div>
-            
+
             <div class="col-md-4">
               <label for="inputPosition">Cargo</label>
               <div class="input-group">
@@ -247,9 +244,8 @@
                 />
               </div>
             </div>
-            
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div class="col-md-4">
@@ -265,6 +261,7 @@
                   class="form-control"
                   v-model="form.department"
                   name="txtDepartment"
+                  @change="getCidades($event)"
                 >
                   <option selected>Selecione o departmento</option>
                   <option
@@ -273,6 +270,32 @@
                     :value="department.id"
                   >
                     {{ department.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputSector">Setor</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
+                </div>
+                <select
+                  id="inputSector"
+                  class="form-control"
+                  v-model="form.sector"
+                  name="txtSector"
+                >
+                  <option selected>Selecione o setor</option>
+                  <option
+                    v-for="sector in this.form.sectors"
+                    :key="sector.id"
+                    :value="sector.id"
+                  >
+                    {{ sector.name }}
                   </option>
                 </select>
               </div>
@@ -296,7 +319,10 @@
                 />
               </div>
             </div>
+          </div>
+          <br />
 
+          <div class="row">
             <div class="col-md-4">
               <label for="InputPhoneNumber">Telefone</label>
               <div class="input-group">
@@ -315,11 +341,7 @@
                   v-mask="['(##) #####-####', '(##) ####-####']"
                 />
               </div>
-            </div>            
-          </div>
-          <br />
-
-          <div class="row">
+            </div>
             <div class="col-md-4">
               <label for="inputEmail">Email</label>
               <div class="input-group">
@@ -337,9 +359,7 @@
               </div>
             </div>
             <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
           </div>
-
 
           <br />
           <br /><br />
@@ -362,7 +382,6 @@
                   v-model="form.zipcode"
                   name="txtZipCode"
                 />
-                
               </div>
             </div>
             <div class="col-md-1 col-spinner">
@@ -370,7 +389,7 @@
             </div>
             <div class="col-md-4"></div>
           </div>
-          <br>
+          <br />
 
           <div class="row">
             <div class="col-md-6">
@@ -495,9 +514,7 @@
                   <option value="PE">Pernambuco</option>
                   <option value="PI">Piauí</option>
                   <option value="RJ">Rio de Janeiro</option>
-                  <option value="RN">
-                    Rio Grande do Norte
-                  </option>
+                  <option value="RN">Rio Grande do Norte</option>
                   <option value="RS">Rio Grande do Sul</option>
                   <option value="RO">Rondônia</option>
                   <option value="RR">Roraima</option>
@@ -508,7 +525,7 @@
                   <option value="Estrangeiro">Estrangeiro</option>
                 </select>
               </div>
-            </div>            
+            </div>
           </div>
 
           <br /><br />
@@ -602,72 +619,66 @@ export default {
   },
 
   mounted: () => {
+    $(document).ready(function () {
+      function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#inputStreet").val("");
+        $("#inputDistrict").val("");
+        $("#inputCity").val("");
+        $('select[name="inputState"]');
+        //$("#inputState").val("");
+      }
 
-    $(document).ready(function() {
+      //Quando o campo cep perde o foco.
+      $("#inputZipCode").blur(function () {
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, "");
 
-            function limpa_formulário_cep() {
-                // Limpa valores do formulário de cep.
-                $("#inputStreet").val("");
-                $("#inputDistrict").val("");
-                $("#inputCity").val("");
-                $('select[name="inputState"]');
-                //$("#inputState").val("");
-            }
-            
-            //Quando o campo cep perde o foco.
-            $("#inputZipCode").blur(function() {
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+          //Expressão regular para validar o CEP.
+          var validacep = /^[0-9]{8}$/;
 
-                //Nova variável "cep" somente com dígitos.
-                var cep = $(this).val().replace(/\D/g, '');
+          //Valida o formato do CEP.
+          if (validacep.test(cep)) {
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#inputStreet").val("");
+            $("#inputDistrict").val("");
+            $("#inputCity").val("");
+            $("#inputState").val("");
 
-                //Verifica se campo cep possui valor informado.
-                if (cep != "") {
+            //Consulta o webservice viacep.com.br/
+            $.getJSON(
+              "https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+              function (dados) {
+                if (!("erro" in dados)) {
+                  //Atualiza os campos com os valores da consulta.
 
-                    //Expressão regular para validar o CEP.
-                    var validacep = /^[0-9]{8}$/;
-
-                    //Valida o formato do CEP.
-                    if(validacep.test(cep)) {
-
-                        //Preenche os campos com "..." enquanto consulta webservice.
-                        $("#inputStreet").val("");
-                        $("#inputDistrict").val("");
-                        $("#inputCity").val("");
-                        $("#inputState").val("");
-
-                        //Consulta o webservice viacep.com.br/
-                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-
-                            if (!("erro" in dados)) {
-                                //Atualiza os campos com os valores da consulta.
-
-                                $("#inputStreet").val(dados.logradouro);
-                                $("#inputDistrict").val(dados.bairro);
-                                $("#inputCity").val(dados.localidade);
-                                document.getElementById('inputState').value = dados.uf;
-
-
-                            } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                limpa_formulário_cep();
-                                alert("CEP não encontrado.");
-                            }
-                        });
-                    } //end if.
-                    else {
-                        //cep é inválido.
-                        limpa_formulário_cep();
-                        alert("Formato de CEP inválido.");
-                    }
+                  $("#inputStreet").val(dados.logradouro);
+                  $("#inputDistrict").val(dados.bairro);
+                  $("#inputCity").val(dados.localidade);
+                  document.getElementById("inputState").value = dados.uf;
                 } //end if.
                 else {
-                    //cep sem valor, limpa formulário.
-                    limpa_formulário_cep();
+                  //CEP pesquisado não foi encontrado.
+                  limpa_formulário_cep();
+                  alert("CEP não encontrado.");
                 }
-            });
-        });
-
+              }
+            );
+          } //end if.
+          else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+          }
+        } //end if.
+        else {
+          //cep sem valor, limpa formulário.
+          limpa_formulário_cep();
+        }
+      });
+    });
   },
 
   data: () => {
@@ -694,13 +705,24 @@ export default {
         complement: null,
         department: null,
         race: null,
-        dt_birth: null   
+        dt_birth: null,
+        sector: null,
+        sectors: []
       },
     };
   },
-  methods: {
-    sendForm() {
 
+  methods: {
+    getCidades: function () {
+
+      axios.get("/setor/"+this.form.department).then((response) => {
+        this.form.sectors = response.data;
+        console.log(response);
+      });
+
+    },
+
+    sendForm() {
       this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
@@ -718,7 +740,7 @@ export default {
               "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
               "<span style='font-weight:bold; position: relative; top: 5px;'>Colaborador registrado com sucesso!</span>",
           });
-          
+
           this.form.name = null;
           this.form.cpf = null;
           this.form.age = null;
@@ -740,16 +762,10 @@ export default {
           this.form.department = null;
           this.form.race = null;
           this.form.dt_birth = null;
-          this.form.genre = null;  
-
+          this.form.genre = null;
         },
-        
       });
     },
   },
-
-  
-
-
 };
 </script>

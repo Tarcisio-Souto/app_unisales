@@ -2962,6 +2962,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2988,7 +3005,7 @@ __webpack_require__.r(__webpack_exports__);
 
       $("#inputZipCode").blur(function () {
         //Nova variável "cep" somente com dígitos.
-        var cep = $(this).val().replace(/\D/g, ''); //Verifica se campo cep possui valor informado.
+        var cep = $(this).val().replace(/\D/g, ""); //Verifica se campo cep possui valor informado.
 
         if (cep != "") {
           //Expressão regular para validar o CEP.
@@ -3007,7 +3024,7 @@ __webpack_require__.r(__webpack_exports__);
                 $("#inputStreet").val(dados.logradouro);
                 $("#inputDistrict").val(dados.bairro);
                 $("#inputCity").val(dados.localidade);
-                document.getElementById('inputState').value = dados.uf;
+                document.getElementById("inputState").value = dados.uf;
               } //end if.
               else {
                 //CEP pesquisado não foi encontrado.
@@ -3053,13 +3070,23 @@ __webpack_require__.r(__webpack_exports__);
         complement: null,
         department: null,
         race: null,
-        dt_birth: null
+        dt_birth: null,
+        sector: null,
+        sectors: []
       }
     };
   },
   methods: {
-    sendForm: function sendForm() {
+    getCidades: function getCidades() {
       var _this = this;
+
+      axios.get("/setor/" + this.form.department).then(function (response) {
+        _this.form.sectors = response.data;
+        console.log(response);
+      });
+    },
+    sendForm: function sendForm() {
+      var _this2 = this;
 
       this.$inertia.post("/usuario/registrar", this.form, {
         forceFormData: true,
@@ -3075,28 +3102,28 @@ __webpack_require__.r(__webpack_exports__);
             title: "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
             message: "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" + "<span style='font-weight:bold; position: relative; top: 5px;'>Colaborador registrado com sucesso!</span>"
           });
-          _this.form.name = null;
-          _this.form.cpf = null;
-          _this.form.age = null;
-          _this.form.registration = null;
-          _this.form.email = null;
-          _this.form.instituition = null;
-          _this.form.position = null;
-          _this.form.dt_adm = null;
-          _this.form.phone_number = null;
-          _this.form.password = null;
-          _this.form.confirm_password = null;
-          _this.form.street = null;
-          _this.form.number = null;
-          _this.form.district = null;
-          _this.form.city = null;
-          _this.form.state = null;
-          _this.form.zipcode = null;
-          _this.form.complement = null;
-          _this.form.department = null;
-          _this.form.race = null;
-          _this.form.dt_birth = null;
-          _this.form.genre = null;
+          _this2.form.name = null;
+          _this2.form.cpf = null;
+          _this2.form.age = null;
+          _this2.form.registration = null;
+          _this2.form.email = null;
+          _this2.form.instituition = null;
+          _this2.form.position = null;
+          _this2.form.dt_adm = null;
+          _this2.form.phone_number = null;
+          _this2.form.password = null;
+          _this2.form.confirm_password = null;
+          _this2.form.street = null;
+          _this2.form.number = null;
+          _this2.form.district = null;
+          _this2.form.city = null;
+          _this2.form.state = null;
+          _this2.form.zipcode = null;
+          _this2.form.complement = null;
+          _this2.form.department = null;
+          _this2.form.race = null;
+          _this2.form.dt_birth = null;
+          _this2.form.genre = null;
         }
       });
     }
@@ -28505,7 +28532,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                  Masculino\n                "
+                            "\n                    Masculino\n                  "
                           ),
                         ]
                       ),
@@ -28544,7 +28571,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                  Feminino\n                "
+                            "\n                    Feminino\n                  "
                           ),
                         ]
                       ),
@@ -28965,23 +28992,28 @@ var render = function () {
                       staticClass: "form-control",
                       attrs: { id: "inputDepartment", name: "txtDepartment" },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "department",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
+                        change: [
+                          function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "department",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function ($event) {
+                            return _vm.getCidades($event)
+                          },
+                        ],
                       },
                     },
                     [
@@ -29000,6 +29032,75 @@ var render = function () {
                             _vm._v(
                               "\n                  " +
                                 _vm._s(department.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputSector" } }, [
+                  _vm._v("Setor"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fas fa-briefcase" }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.sector,
+                          expression: "form.sector",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "inputSector", name: "txtSector" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "sector",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Selecione o setor"),
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(this.form.sectors, function (sector) {
+                        return _c(
+                          "option",
+                          { key: sector.id, domProps: { value: sector.id } },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(sector.name) +
                                 "\n                "
                             ),
                           ]
@@ -29051,7 +29152,11 @@ var render = function () {
                   }),
                 ]),
               ]),
-              _vm._v(" "),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "InputPhoneNumber" } }, [
                   _vm._v("Telefone"),
@@ -29098,11 +29203,7 @@ var render = function () {
                   }),
                 ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
+              _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputEmail" } }, [
                   _vm._v("Email"),
@@ -29143,8 +29244,6 @@ var render = function () {
                   }),
                 ]),
               ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }),
             ]),
@@ -29548,9 +29647,7 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "RN" } }, [
-                        _vm._v(
-                          "\n                  Rio Grande do Norte\n                "
-                        ),
+                        _vm._v("Rio Grande do Norte"),
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "RS" } }, [

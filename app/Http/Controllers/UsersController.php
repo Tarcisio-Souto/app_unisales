@@ -7,6 +7,7 @@ use App\Models\Departments;
 use App\Models\Instituitions;
 use App\Models\Positions;
 use App\Models\Races;
+use App\Models\Sectors;
 use App\Models\States;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class UsersController extends Controller
         'races' => $races, 'departments' => $departments]);
 
     }
+
 
     public function store(Request $req) {
 

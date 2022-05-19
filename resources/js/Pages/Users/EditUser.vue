@@ -160,8 +160,9 @@
                   class="form-control"
                   v-model="form.race"
                   name="txtRace"
+                  @change='deleteRace($event)'
                 >
-                  <option selected :value="form.race" style="background-color:gainsboro">{{ form.race }}</option>                  
+                  <option id='selected_race' :value="form.race" style="background-color:gainsboro">{{ form.race }}</option>                  
                   <option
                     v-for="race in races"
                     :key="race.id"
@@ -190,8 +191,9 @@
                   class="form-control"
                   v-model="form.instituition"
                   name="txtinstituition"
+                  @change='deleteInstituition($event)'
                 >
-                  <option selected :value="form.instituition" style="background-color:gainsboro">{{ form.instituition }}</option>                  
+                  <option id='selected_instituition' :value="form.instituition" style="background-color:gainsboro">{{ form.instituition }}</option>                  
                   <option
                     v-for="instituition in instituitions"
                     :key="instituition.id"
@@ -216,8 +218,9 @@
                   class="form-control"
                   v-model="form.position"
                   name="txtPosition"
+                  @change='deletePosition($event)'
                 >
-                  <option selected :value="form.position" style="background-color:gainsboro">{{ form.position }}</option>                  
+                  <option id='selected_position' :value="form.position" style="background-color:gainsboro">{{ form.position }}</option>                  
                   <option
                     v-for="position in positions"
                     :key="position.id"
@@ -265,18 +268,46 @@
                   class="form-control"
                   v-model="form.department"
                   name="txtDepartment"
+                  @change="getSetores($event)"
                 >
-                  <option selected :value="form.department" style="background-color:gainsboro">{{ form.department }}</option>                  
+                  <option id="selected" :value="form.department" style="background-color:gainsboro">{{ form.department }}</option>
                   <option
                     v-for="department in departments"
                     :key="department.id"
-                    :value="department.id"
+                    :value="department.id"                    
                   >
                     {{ department.name }}
                   </option>
                 </select>
               </div>
             </div>
+
+            <div class="col-md-4">
+              <label for="inputSetor">Setor</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-briefcase"></i>
+                  </div>
+                </div>
+                <select
+                  id="inputSetor"
+                  class="form-control"
+                  v-model="form.sector"
+                  name="txtSetor"
+                  @change='deleteSector($event)'
+                >
+                  <option selected :value="form.sector" style="background-color:gainsboro">{{ form.sector }}</option>                  
+                  <option
+                    v-for="sector in this.form.sectors"
+                    :key="sector.id"
+                    :value="sector.id"
+                  >
+                    {{ sector.name }}
+                  </option>
+                </select>
+              </div>
+            </div>            
 
             <div class="col-md-4">
               <label for="inputRegistration">Matrícula</label>
@@ -296,7 +327,11 @@
                 />
               </div>
             </div>
+                       
+          </div>
+          <br />
 
+          <div class="row">
             <div class="col-md-4">
               <label for="InputPhoneNumber">Telefone</label>
               <div class="input-group">
@@ -315,11 +350,7 @@
                   v-mask="['(##) #####-####', '(##) ####-####']"
                 />
               </div>
-            </div>            
-          </div>
-          <br />
-
-          <div class="row">
+            </div> 
             <div class="col-md-4">
               <label for="inputEmail">Email</label>
               <div class="input-group">
@@ -336,7 +367,6 @@
                 />
               </div>
             </div>
-            <div class="col-md-4"></div>
             <div class="col-md-4"></div>
           </div>
 
@@ -363,7 +393,9 @@
                 />
               </div>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-1 col-spinner">
+              <div class="fa fa-spinner fa-spin"></div>
+            </div>
             <div class="col-md-4"></div>
           </div>
           <br />
@@ -508,61 +540,6 @@
           </div>
           <br>
           
-          <!--<h4><span style="font-weight: bold">Senha</span></h4>
-          <hr />
-          <div class="row">
-            <div class="col-md-6">
-              <label for="inputPassword">Senha Inicial</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-key"></i>
-                  </div>
-                </div>
-                <input
-                  type="password"
-                  id="inputPassword"
-                  class="form-control"
-                  placeholder="Senha"
-                  v-model="form.password"
-                  name="txtPassword"
-                />
-              </div>
-              <div v-for="(erro, password) in errors" :key="password">
-                <div v-if="password == 'password'">
-                  <span v-if="erro != ''" class="errors-label-notification">
-                    <i class="fas fa-exclamation-circle"></i>{{ erro }}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label for="inputConfirmPassword">Confirme a senha</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-key"></i>
-                  </div>
-                </div>
-                <input
-                  type="password"
-                  id="inputConfirmPassword"
-                  class="form-control"
-                  placeholder="Senha"
-                  v-model="form.confirm_password"
-                  name="txtConfirmPassword"
-                />
-              </div>
-              <div v-for="(erro, password) in errors" :key="password">
-                <div v-if="password == 'password'">
-                  <span v-if="erro != ''" class="errors-label-notification">
-                    <i class="fas fa-exclamation-circle"></i>{{ erro }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br /><br />-->
           <div class="row">
             <div class="col-md-12">
               <button type="submit" class="btn btn-success btnCadastrar">
@@ -600,6 +577,70 @@ export default {
     departments: Array,
     user: Array
   },
+
+  mounted: () => {
+    $(document).ready(function () {
+      function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#inputStreet").val("");
+        $("#inputDistrict").val("");
+        $("#inputCity").val("");
+        $('select[name="inputState"]');
+        //$("#inputState").val("");
+      }
+
+      //Quando o campo cep perde o foco.
+      $("#inputZipCode").blur(function () {
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, "");
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+          //Expressão regular para validar o CEP.
+          var validacep = /^[0-9]{8}$/;
+
+          //Valida o formato do CEP.
+          if (validacep.test(cep)) {
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#inputStreet").val("");
+            $("#inputDistrict").val("");
+            $("#inputCity").val("");
+            $("#inputState").val("");
+
+            //Consulta o webservice viacep.com.br/
+            $.getJSON(
+              "https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+              function (dados) {
+                if (!("erro" in dados)) {
+                  //Atualiza os campos com os valores da consulta.
+
+                  $("#inputStreet").val(dados.logradouro);
+                  $("#inputDistrict").val(dados.bairro);
+                  $("#inputCity").val(dados.localidade);
+                  document.getElementById("inputState").value = dados.uf;
+                } //end if.
+                else {
+                  //CEP pesquisado não foi encontrado.
+                  limpa_formulário_cep();
+                  alert("CEP não encontrado.");
+                }
+              }
+            );
+          } //end if.
+          else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+          }
+        } //end if.
+        else {
+          //cep sem valor, limpa formulário.
+          limpa_formulário_cep();
+        }
+      });
+    });
+  },
+
   data: () => {
     return {
       form: {
@@ -626,6 +667,8 @@ export default {
         department: null,
         race: null,
         dt_birth: null,
+        sector: null,
+        sectors: [],
         preserveState: true,
       },
     };
@@ -657,6 +700,35 @@ export default {
 
   },
   methods: {
+
+    deletePosition: function() {
+      $('#selected_position').remove();
+    },
+
+    deleteSector: function() {
+      $('#selected_sector').remove();
+    },
+
+    deleteInstituition: function() {
+      $('#selected_instituition').remove();
+    },
+
+    deleteRace: function() {
+      $('#selected_race').remove();
+    },
+
+    getSetores: function () {
+
+      $('#selected').remove();
+
+      axios.get("/setor/"+this.form.department).then((response) => {
+        this.form.sectors = response.data;
+        console.log(response);
+      });
+
+    },
+
+
     sendForm() {
       this.$inertia.post("/usuario/update/"+this.form.id,
         this.form,
@@ -665,6 +737,7 @@ export default {
           preserveScroll: false,
           _token: this.$page.props.csrf_token,
           _method: "PUT",
+          preserveState: true,
           onSuccess: () => {
             bootbox.alert({
               centerVertical: true,

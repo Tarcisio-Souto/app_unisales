@@ -261,7 +261,7 @@
                   class="form-control"
                   v-model="form.department"
                   name="txtDepartment"
-                  @change="getCidades($event)"
+                  @change="getSetores($event)"
                 >
                   <option selected>Selecione o departmento</option>
                   <option
@@ -713,7 +713,7 @@ export default {
   },
 
   methods: {
-    getCidades: function () {
+    getSetores: function () {
 
       axios.get("/setor/"+this.form.department).then((response) => {
         this.form.sectors = response.data;

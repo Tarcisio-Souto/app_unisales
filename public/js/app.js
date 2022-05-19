@@ -3077,7 +3077,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getCidades: function getCidades() {
+    getSetores: function getSetores() {
       var _this = this;
 
       axios.get("/setor/" + this.form.department).then(function (response) {
@@ -3708,29 +3708,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3746,6 +3723,60 @@ __webpack_require__.r(__webpack_exports__);
     races: Array,
     departments: Array,
     user: Array
+  },
+  mounted: function mounted() {
+    $(document).ready(function () {
+      function limpa_formulário_cep() {
+        // Limpa valores do formulário de cep.
+        $("#inputStreet").val("");
+        $("#inputDistrict").val("");
+        $("#inputCity").val("");
+        $('select[name="inputState"]'); //$("#inputState").val("");
+      } //Quando o campo cep perde o foco.
+
+
+      $("#inputZipCode").blur(function () {
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, ""); //Verifica se campo cep possui valor informado.
+
+        if (cep != "") {
+          //Expressão regular para validar o CEP.
+          var validacep = /^[0-9]{8}$/; //Valida o formato do CEP.
+
+          if (validacep.test(cep)) {
+            //Preenche os campos com "..." enquanto consulta webservice.
+            $("#inputStreet").val("");
+            $("#inputDistrict").val("");
+            $("#inputCity").val("");
+            $("#inputState").val(""); //Consulta o webservice viacep.com.br/
+
+            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+              if (!("erro" in dados)) {
+                //Atualiza os campos com os valores da consulta.
+                $("#inputStreet").val(dados.logradouro);
+                $("#inputDistrict").val(dados.bairro);
+                $("#inputCity").val(dados.localidade);
+                document.getElementById("inputState").value = dados.uf;
+              } //end if.
+              else {
+                //CEP pesquisado não foi encontrado.
+                limpa_formulário_cep();
+                alert("CEP não encontrado.");
+              }
+            });
+          } //end if.
+          else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+          }
+        } //end if.
+        else {
+          //cep sem valor, limpa formulário.
+          limpa_formulário_cep();
+        }
+      });
+    });
   },
   data: function data() {
     return {
@@ -3773,6 +3804,8 @@ __webpack_require__.r(__webpack_exports__);
         department: null,
         race: null,
         dt_birth: null,
+        sector: null,
+        sectors: [],
         preserveState: true
       }
     };
@@ -3782,12 +3815,34 @@ __webpack_require__.r(__webpack_exports__);
     this.form.zipcode = this.$page.props.user[0].zipcode, this.form.complement = this.$page.props.user[0].complement, this.form.department = this.$page.props.user[0].dept_name, this.form.race = this.$page.props.user[0].race_name, this.form.dt_birth = this.$page.props.user[0].dt_birth;
   },
   methods: {
+    deletePosition: function deletePosition() {
+      $('#selected_position').remove();
+    },
+    deleteSector: function deleteSector() {
+      $('#selected_sector').remove();
+    },
+    deleteInstituition: function deleteInstituition() {
+      $('#selected_instituition').remove();
+    },
+    deleteRace: function deleteRace() {
+      $('#selected_race').remove();
+    },
+    getSetores: function getSetores() {
+      var _this = this;
+
+      $('#selected').remove();
+      axios.get("/setor/" + this.form.department).then(function (response) {
+        _this.form.sectors = response.data;
+        console.log(response);
+      });
+    },
     sendForm: function sendForm() {
       this.$inertia.post("/usuario/update/" + this.form.id, this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,
         _method: "PUT",
+        preserveState: true,
         onSuccess: function onSuccess() {
           bootbox.alert({
             centerVertical: true,
@@ -29011,7 +29066,7 @@ var render = function () {
                             )
                           },
                           function ($event) {
-                            return _vm.getCidades($event)
+                            return _vm.getSetores($event)
                           },
                         ],
                       },
@@ -30300,23 +30355,28 @@ var render = function () {
                       staticClass: "form-control",
                       attrs: { id: "inputRace", name: "txtRace" },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "race",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
+                        change: [
+                          function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "race",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function ($event) {
+                            return _vm.deleteRace($event)
+                          },
+                        ],
                       },
                     },
                     [
@@ -30324,7 +30384,7 @@ var render = function () {
                         "option",
                         {
                           staticStyle: { "background-color": "gainsboro" },
-                          attrs: { selected: "" },
+                          attrs: { id: "selected_race" },
                           domProps: { value: _vm.form.race },
                         },
                         [_vm._v(_vm._s(_vm.form.race))]
@@ -30382,23 +30442,28 @@ var render = function () {
                         name: "txtinstituition",
                       },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "instituition",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
+                        change: [
+                          function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "instituition",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function ($event) {
+                            return _vm.deleteInstituition($event)
+                          },
+                        ],
                       },
                     },
                     [
@@ -30406,7 +30471,7 @@ var render = function () {
                         "option",
                         {
                           staticStyle: { "background-color": "gainsboro" },
-                          attrs: { selected: "" },
+                          attrs: { id: "selected_instituition" },
                           domProps: { value: _vm.form.instituition },
                         },
                         [_vm._v(_vm._s(_vm.form.instituition))]
@@ -30460,23 +30525,28 @@ var render = function () {
                       staticClass: "form-control",
                       attrs: { id: "inputPosition", name: "txtPosition" },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "position",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
+                        change: [
+                          function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "position",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function ($event) {
+                            return _vm.deletePosition($event)
+                          },
+                        ],
                       },
                     },
                     [
@@ -30484,7 +30554,7 @@ var render = function () {
                         "option",
                         {
                           staticStyle: { "background-color": "gainsboro" },
-                          attrs: { selected: "" },
+                          attrs: { id: "selected_position" },
                           domProps: { value: _vm.form.position },
                         },
                         [_vm._v(_vm._s(_vm.form.position))]
@@ -30589,23 +30659,28 @@ var render = function () {
                       staticClass: "form-control",
                       attrs: { id: "inputDepartment", name: "txtDepartment" },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "department",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
+                        change: [
+                          function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "department",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function ($event) {
+                            return _vm.getSetores($event)
+                          },
+                        ],
                       },
                     },
                     [
@@ -30613,7 +30688,7 @@ var render = function () {
                         "option",
                         {
                           staticStyle: { "background-color": "gainsboro" },
-                          attrs: { selected: "" },
+                          attrs: { id: "selected" },
                           domProps: { value: _vm.form.department },
                         },
                         [_vm._v(_vm._s(_vm.form.department))]
@@ -30630,6 +30705,86 @@ var render = function () {
                             _vm._v(
                               "\n                  " +
                                 _vm._s(department.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputSetor" } }, [
+                  _vm._v("Setor"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group" }, [
+                  _c("div", { staticClass: "input-group-prepend" }, [
+                    _c("div", { staticClass: "input-group-text" }, [
+                      _c("i", { staticClass: "fas fa-briefcase" }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.sector,
+                          expression: "form.sector",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "inputSetor", name: "txtSetor" },
+                      on: {
+                        change: [
+                          function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "sector",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function ($event) {
+                            return _vm.deleteSector($event)
+                          },
+                        ],
+                      },
+                    },
+                    [
+                      _c(
+                        "option",
+                        {
+                          staticStyle: { "background-color": "gainsboro" },
+                          attrs: { selected: "" },
+                          domProps: { value: _vm.form.sector },
+                        },
+                        [_vm._v(_vm._s(_vm.form.sector))]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(this.form.sectors, function (sector) {
+                        return _c(
+                          "option",
+                          { key: sector.id, domProps: { value: sector.id } },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(sector.name) +
                                 "\n                "
                             ),
                           ]
@@ -30681,7 +30836,11 @@ var render = function () {
                   }),
                 ]),
               ]),
-              _vm._v(" "),
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "InputPhoneNumber" } }, [
                   _vm._v("Telefone"),
@@ -30728,11 +30887,7 @@ var render = function () {
                   }),
                 ]),
               ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
+              _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputEmail" } }, [
                   _vm._v("Email"),
@@ -30773,8 +30928,6 @@ var render = function () {
                   }),
                 ]),
               ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }),
             ]),
@@ -30836,7 +30989,9 @@ var render = function () {
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }),
+              _c("div", { staticClass: "col-md-1 col-spinner" }, [
+                _c("div", { staticClass: "fa fa-spinner fa-spin" }),
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }),
             ]),

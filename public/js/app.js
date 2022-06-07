@@ -2961,24 +2961,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2990,7 +2972,8 @@ __webpack_require__.r(__webpack_exports__);
     positions: Array,
     instituitions: Array,
     races: Array,
-    departments: Array
+    departments: Array,
+    states: Array
   },
   mounted: function mounted() {
     $(document).ready(function () {
@@ -3691,23 +3674,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3722,11 +3688,12 @@ __webpack_require__.r(__webpack_exports__);
     instituitions: Array,
     races: Array,
     departments: Array,
-    user: Array
+    user: Array,
+    states: Array
   },
   mounted: function mounted() {
     $(document).ready(function () {
-      function limpa_formulário_cep() {
+      function limpa_formulario_cep() {
         // Limpa valores do formulário de cep.
         $("#inputStreet").val("");
         $("#inputDistrict").val("");
@@ -3760,20 +3727,20 @@ __webpack_require__.r(__webpack_exports__);
               } //end if.
               else {
                 //CEP pesquisado não foi encontrado.
-                limpa_formulário_cep();
+                limpa_formulario_cep();
                 alert("CEP não encontrado.");
               }
             });
           } //end if.
           else {
             //cep é inválido.
-            limpa_formulário_cep();
+            limpa_formulario_cep();
             alert("Formato de CEP inválido.");
           }
         } //end if.
         else {
           //cep sem valor, limpa formulário.
-          limpa_formulário_cep();
+          limpa_formulario_cep();
         }
       });
     });
@@ -3811,10 +3778,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.form.id = this.$page.props.user[0].us_id, this.form.name = this.$page.props.user[0].name_user, this.form.cpf = this.$page.props.user[0].cpf, this.form.age = this.$page.props.user[0].age, this.form.genre = this.$page.props.user[0].genre, this.form.email = this.$page.props.user[0].email, this.form.instituition = this.$page.props.user[0].fantasy_name, this.form.position = this.$page.props.user[0].name_pos, this.form.dt_adm = this.$page.props.user[0].dt_adm_format, this.form.registration = this.$page.props.user[0].registration, this.form.phone_number = this.$page.props.user[0].phone_number, this.form.street = this.$page.props.user[0].street, this.form.number = this.$page.props.user[0].number, this.form.district = this.$page.props.user[0].district, this.form.city = this.$page.props.user[0].city, this.form.state = this.$page.props.user[0].state;
-    this.form.zipcode = this.$page.props.user[0].zipcode, this.form.complement = this.$page.props.user[0].complement, this.form.department = this.$page.props.user[0].dept_name, this.form.race = this.$page.props.user[0].race_name, this.form.dt_birth = this.$page.props.user[0].dt_birth;
+    this.form.id = this.$page.props.user[0].us_id, this.form.name = this.$page.props.user[0].name_user, this.form.cpf = this.$page.props.user[0].cpf, this.form.age = this.$page.props.user[0].age, this.form.genre = this.$page.props.user[0].genre, this.form.email = this.$page.props.user[0].email, this.form.instituition = this.$page.props.user[0].fantasy_name, this.form.position = this.$page.props.user[0].name_pos, this.form.dt_adm = this.$page.props.user[0].dt_adm_format, this.form.registration = this.$page.props.user[0].registration, this.form.phone_number = this.$page.props.user[0].phone_number, this.form.street = this.$page.props.user[0].street, this.form.number = this.$page.props.user[0].number, this.form.district = this.$page.props.user[0].district, this.form.city = this.$page.props.user[0].city, this.form.state = this.$page.props.user[0].st_name, this.form.zipcode = this.$page.props.user[0].zipcode, this.form.complement = this.$page.props.user[0].complement, this.form.department = this.$page.props.user[0].dept_name, this.form.sector = this.$page.props.user[0].sect_name, this.form.race = this.$page.props.user[0].race_name, this.form.dt_birth = this.$page.props.user[0].dt_birth;
   },
   methods: {
+    deleteState: function deleteState() {
+      alert(this.form.state);
+      $('#selected_state').remove();
+    },
     deletePosition: function deletePosition() {
       $('#selected_position').remove();
     },
@@ -29625,118 +29595,28 @@ var render = function () {
                       },
                     },
                     [
-                      _c("option", { attrs: { value: "AC" } }, [
-                        _vm._v("Acre"),
+                      _c("option", { attrs: { selected: "" } }, [
+                        _vm._v("Selecione o estado"),
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "AL" } }, [
-                        _vm._v("Alagoas"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "AP" } }, [
-                        _vm._v("Amapá"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "AM" } }, [
-                        _vm._v("Amazonas"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "BA" } }, [
-                        _vm._v("Bahia"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "CE" } }, [
-                        _vm._v("Ceará"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "DF" } }, [
-                        _vm._v("Distrito Federal"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "ES" } }, [
-                        _vm._v("Espírito Santo"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "GO" } }, [
-                        _vm._v("Goiás"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "MA" } }, [
-                        _vm._v("Maranhão"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "MT" } }, [
-                        _vm._v("Mato Grosso"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "MS" } }, [
-                        _vm._v("Mato Grosso do Sul"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "MG" } }, [
-                        _vm._v("Minas Gerais"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "PA" } }, [
-                        _vm._v("Pará"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "PB" } }, [
-                        _vm._v("Paraíba"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "PR" } }, [
-                        _vm._v("Paraná"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "PE" } }, [
-                        _vm._v("Pernambuco"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "PI" } }, [
-                        _vm._v("Piauí"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "RJ" } }, [
-                        _vm._v("Rio de Janeiro"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "RN" } }, [
-                        _vm._v("Rio Grande do Norte"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "RS" } }, [
-                        _vm._v("Rio Grande do Sul"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "RO" } }, [
-                        _vm._v("Rondônia"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "RR" } }, [
-                        _vm._v("Roraima"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "SC" } }, [
-                        _vm._v("Santa Catarina"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "SP" } }, [
-                        _vm._v("São Paulo"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "SE" } }, [
-                        _vm._v("Sergipe"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "TO" } }, [
-                        _vm._v("Tocantins"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "Estrangeiro" } }, [
-                        _vm._v("Estrangeiro"),
-                      ]),
-                    ]
+                      _vm._l(_vm.states, function (state) {
+                        return _c(
+                          "option",
+                          {
+                            key: state.id_state,
+                            domProps: { value: state.id_state },
+                          },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(state.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
                   ),
                 ]),
               ]),
@@ -30717,7 +30597,7 @@ var render = function () {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4" }, [
-                _c("label", { attrs: { for: "inputSetor" } }, [
+                _c("label", { attrs: { for: "inputSector" } }, [
                   _vm._v("Setor"),
                 ]),
                 _vm._v(" "),
@@ -30740,7 +30620,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { id: "inputSetor", name: "txtSetor" },
+                      attrs: { id: "inputSector", name: "txtSector" },
                       on: {
                         change: [
                           function ($event) {
@@ -30771,7 +30651,7 @@ var render = function () {
                         "option",
                         {
                           staticStyle: { "background-color": "gainsboro" },
-                          attrs: { selected: "" },
+                          attrs: { id: "selected_sector" },
                           domProps: { value: _vm.form.sector },
                         },
                         [_vm._v(_vm._s(_vm.form.sector))]
@@ -31234,23 +31114,28 @@ var render = function () {
                       staticClass: "form-control",
                       attrs: { id: "inputState", name: "txtState" },
                       on: {
-                        change: function ($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function (o) {
-                              return o.selected
-                            })
-                            .map(function (o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "state",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        },
+                        change: [
+                          function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "state",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function ($event) {
+                            return _vm.deleteState($event)
+                          },
+                        ],
                       },
                     },
                     [
@@ -31258,124 +31143,30 @@ var render = function () {
                         "option",
                         {
                           staticStyle: { "background-color": "gainsboro" },
-                          attrs: { selected: "" },
+                          attrs: { id: "selected_state" },
                           domProps: { value: _vm.form.state },
                         },
                         [_vm._v(_vm._s(_vm.form.state))]
                       ),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [_vm._v("Acre")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [
-                        _vm._v("Alagoas"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "3" } }, [
-                        _vm._v("Amapá"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "4" } }, [
-                        _vm._v("Amazonas"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "5" } }, [
-                        _vm._v("Bahia"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "6" } }, [
-                        _vm._v("Ceará"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "7" } }, [
-                        _vm._v("Distrito Federal"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "8" } }, [
-                        _vm._v("Espírito Santo"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "9" } }, [
-                        _vm._v("Goiás"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "10" } }, [
-                        _vm._v("Maranhão"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "11" } }, [
-                        _vm._v("Mato Grosso"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "12" } }, [
-                        _vm._v("Mato Grosso do Sul"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "13" } }, [
-                        _vm._v("Minas Gerais"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "14" } }, [
-                        _vm._v("Pará"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "15" } }, [
-                        _vm._v("Paraíba"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "16" } }, [
-                        _vm._v("Paraná"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "17" } }, [
-                        _vm._v("Pernambuco"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "18" } }, [
-                        _vm._v("Piauí"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "19" } }, [
-                        _vm._v("Rio de Janeiro"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "20" } }, [
-                        _vm._v(
-                          "\n                  Rio Grande do Norte\n                "
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "21" } }, [
-                        _vm._v("Rio Grande do Sul"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "22" } }, [
-                        _vm._v("Rondônia"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "23" } }, [
-                        _vm._v("Roraima"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "24" } }, [
-                        _vm._v("Santa Catarina"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "25" } }, [
-                        _vm._v("São Paulo"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "26" } }, [
-                        _vm._v("Sergipe"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "27" } }, [
-                        _vm._v("Tocantins"),
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "28" } }, [
-                        _vm._v("Estrangeiro"),
-                      ]),
-                    ]
+                      _vm._l(_vm.states, function (state) {
+                        return _c(
+                          "option",
+                          {
+                            key: state.id_state,
+                            domProps: { value: state.id_state },
+                          },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(state.name) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                    ],
+                    2
                   ),
                 ]),
               ]),

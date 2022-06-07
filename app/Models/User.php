@@ -67,14 +67,14 @@ class User extends Authenticatable
         ->join('races as race', 'us.fk_race', '=', 'race.id')
         ->join('addresses as addr', 'us.fk_address', '=',  'addr.id')
         ->join('states as st', 'addr.fk_state', '=',  'st.id')
-        ->select('addr.*', 'us.*', 'inst.*', 'pos.*', 'dept.*',
-        'inst.id as inst_id', 'us.id as us_id', 'addr.id as addr_id', 'pos.id as pos_id', 'dept.id as dept_id',
-        'inst.fantasy_name as fantasy_name', 'us.name as name_user', 'pos.name as name_pos', 'dept.name as dept_name', 'race.name as race_name', 'st.name as state',
+        ->join('sectors as sc', 'us.fk_sector', '=', 'sc.id')
+        ->select('addr.*', 'us.*', 'inst.*', 'pos.*', 'dept.*', 'sc.*',
+        'inst.id as inst_id', 'us.id as us_id', 'addr.id as addr_id', 'pos.id as pos_id', 'dept.id as dept_id', 'sc.id as sect_id', 'st.id as st_id',
+        'inst.fantasy_name as fantasy_name', 'us.name as name_user', 'pos.name as name_pos', 'dept.name as dept_name', 'sc.name as sect_name', 'race.name as race_name', 'st.name as st_name',
         DB::raw('DATE_FORMAT(us.dt_adm, "%d/%m/%Y") as dt_adm_format'),
         DB::raw('DATE_FORMAT(us.dt_birth, "%d/%m/%Y") as dt_birth_format'))
         ->where('us.id', '=', $id)
         ->get();
-
 
         return $user;
 

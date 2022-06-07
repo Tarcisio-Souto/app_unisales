@@ -32,10 +32,11 @@ class UsersController extends Controller
         $instituitions = Instituitions::getInstituitions();
         $races = Races::getRaces();
         $departments = Departments::getDeparments();
+        $states = States::getStates();
 
         return Inertia::render('Users/AddUser.vue', 
         ['positions' => $positions, 'instituitions' => $instituitions,
-        'races' => $races, 'departments' => $departments]);
+        'races' => $races, 'departments' => $departments, 'states' => $states]);
 
     }
 
@@ -112,6 +113,7 @@ class UsersController extends Controller
             $user->registration = $req->registration;
             $user->phone_number = $req->phone_number;
             $user->fk_department = $req->department;
+            $user->fk_sector = $req->sector;
             $user->fk_race = $req->race;
 
             $user->password = Hash::make($req->password);          
@@ -151,7 +153,6 @@ class UsersController extends Controller
         $user = User::showUser($id);        
         return Inertia::render('Users/ViewUser.vue', ['user' => $user]);
 
-
     }
 
     public function edit($id) {
@@ -161,10 +162,11 @@ class UsersController extends Controller
         $instituitions = Instituitions::getInstituitions();
         $races = Races::getRaces();
         $departments = Departments::getDeparments();
+        $states = States::getStates();
 
         return Inertia::render('Users/EditUser.vue', 
         ['positions' => $positions, 'instituitions' => $instituitions,
-        'races' => $races, 'departments' => $departments, 'user' => $user]);
+        'races' => $races, 'departments' => $departments, 'user' => $user, 'states' => $states]);
 
 
     }
@@ -174,7 +176,7 @@ class UsersController extends Controller
 
         $user = User::find($req->id);
 
-        //dd($user);
+        dd($req->all());
 
         $msg1 = '';
         $msg2 = '';

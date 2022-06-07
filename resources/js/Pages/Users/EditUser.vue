@@ -283,21 +283,22 @@
             </div>
 
             <div class="col-md-4">
-              <label for="inputSetor">Setor</label>
+              <label for="inputSector">Setor</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
                     <i class="fas fa-briefcase"></i>
                   </div>
                 </div>
+
                 <select
-                  id="inputSetor"
+                  id="inputSector"
                   class="form-control"
                   v-model="form.sector"
-                  name="txtSetor"
+                  name="txtSector"
                   @change='deleteSector($event)'
                 >
-                  <option selected :value="form.sector" style="background-color:gainsboro">{{ form.sector }}</option>                  
+                  <option id="selected_sector" :value="form.sector" style="background-color:gainsboro">{{ form.sector }}</option>                  
                   <option
                     v-for="sector in this.form.sectors"
                     :key="sector.id"
@@ -306,6 +307,7 @@
                     {{ sector.name }}
                   </option>
                 </select>
+
               </div>
             </div>            
 
@@ -497,44 +499,25 @@
                     <i class="fas fa-flag"></i>
                   </div>
                 </div>
+
                 <select
                   id="inputState"
                   class="form-control"
                   v-model="form.state"
                   name="txtState"
+                  @change='deleteState($event)'
                 >
-                  <option selected :value="form.state" style="background-color:gainsboro">{{ form.state }}</option>                  
-                  <option value="1">Acre</option>
-                  <option value="2">Alagoas</option>
-                  <option value="3">Amapá</option>
-                  <option value="4">Amazonas</option>
-                  <option value="5">Bahia</option>
-                  <option value="6">Ceará</option>
-                  <option value="7">Distrito Federal</option>
-                  <option value="8">Espírito Santo</option>
-                  <option value="9">Goiás</option>
-                  <option value="10">Maranhão</option>
-                  <option value="11">Mato Grosso</option>
-                  <option value="12">Mato Grosso do Sul</option>
-                  <option value="13">Minas Gerais</option>
-                  <option value="14">Pará</option>
-                  <option value="15">Paraíba</option>
-                  <option value="16">Paraná</option>
-                  <option value="17">Pernambuco</option>
-                  <option value="18">Piauí</option>
-                  <option value="19">Rio de Janeiro</option>
-                  <option value="20">
-                    Rio Grande do Norte
+                  <option id='selected_state' :value="form.state" style="background-color:gainsboro">{{ form.state }}</option>                  
+                  <option
+                    v-for="state in states"
+                    :key="state.id_state"
+                    :value="state.id_state"
+                  >
+                    {{ state.name }}
                   </option>
-                  <option value="21">Rio Grande do Sul</option>
-                  <option value="22">Rondônia</option>
-                  <option value="23">Roraima</option>
-                  <option value="24">Santa Catarina</option>
-                  <option value="25">São Paulo</option>
-                  <option value="26">Sergipe</option>
-                  <option value="27">Tocantins</option>
-                  <option value="28">Estrangeiro</option>
                 </select>
+
+
               </div>
             </div>            
           </div>
@@ -575,12 +558,13 @@ export default {
     instituitions: Array,
     races: Array,
     departments: Array,
-    user: Array
+    user: Array,
+    states: Array
   },
 
   mounted: () => {
     $(document).ready(function () {
-      function limpa_formulário_cep() {
+      function limpa_formulario_cep() {
         // Limpa valores do formulário de cep.
         $("#inputStreet").val("");
         $("#inputDistrict").val("");
@@ -621,7 +605,7 @@ export default {
                 } //end if.
                 else {
                   //CEP pesquisado não foi encontrado.
-                  limpa_formulário_cep();
+                  limpa_formulario_cep();
                   alert("CEP não encontrado.");
                 }
               }
@@ -629,13 +613,13 @@ export default {
           } //end if.
           else {
             //cep é inválido.
-            limpa_formulário_cep();
+            limpa_formulario_cep();
             alert("Formato de CEP inválido.");
           }
         } //end if.
         else {
           //cep sem valor, limpa formulário.
-          limpa_formulário_cep();
+          limpa_formulario_cep();
         }
       });
     });
@@ -690,10 +674,11 @@ export default {
     this.form.number = this.$page.props.user[0].number,
     this.form.district = this.$page.props.user[0].district,
     this.form.city = this.$page.props.user[0].city,
-    this.form.state = this.$page.props.user[0].state
+    this.form.state = this.$page.props.user[0].st_name,
     this.form.zipcode = this.$page.props.user[0].zipcode,
     this.form.complement = this.$page.props.user[0].complement,
     this.form.department = this.$page.props.user[0].dept_name,
+    this.form.sector = this.$page.props.user[0].sect_name,
     this.form.race = this.$page.props.user[0].race_name,
     this.form.dt_birth = this.$page.props.user[0].dt_birth
 
@@ -701,11 +686,16 @@ export default {
   },
   methods: {
 
+    deleteState: function() {
+      alert(this.form.state)
+      $('#selected_state').remove();
+    },
+
     deletePosition: function() {
       $('#selected_position').remove();
     },
 
-    deleteSector: function() {
+    deleteSector: function() {      
       $('#selected_sector').remove();
     },
 

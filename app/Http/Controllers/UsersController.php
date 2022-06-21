@@ -150,7 +150,7 @@ class UsersController extends Controller
 
     public function show($id) {
 
-        $user = User::showUser($id);        
+        $user = User::showUser($id);     
         return Inertia::render('Users/ViewUser.vue', ['user' => $user]);
 
     }
@@ -175,8 +175,6 @@ class UsersController extends Controller
     public function update(Request $req) {
 
         $user = User::find($req->id);
-
-        dd($req->all());
 
         $msg1 = '';
         $msg2 = '';

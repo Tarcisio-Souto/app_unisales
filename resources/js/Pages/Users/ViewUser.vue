@@ -258,7 +258,7 @@
                   type="text"
                   id="inputDtAdmission"
                   class="form-control"
-                  :value="user.dt_adm"
+                  :value="user.dt_adm_format"
                   v-mask="'##/##/####'"
                   disabled
                 />

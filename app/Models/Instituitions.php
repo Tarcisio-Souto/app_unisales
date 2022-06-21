@@ -21,5 +21,4 @@ class Instituitions extends Model
     }
 
 
-
 }

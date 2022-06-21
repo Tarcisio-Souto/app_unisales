@@ -680,7 +680,7 @@ export default {
     this.form.department = this.$page.props.user[0].dept_name,
     this.form.sector = this.$page.props.user[0].sect_name,
     this.form.race = this.$page.props.user[0].race_name,
-    this.form.dt_birth = this.$page.props.user[0].dt_birth
+    this.form.dt_birth = this.$page.props.user[0].dt_birth_format
 
 
   },

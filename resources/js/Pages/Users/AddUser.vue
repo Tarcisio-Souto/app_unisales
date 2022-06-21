@@ -33,6 +33,7 @@
                   class="form-control"
                   placeholder="Nome"
                   v-model="form.name"
+                  required
                 />
               </div>
               <div v-for="(erro, name) in errors" :key="name">
@@ -59,6 +60,7 @@
                   v-model="form.cpf"
                   name="txtCpf"
                   v-mask="'###.###.###-##'"
+                  required
                 />
               </div>
               <div v-for="(erro, cpf) in errors" :key="cpf">
@@ -119,6 +121,7 @@
                   class="form-control"
                   placeholder="Idade"
                   v-model="form.age"
+                  required
                 />
               </div>
               <div v-for="(erro, age) in errors" :key="age">
@@ -146,6 +149,7 @@
                   v-model="form.dt_birth"
                   name="txtDtBirth"
                   v-mask="'##/##/####'"
+                  required
                 />
               </div>
             </div>
@@ -187,6 +191,7 @@
                   class="form-control"
                   v-model="form.instituition"
                   name="txtinstituition"
+                  required
                 >
                   <option selected>Selecione a instituition</option>
                   <option
@@ -213,6 +218,7 @@
                   class="form-control"
                   v-model="form.position"
                   name="txtPosition"
+                  required
                 >
                   <option selected>Selecione o cargo</option>
                   <option
@@ -241,6 +247,7 @@
                   v-model="form.dt_adm"
                   name="txtDtAdm"
                   v-mask="'##/##/####'"
+                  required
                 />
               </div>
             </div>
@@ -262,6 +269,7 @@
                   v-model="form.department"
                   name="txtDepartment"
                   @change="getSetores($event)"
+                  required
                 >
                   <option selected>Selecione o departmento</option>
                   <option
@@ -288,6 +296,7 @@
                   class="form-control"
                   v-model="form.sector"
                   name="txtSector"
+                  required
                 >
                   <option selected>Selecione o setor</option>
                   <option
@@ -316,6 +325,7 @@
                   placeholder="Matrícula"
                   v-model="form.registration"
                   name="txtRegistration"
+                  required
                 />
               </div>
             </div>
@@ -339,6 +349,7 @@
                   v-model="form.phone_number"
                   name="txtPhoneNumber"
                   v-mask="['(##) #####-####', '(##) ####-####']"
+                  required
                 />
               </div>
             </div>
@@ -355,6 +366,7 @@
                   placeholder="Email"
                   v-model="form.email"
                   name="txtEmail"
+                  required
                 />
               </div>
             </div>
@@ -381,6 +393,7 @@
                   placeholder="Informe o CEP"
                   v-model="form.zipcode"
                   name="txtZipCode"
+                  required
                 />
               </div>
             </div>
@@ -407,6 +420,7 @@
                   placeholder="Rua, Av., Rod."
                   v-model="form.street"
                   name="txtStreet"
+                  required
                 />
               </div>
             </div>
@@ -423,6 +437,7 @@
                   placeholder="Número"
                   v-model="form.number"
                   name="txtNumber"
+                  required
                 />
               </div>
             </div>
@@ -441,6 +456,7 @@
                   placeholder="Informe o bairro"
                   v-model="form.district"
                   name="txtDistrict"
+                  required
                 />
               </div>
             </div>
@@ -459,7 +475,7 @@
                   class="form-control"
                   placeholder="Informe o complemento"
                   v-model="form.complement"
-                  name="txtComplemento"
+                  name="txtComplemento"                  
                 />
               </div>
             </div>
@@ -478,6 +494,7 @@
                   placeholder="Informe a cidade"
                   v-model="form.city"
                   name="txtCity"
+                  required
                 />
               </div>
             </div>
@@ -495,6 +512,7 @@
                   class="form-control"
                   v-model="form.state"
                   name="txtState"
+                  required
                 >
                   <option selected>Selecione o estado</option>
                   <option
@@ -529,6 +547,7 @@
                   placeholder="Senha"
                   v-model="form.password"
                   name="txtPassword"
+                  required
                 />
               </div>
               <div v-for="(erro, password) in errors" :key="password">
@@ -554,6 +573,7 @@
                   placeholder="Senha"
                   v-model="form.confirm_password"
                   name="txtConfirmPassword"
+                  required
                 />
               </div>
               <div v-for="(erro, password) in errors" :key="password">

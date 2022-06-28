@@ -3117,6 +3117,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -28741,11 +28754,17 @@ var render = function () {
             },
           },
           [
-            _c("h4", [
-              _c("span", { staticStyle: { "font-weight": "bold" } }, [
-                _vm._v("Dados Pessoais"),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12 topico-add" }, [
+                _c("h4", [
+                  _c("span", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v("Dados Pessoais"),
+                  ]),
+                ]),
               ]),
             ]),
+            _vm._v(" "),
+            _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c(
@@ -29665,9 +29684,13 @@ var render = function () {
             _c("br"),
             _c("br"),
             _vm._v(" "),
-            _c("h4", [
-              _c("span", { staticStyle: { "font-weight": "bold" } }, [
-                _vm._v("Endereço"),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12 topico-add" }, [
+                _c("h4", [
+                  _c("span", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v("Endereço"),
+                  ]),
+                ]),
               ]),
             ]),
             _vm._v(" "),
@@ -30021,9 +30044,13 @@ var render = function () {
             _c("br"),
             _c("br"),
             _vm._v(" "),
-            _c("h4", [
-              _c("span", { staticStyle: { "font-weight": "bold" } }, [
-                _vm._v("Senha"),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12 topico-add" }, [
+                _c("h4", [
+                  _c("span", { staticStyle: { "font-weight": "bold" } }, [
+                    _vm._v("Senha"),
+                  ]),
+                ]),
               ]),
             ]),
             _vm._v(" "),

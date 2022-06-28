@@ -726,3 +726,17 @@ a[href*="#contact"]::before {
 .fa-spinner {
     color: rgb(79, 105, 219);
 }
+
+.topico-add {
+    background-color: #5F9EA0 !important;
+    padding: 10px 0;
+    position: relative;
+    bottom: 15px;
+    border-radius: 10px;
+}
+
+.topico-add h4 {
+    position: relative !important;
+    top: 3px !important;
+    color: rgb(255, 255, 255);
+}

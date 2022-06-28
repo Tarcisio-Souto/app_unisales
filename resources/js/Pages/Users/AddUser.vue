@@ -17,7 +17,12 @@
           enctype="multipart/form-data"
           id="formAddUser"
         >
-          <h4><span style="font-weight: bold">Dados Pessoais</span></h4>
+          <div class="row">
+            <div class="col-md-12 topico-add">
+              <h4><span style="font-weight: bold">Dados Pessoais</span></h4>
+            </div>
+          </div>     
+          <hr>     
           <div class="row">
             <div class="col-md-4">
               <label for="inputName">Nome</label>
@@ -375,7 +380,11 @@
 
           <br />
           <br /><br />
-          <h4><span style="font-weight: bold">Endereço</span></h4>
+          <div class="row">
+            <div class="col-md-12 topico-add">
+              <h4><span style="font-weight: bold">Endereço</span></h4>
+            </div>
+          </div>           
           <hr />
           <br />
 
@@ -529,7 +538,11 @@
           </div>
 
           <br /><br />
-          <h4><span style="font-weight: bold">Senha</span></h4>
+          <div class="row">
+            <div class="col-md-12 topico-add">
+              <h4><span style="font-weight: bold">Senha</span></h4>
+            </div>
+          </div> 
           <hr />
           <div class="row">
             <div class="col-md-6">

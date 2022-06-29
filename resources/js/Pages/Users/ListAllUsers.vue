@@ -1,5 +1,28 @@
 <template>
   <layout>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="" role="group">
+          <Link :href="'#'" class="btn btn-info"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (.csv)</span></Link
+          >
+          <Link :href="'#'" class="btn btn-info btn-header-lists"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (.csv)</span></Link
+          >
+          <Link :href="'#'" class="btn btn-info"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (.csv)</span></Link
+          >
+          <Link :href="'#'" class="btn btn-info"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (personalizado)</span></Link
+          >
+        </div>
+      </div>
+    </div>
+    <br/><br/>
+    
+
+
     <div class="table-responsive-lg">
       <table
         id="myTable"

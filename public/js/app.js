@@ -4072,6 +4072,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31659,6 +31682,55 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("layout", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "div",
+          { attrs: { role: "group" } },
+          [
+            _c("Link", { staticClass: "btn btn-info", attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
+              _c("span", { staticClass: "text-btn-lists" }, [
+                _vm._v("Exportar (.csv)"),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c(
+              "Link",
+              {
+                staticClass: "btn btn-info btn-header-lists",
+                attrs: { href: "#" },
+              },
+              [
+                _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
+                _c("span", { staticClass: "text-btn-lists" }, [
+                  _vm._v("Exportar (.csv)"),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c("Link", { staticClass: "btn btn-info", attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
+              _c("span", { staticClass: "text-btn-lists" }, [
+                _vm._v("Exportar (.csv)"),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("Link", { staticClass: "btn btn-info", attrs: { href: "#" } }, [
+              _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
+              _c("span", { staticClass: "text-btn-lists" }, [
+                _vm._v("Exportar (personalizado)"),
+              ]),
+            ]),
+          ],
+          1
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
     _c("div", { staticClass: "table-responsive-lg" }, [
       _c(
         "table",

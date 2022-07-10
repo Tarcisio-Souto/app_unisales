@@ -2,19 +2,19 @@
   <layout>
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12" align="center">
         <div class="" role="group">
-          <Link :href="'#'" class="btn btn-info"
-            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (.csv)</span></Link
+          <Link :href="'#'" class="btn btn-success"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="btn-font">Exportar (.csv)</span></Link
           >
-          <Link :href="'#'" class="btn btn-info btn-header-lists"
-            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (.csv)</span></Link
+          <Link :href="'#'" class="btn btn-success"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="btn-font">Exportar (.xlxs)</span></Link
           >
-          <Link :href="'#'" class="btn btn-info"
-            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (.csv)</span></Link
+          <Link :href="'#'" class="btn btn-warning"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="btn-font">Exportar (.json)</span></Link
           >
-          <Link :href="'#'" class="btn btn-info"
-            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="text-btn-lists">Exportar (personalizado)</span></Link
+          <Link :href="'#'" class="btn-exp-pers btn btn-primary"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i><span class="btn-font">Exportar (personalizado)</span></Link
           >
         </div>
       </div>

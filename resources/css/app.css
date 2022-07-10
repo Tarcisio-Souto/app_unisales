@@ -741,15 +741,13 @@ a[href*="#contact"]::before {
     color: rgb(255, 255, 255);
 }
 
-.btn .btn-info {
-    background-color: #5F9EA0 !important;
+.btn-font {
     position: relative !important;
-    top: -2px !important;
-    
+    margin-left: 13px;
+    font-size: 12px !important;
 }
 
-.text-btn-lists {
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    font-size: 12px !important;
+.btn-exp-pers {
+    position: relative !important;
+    top: 2px !important;
 }

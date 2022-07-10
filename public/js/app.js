@@ -2259,7 +2259,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Layout */ "./resources/js/Layout.vue");
+/* harmony import */ var _Layout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Layout.vue */ "./resources/js/Layout.vue");
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 //
 //
@@ -2278,7 +2278,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Head: _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_1__.Head,
-    Layout: _Layout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Layout: _Layout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     user: String
@@ -31683,45 +31683,57 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("layout", [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "col-md-12", attrs: { align: "center" } }, [
         _c(
           "div",
           { attrs: { role: "group" } },
           [
-            _c("Link", { staticClass: "btn btn-info", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
-              _c("span", { staticClass: "text-btn-lists" }, [
-                _vm._v("Exportar (.csv)"),
-              ]),
-            ]),
-            _vm._v(" "),
             _c(
               "Link",
-              {
-                staticClass: "btn btn-info btn-header-lists",
-                attrs: { href: "#" },
-              },
+              { staticClass: "btn btn-success", attrs: { href: "#" } },
               [
                 _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
-                _c("span", { staticClass: "text-btn-lists" }, [
+                _c("span", { staticClass: "btn-font" }, [
                   _vm._v("Exportar (.csv)"),
                 ]),
               ]
             ),
             _vm._v(" "),
-            _c("Link", { staticClass: "btn btn-info", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
-              _c("span", { staticClass: "text-btn-lists" }, [
-                _vm._v("Exportar (.csv)"),
-              ]),
-            ]),
+            _c(
+              "Link",
+              { staticClass: "btn btn-success", attrs: { href: "#" } },
+              [
+                _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
+                _c("span", { staticClass: "btn-font" }, [
+                  _vm._v("Exportar (.xlxs)"),
+                ]),
+              ]
+            ),
             _vm._v(" "),
-            _c("Link", { staticClass: "btn btn-info", attrs: { href: "#" } }, [
-              _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
-              _c("span", { staticClass: "text-btn-lists" }, [
-                _vm._v("Exportar (personalizado)"),
-              ]),
-            ]),
+            _c(
+              "Link",
+              { staticClass: "btn btn-warning", attrs: { href: "#" } },
+              [
+                _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
+                _c("span", { staticClass: "btn-font" }, [
+                  _vm._v("Exportar (.json)"),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "Link",
+              {
+                staticClass: "btn-exp-pers btn btn-primary",
+                attrs: { href: "#" },
+              },
+              [
+                _c("i", { staticClass: "fa fa-solid fa-file-csv fa-sm" }),
+                _c("span", { staticClass: "btn-font" }, [
+                  _vm._v("Exportar (personalizado)"),
+                ]),
+              ]
+            ),
           ],
           1
         ),

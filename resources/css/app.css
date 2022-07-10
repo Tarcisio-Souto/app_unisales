@@ -3,7 +3,7 @@ body {
     position: relative;
     overflow-x: hidden;
     /*background-color: #cfd8dc;*/
-    background-color: rgb(253, 253, 253) !important;
+    background-color: rgb(255, 255, 255) !important;
 }
 
 body,
@@ -517,7 +517,7 @@ a[href*="#contact"]::before {
 /* DataTables */
 
 #myTable th {
-    background-color: #2059af;
+    background-color: #5F9EA0;
     font-weight: 500;
     height: 5px !important;
     font-size: 12px;

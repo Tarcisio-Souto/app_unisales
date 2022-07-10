@@ -383,11 +383,13 @@ table.dataTable td {
 
 #myTable_length label {
     font-weight: 500;
+    color: #111;
 }
 
 .dataTables_wrapper .dataTables_filter {
     float: right;
     text-align: right;
+    color: #111;
 }
 
 

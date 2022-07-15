@@ -41,8 +41,8 @@
               >
               <ul class="dropdown-menu animated fadeInLeft menuInstituicoes" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="#/instituitions/register"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="#/instituitions/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="#/instituicao/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="/instituicoes/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
                 <li><Link href="#/departments/list"><i class="fas fa-solid fa-briefcase icons-menu"></i>Departamentos</Link></li>
                 <li><Link href="#/sectors/list"><i class="fas fa-solid fa-door-closed icons-menu"></i>Setores</Link></li>
                 <li><Link href="#/positions/list"><i class="fas fa-solid fa-sitemap icons-menu"></i>Cargos</Link></li>

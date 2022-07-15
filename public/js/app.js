@@ -2584,6 +2584,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2659,6 +2719,7 @@ __webpack_require__.r(__webpack_exports__);
         cnpj: null,
         email: null,
         phone_number: null,
+        status: null,
         street: null,
         number: null,
         district: null,
@@ -2673,7 +2734,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.form.id = this.$page.props.instituition[0].inst_id, this.form.social_name = this.$page.props.instituition[0].social_name, this.form.cnpj = this.$page.props.instituition[0].cnpj, this.form.email = this.$page.props.instituition[0].email, this.form.phone_number = this.$page.props.instituition[0].phone_number, this.form.street = this.$page.props.instituition[0].street, this.form.number = this.$page.props.instituition[0].number, this.form.district = this.$page.props.instituition[0].district, this.form.city = this.$page.props.instituition[0].city, this.form.state = this.$page.props.instituition[0].state, this.form.zipcode = this.$page.props.instituition[0].zipcode, this.form.complement = this.$page.props.instituition[0].complement;
+    this.form.id = this.$page.props.instituition[0].inst_id, this.form.social_name = this.$page.props.instituition[0].social_name, this.form.cnpj = this.$page.props.instituition[0].cnpj, this.form.email = this.$page.props.instituition[0].email, this.form.phone_number = this.$page.props.instituition[0].phone_number, this.form.status = this.$page.props.instituition[0].status, this.form.street = this.$page.props.instituition[0].street, this.form.number = this.$page.props.instituition[0].number, this.form.district = this.$page.props.instituition[0].district, this.form.city = this.$page.props.instituition[0].city, this.form.state = this.$page.props.instituition[0].state, this.form.zipcode = this.$page.props.instituition[0].zipcode, this.form.complement = this.$page.props.instituition[0].complement;
     this.form.fk_state = this.$page.props.instituition[0].fk_state, this.form.fk_address = this.$page.props.instituition[0].fk_address;
   },
   methods: {
@@ -2876,6 +2937,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layout.vue */ "./resources/js/Layout.vue");
 /* harmony import */ var _inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue */ "./node_modules/@inertiajs/inertia-vue/dist/index.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -29337,7 +29468,7 @@ var render = function () {
       _c("div", { staticClass: "col-md-4" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4", attrs: { align: "center" } }, [
-        _c("h4", [_vm._v("Cadastro de Instituição")]),
+        _c("h4", [_vm._v("Cadastro da Instituição")]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }),
@@ -29348,11 +29479,22 @@ var render = function () {
     _c("br"),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-12" },
-        _vm._l(_vm.instituition, function (instituition) {
-          return _c("form", { key: instituition.inst_id }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "form",
+          {
+            attrs: {
+              enctype: "multipart/form-data",
+              id: "formAddInstituition",
+            },
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.sendForm.apply(null, arguments)
+              },
+            },
+          },
+          [
             _c("br"),
             _c("br"),
             _vm._v(" "),
@@ -29382,9 +29524,29 @@ var render = function () {
                       ]),
                       _vm._v(" "),
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.social_name,
+                            expression: "form.social_name",
+                          },
+                        ],
                         staticClass: "form-control",
                         attrs: { type: "text", id: "inputName" },
-                        domProps: { value: instituition.social_name },
+                        domProps: { value: _vm.form.social_name },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "social_name",
+                              $event.target.value
+                            )
+                          },
+                        },
                       }),
                     ]),
                     _vm._v(" "),
@@ -29435,6 +29597,12 @@ var render = function () {
                       _c("input", {
                         directives: [
                           {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.cnpj,
+                            expression: "form.cnpj",
+                          },
+                          {
                             name: "mask",
                             rawName: "v-mask",
                             value: "###.###.###/####-##",
@@ -29443,7 +29611,15 @@ var render = function () {
                         ],
                         staticClass: "form-control",
                         attrs: { type: "text", id: "inputCpf" },
-                        domProps: { value: instituition.cnpj },
+                        domProps: { value: _vm.form.cnpj },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "cnpj", $event.target.value)
+                          },
+                        },
                       }),
                     ]),
                     _vm._v(" "),
@@ -29489,9 +29665,25 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.email,
+                          expression: "form.email",
+                        },
+                      ],
                       staticClass: "form-control",
                       attrs: { type: "text", id: "inputEmail" },
-                      domProps: { value: instituition.email },
+                      domProps: { value: _vm.form.email },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "email", $event.target.value)
+                        },
+                      },
                     }),
                   ]),
                 ]),
@@ -29523,7 +29715,7 @@ var render = function () {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputTelefone" } }, [
                   _vm._v("Telefone"),
                 ]),
@@ -29536,10 +29728,154 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.phone_number,
+                        expression: "form.phone_number",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: { type: "text", id: "inputTelefone" },
-                    domProps: { value: instituition.phone_number },
+                    domProps: { value: _vm.form.phone_number },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "phone_number", $event.target.value)
+                      },
+                    },
                   }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputStatus1" } }, [
+                  _vm._v("Situação"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _vm.form.status == "1"
+                      ? _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus1",
+                                value: "1",
+                                checked: "",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios1" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Ativo\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus2",
+                                value: "0",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios2" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Bloqueado\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                    _vm._v(" "),
+                    _vm.form.status == "0"
+                      ? _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus2",
+                                value: "0",
+                                checked: "",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios1" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Bloqueado\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus2",
+                                value: "0",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios2" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Bloqueado\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                  ]),
                 ]),
               ]),
             ]),
@@ -29573,6 +29909,14 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.zipcode,
+                        expression: "form.zipcode",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
@@ -29580,7 +29924,15 @@ var render = function () {
                       placeholder: "Informe o CEP",
                       name: "txtZipCode",
                     },
-                    domProps: { value: instituition.zipcode },
+                    domProps: { value: _vm.form.zipcode },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "zipcode", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
               ]),
@@ -29602,6 +29954,14 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.street,
+                        expression: "form.street",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
@@ -29609,7 +29969,15 @@ var render = function () {
                       placeholder: "Rua, Av., Rod.",
                       name: "txtLogradouro",
                     },
-                    domProps: { value: instituition.street },
+                    domProps: { value: _vm.form.street },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "street", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
               ]),
@@ -29627,6 +29995,14 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.number,
+                        expression: "form.number",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
@@ -29634,7 +30010,15 @@ var render = function () {
                       placeholder: "Número",
                       name: "txtNumero",
                     },
-                    domProps: { value: instituition.number },
+                    domProps: { value: _vm.form.number },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "number", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
               ]),
@@ -29652,6 +30036,14 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.district,
+                        expression: "form.district",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
@@ -29659,7 +30051,15 @@ var render = function () {
                       placeholder: "Informe o bairro",
                       name: "txtBairro",
                     },
-                    domProps: { value: instituition.district },
+                    domProps: { value: _vm.form.district },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "district", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
               ]),
@@ -29681,6 +30081,14 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.complement,
+                        expression: "form.complement",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
@@ -29688,7 +30096,15 @@ var render = function () {
                       placeholder: "Informe o complemento",
                       name: "txtDistrict",
                     },
-                    domProps: { value: instituition.complement },
+                    domProps: { value: _vm.form.complement },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "complement", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
               ]),
@@ -29706,6 +30122,14 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.city,
+                        expression: "form.city",
+                      },
+                    ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
@@ -29713,7 +30137,15 @@ var render = function () {
                       placeholder: "Informe a cidade",
                       name: "txtCidade",
                     },
-                    domProps: { value: instituition.city },
+                    domProps: { value: _vm.form.city },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "city", $event.target.value)
+                      },
+                    },
                   }),
                 ]),
               ]),
@@ -29806,32 +30238,20 @@ var render = function () {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-md-4", attrs: { align: "right" } },
-                [
-                  _c(
-                    "Link",
-                    {
-                      staticClass: "btn btn-warning btn-edit-user",
-                      attrs: {
-                        href: "/instituicao/editar/" + instituition.inst_id,
-                      },
-                    },
-                    [_vm._v("Editar")]
-                  ),
-                ],
-                1
-              ),
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success btnCadastrar",
+                    attrs: { type: "submit" },
+                  },
+                  [_vm._v("\n              Atualizar\n            ")]
+                ),
+              ]),
             ]),
-          ])
-        }),
-        0
-      ),
+          ]
+        ),
+      ]),
     ]),
     _vm._v(" "),
     _c("br"),
@@ -30182,7 +30602,7 @@ var render = function () {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c("label", { attrs: { for: "inputTelefone" } }, [
                   _vm._v("Telefone"),
                 ]),
@@ -30199,6 +30619,138 @@ var render = function () {
                     attrs: { type: "text", id: "inputTelefone", disabled: "" },
                     domProps: { value: instituition.phone_number },
                   }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("label", { attrs: { for: "inputStatus1" } }, [
+                  _vm._v("Situação"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-12" }, [
+                    instituition.status == "1"
+                      ? _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus1",
+                                value: "1",
+                                checked: "",
+                                disabled: "",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios1" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Ativo\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus1",
+                                value: "1",
+                                disabled: "",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios2" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Ativo\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                    _vm._v(" "),
+                    instituition.status == "0"
+                      ? _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus2",
+                                value: "0",
+                                checked: "",
+                                disabled: "",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios1" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Bloqueado\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              staticClass: "form-check-input",
+                              attrs: {
+                                type: "radio",
+                                name: "exampleRadios",
+                                id: "inputStatus2",
+                                value: "0",
+                                disabled: "",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "form-check-label",
+                                attrs: { for: "exampleRadios2" },
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    Bloqueado\n                  "
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                  ]),
                 ]),
               ]),
             ]),

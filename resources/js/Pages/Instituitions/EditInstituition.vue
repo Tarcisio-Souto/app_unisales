@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Cadastro de Instituição</h4>
+        <h4>Cadastro da Instituição</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -12,7 +12,7 @@
     <br />
     <div class="row">
       <div class="col-md-12">
-        <form v-for="instituition in instituition" :key="instituition.inst_id">
+        <form @submit.prevent="sendForm" enctype="multipart/form-data" id="formAddInstituition">
           <br /><br />
           <h4><span style="font-weight: bold">Dados Cadastrais</span></h4>
           <div class="row">
@@ -28,7 +28,7 @@
                   type="text"
                   id="inputName"
                   class="form-control"
-                  :value="instituition.social_name"
+                  v-model="form.social_name"
                 />
               </div>
               <div v-for="(erro, social_name) in errors" :key="social_name">
@@ -51,7 +51,7 @@
                   type="text"
                   id="inputCpf"
                   class="form-control"
-                  :value="instituition.cnpj"
+                  v-model="form.cnpj"
                   v-mask="'###.###.###/####-##'"
                 />
               </div>
@@ -75,7 +75,7 @@
                   type="text"
                   id="inputEmail"
                   class="form-control"
-                  :value="instituition.email"
+                  v-model="form.email"
                 />
               </div>
             </div>
@@ -90,7 +90,7 @@
           <br />
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
               <label for="inputTelefone">Telefone</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -102,10 +102,76 @@
                   type="text"
                   id="inputTelefone"
                   class="form-control"
-                  :value="instituition.phone_number"
+                  v-model="form.phone_number"
                 />
               </div>
             </div>
+
+            <div class="col-md-4">
+              <label for="inputStatus1">Situação</label>
+              <div class="row">
+                <div class="col-md-12">
+                  <div
+                    class="form-check form-check-inline"
+                    v-if="form.status == '1'"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus1"
+                      value="1"
+                      checked
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Ativo
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline" v-else>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus2"
+                      value="0"
+                    />
+                    <label class="form-check-label" for="exampleRadios2">
+                      Bloqueado
+                    </label>
+                  </div>
+
+                  <div
+                    class="form-check form-check-inline"
+                    v-if="form.status == '0'"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus2"
+                      value="0"
+                      checked
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Bloqueado
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline" v-else>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus2"
+                      value="0"
+                    />
+                    <label class="form-check-label" for="exampleRadios2">
+                      Bloqueado
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           <br />
 
@@ -126,7 +192,7 @@
                   class="form-control"
                   placeholder="Informe o CEP"
                   name="txtZipCode"
-                  :value="instituition.zipcode"
+                  v-model="form.zipcode"
                 />
               </div>
             </div>
@@ -147,7 +213,7 @@
                   class="form-control"
                   placeholder="Rua, Av., Rod."
                   name="txtLogradouro"
-                  :value="instituition.street"
+                  v-model="form.street"
                 />
               </div>
             </div>
@@ -163,7 +229,7 @@
                   class="form-control"
                   placeholder="Número"
                   name="txtNumero"
-                  :value="instituition.number"
+                  v-model="form.number"
                 />
               </div>
             </div>
@@ -181,7 +247,7 @@
                   class="form-control"
                   placeholder="Informe o bairro"
                   name="txtBairro"
-                  :value="instituition.district"
+                  v-model="form.district"
                 />
               </div>
             </div>
@@ -202,7 +268,7 @@
                   class="form-control"
                   placeholder="Informe o complemento"
                   name="txtDistrict"
-                  :value="instituition.complement"
+                  v-model="form.complement"
                 />
               </div>
             </div>
@@ -221,7 +287,7 @@
                   class="form-control"
                   placeholder="Informe a cidade"
                   name="txtCidade"
-                  :value="instituition.city"
+                  v-model="form.city"
                 />
               </div>
             </div>
@@ -251,22 +317,16 @@
                   </option>
                 </select>
 
-
               </div>
             </div>  
           </div>
 
           <br /><br />
           <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4" align="right">
-              <Link
-                :href="'/instituicao/editar/' + instituition.inst_id"
-                class="btn btn-warning btn-edit-user"
-                >Editar</Link
-              >
-              <!--<Link href="" class="btn btn-danger btnDeletar">Deletarr</Link>-->
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-success btnCadastrar">
+                Atualizar
+              </button>
             </div>
           </div>
         </form>
@@ -367,6 +427,7 @@ export default {
         cnpj: null,
         email: null,
         phone_number: null,
+        status: null,
         street: null,
         number: null,
         district: null,
@@ -386,11 +447,12 @@ export default {
       (this.form.cnpj = this.$page.props.instituition[0].cnpj),
       (this.form.email = this.$page.props.instituition[0].email),
       (this.form.phone_number = this.$page.props.instituition[0].phone_number),
+      (this.form.status = this.$page.props.instituition[0].status),
       (this.form.street = this.$page.props.instituition[0].street),
       (this.form.number = this.$page.props.instituition[0].number),
       (this.form.district = this.$page.props.instituition[0].district),
       (this.form.city = this.$page.props.instituition[0].city),
-      (this.form.state = this.$page.props.instituition[0].state),
+      (this.form.state = this.$page.props.instituition[0].state),      
       (this.form.zipcode = this.$page.props.instituition[0].zipcode),
       (this.form.complement = this.$page.props.instituition[0].complement);
 

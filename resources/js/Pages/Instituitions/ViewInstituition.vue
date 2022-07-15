@@ -74,7 +74,7 @@
           <br />
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
               <label for="inputTelefone">Telefone</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -91,6 +91,76 @@
                 />
               </div>              
             </div>
+
+            <div class="col-md-4">
+              <label for="inputStatus1">Situação</label>
+              <div class="row">
+                <div class="col-md-12">
+                  <div
+                    class="form-check form-check-inline"
+                    v-if="instituition.status == '1'"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus1"
+                      value="1"
+                      checked
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Ativo
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline" v-else>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus1"
+                      value="1"
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios2">
+                      Ativo
+                    </label>
+                  </div>
+
+                  <div
+                    class="form-check form-check-inline"
+                    v-if="instituition.status == '0'"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus2"
+                      value="0"
+                      checked
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Bloqueado
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline" v-else>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus2"
+                      value="0"
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios2">
+                      Bloqueado
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           <br />
 

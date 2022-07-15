@@ -13,7 +13,7 @@ class Instituitions extends Model
     public static function getInstituitions() {
 
         $instituitions = DB::table('instituitions')
-        ->select('id','social_name', 'cnpj', 'phone_number', 'email')
+        ->select('id','social_name', 'cnpj', 'phone_number', 'email', 'status')
         ->get();
 
         return $instituitions;
@@ -27,14 +27,12 @@ class Instituitions extends Model
         ->join('states as st', 'st.id', '=', 'addr.fk_state')
         ->select('inst.id as inst_id','social_name', 'cnpj', 'phone_number', 'email', 'fk_address',
                 'addr.street', 'addr.number', 'addr.district', 'addr.complement', 
-                'addr.city', 'addr.zipcode', 'st.name as state')
+                'addr.city', 'addr.zipcode', 'st.name as state', 'inst.status', 'addr.fk_state')
         ->get();
 
         return $instituition;
 
-    }
-
-    
+    }   
 
 
 }

@@ -41,7 +41,7 @@ Route::get('/setor/{fk}', [SectorsController::class, 'show'])->name('setor.selec
 Route::get('/instituicoes/lista', [InstituitionsController::class, 'index'])->name('instituicoes.lista')->middleware('auth');
 Route::get('/instituicao/visualizar/{id}', [InstituitionsController::class, 'show'])->name('instituicao.mostrar')->middleware('auth');
 Route::get('/instituicao/editar/{id}', [InstituitionsController::class, 'edit'])->name('instituicao.editar')->middleware('auth');
-Route::post('/instituicao/update/{id}', [InstituitionsController::class, 'update'])->name('instituicao.atualizar')->middleware('auth');
+Route::post('/instituicao/atualizar/{id}', [InstituitionsController::class, 'update'])->name('instituicao.atualizar')->middleware('auth');
 Route::post('/instituicao/deletar/{id}', [InstituitionsController::class, 'destroy'])->name('instituicao.deletar')->middleware('auth');
 
 

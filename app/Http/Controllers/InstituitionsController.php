@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instituitions;
+use App\Models\States;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -23,6 +24,14 @@ class InstituitionsController extends Controller
 
     }
 
+    public function edit($id) {
+
+        $instituition = Instituitions::showInstituition($id);
+        $states = States::getStates();
+        return Inertia::render('Instituitions/EditInstituition.vue', 
+        ['instituition' => $instituition, 'states' => $states]);
+
+    }
     
 
 

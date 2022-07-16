@@ -15,6 +15,12 @@ class DepartmentsController extends Controller
 
     }
 
+    public function show($id) {
+
+        $department = Departments::showDepartment($id);
+        return Inertia::render('Departments/ViewDepartment.vue', ['department' => $department]);
+
+    }
 
 
 

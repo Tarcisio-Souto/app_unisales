@@ -31,5 +31,16 @@ class Departments extends Model
 
     }
 
+    public static function showDepartment($id) {
+
+        $department = DB::table('departments as dept')
+        ->join('instituitions as inst', 'inst.id', '=', 'dept.fk_instituition')
+        ->select('dept.id', 'dept.name', 'dept.fk_instituition', 'inst.social_name')
+        ->where('dept.id', '=', $id)
+        ->get();
+
+        return $department;
+    }
+
 
 }

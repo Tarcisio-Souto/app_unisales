@@ -191,6 +191,16 @@ class InstituitionsController extends Controller
 
     }
 
+    public function destroy($id) {
+
+        $instituition = Instituitions::where('id', '=', $id)->get();
+        Instituitions::destroy($instituition);
+
+        $instituitions = Instituitions::getInstituitions();
+        return Redirect::route('instituicoes.lista', ['instituicoes' => $instituitions]); 
+
+    }
+
 
 
 

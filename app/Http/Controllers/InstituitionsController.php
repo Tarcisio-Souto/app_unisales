@@ -34,6 +34,88 @@ class InstituitionsController extends Controller
         ['instituition' => $instituition, 'states' => $states]);
 
     }
+
+    public function create() {
+
+        $states = States::getStates();
+        return Inertia::render('Instituitions/AddInstituition.vue', ['states' => $states]);
+
+    }
+
+    public function store(Request $req) {
+
+        //dd($req->all());
+
+        $msg1 = '';
+        $msg2 = '';
+        $msg3 = '';
+        $msg4 = '';
+
+        if (strlen($req->social_name) <= 5) {
+            $msg1 = "Informe um nome social válido";    
+        }        
+
+        if (strlen($req->cnpj) < 11) {
+            $msg2 = "Informe um CNPJ válido";
+        }
+
+        if (intval($req->email) < 0) {
+            $msg3 = "Informe uma email válido";
+        }
+
+        if (strlen($req->fantasy_name) <= 5) {
+            $msg4 = "Informe um nome fantasia válido";    
+        }  
+
+        if ($msg1 != '' || $msg2 != '' || $msg3 != '') {
+
+            $arr_err = Array(
+
+                'social_name' => $msg1,
+                'cnpj' => $msg2,
+                'email' => $msg3          
+
+            );
+
+        }        
+
+        if (isset($arr_err)) {
+
+            return Redirect::route('instituicao.cadastro')->withErrors($arr_err);
+
+        } else {
+
+
+            $address = new Addresses();
+            $address->district = $req->district;
+            $address->zipcode = $req->zipcode;
+            $address->city = $req->city;
+            $address->street = $req->street;
+            $address->number = $req->number;
+            $address->fk_state = $req->state;
+            $address->complement = $req->complement;
+            $address->save();
+
+            # Obter o ID do último registro da tabela:
+            $fk_address = $address->id;
+
+            $instituition = new Instituitions();
+            $instituition->social_name = $req->social_name;
+            $instituition->fantasy_name = $req->fantasy_name;
+            $instituition->cnpj = $req->cnpj;
+            $instituition->email = $req->email;
+            $instituition->phone_number = $req->phone_number;           
+            $instituition->status = $req->status;       
+            $instituition->fk_address = $fk_address;
+            
+            $instituition->save();
+
+            $instituicoes = Instituitions::getInstituitions();
+            return Redirect::route('instituicoes.lista', ['instituicoes' => $instituicoes]); 
+        
+        }
+
+    }
     
     public function update(Request $req) {
 

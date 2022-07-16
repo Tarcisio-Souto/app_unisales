@@ -38,6 +38,8 @@ Route::get('/setor/{fk}', [SectorsController::class, 'show'])->name('setor.selec
 
 /* Instituições */
 
+Route::get('/instituicao/cadastro', [InstituitionsController::class, 'create'])->name('instituicao.cadastro')->middleware('auth');
+Route::post('/instituicao/registrar', [InstituitionsController::class, 'store'])->middleware('auth');
 Route::get('/instituicoes/lista', [InstituitionsController::class, 'index'])->name('instituicoes.lista')->middleware('auth');
 Route::get('/instituicao/visualizar/{id}', [InstituitionsController::class, 'show'])->name('instituicao.mostrar')->middleware('auth');
 Route::get('/instituicao/editar/{id}', [InstituitionsController::class, 'edit'])->name('instituicao.editar')->middleware('auth');

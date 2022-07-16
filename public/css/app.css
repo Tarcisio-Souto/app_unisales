@@ -1308,3 +1308,8 @@ a[href*="#contact"]::before {
     position: relative !important;
     top: 2px !important;
 }
+
+.add-dept-icon {
+    position: relative;
+    top: 0;
+}

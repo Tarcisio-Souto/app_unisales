@@ -64,7 +64,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4"></div>
             <div class="col-md-4" align="right">
-              <Link :href="'/departamento/editar/'+department.dept_id" class="btn btn-warning btn-edit-user">Editar</Link>
+              <Link :href="'/departamento/editar/'+department.id" class="btn btn-warning btn-edit-user">Editar</Link>
               <!--<Link href="" class="btn btn-danger btnDeletar">Deletarr</Link>-->
               
             </div>

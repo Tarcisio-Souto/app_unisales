@@ -315,7 +315,6 @@
                   <option
                     id="selected_state"
                     :value="form.state"
-                    style="background-color: gainsboro"
                   >
                     {{ form.state }}
                   </option>

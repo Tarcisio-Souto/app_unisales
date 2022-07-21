@@ -17,6 +17,51 @@ class DepartmentsController extends Controller
 
     }
 
+    public function create() {
+
+        $instituitions = Instituitions::getInstituitions();
+        return Inertia::render('Departments/AddDepartment.vue', ['instituitions' => $instituitions]);
+
+    }
+
+    public function store(Request $req) {
+        
+        $search_dept = Departments::where('name', '=', $req->name)->first();
+        $msg = '';
+
+        if ($req->name != '' && isset($search_dept['name'])) {
+            $msg = 'Este departamento já existe.';
+        }
+
+        if ($req->name == '') {
+            $msg = 'Informe o nome do departamento.';
+        }       
+
+        if ($msg != '') {
+            $arr_err = Array(
+                'name' => $msg,  
+            );
+        } 
+        
+        if (isset($arr_err)) {
+
+            return Redirect::route('departamento.cadastro')->withErrors($arr_err);
+
+        } else {
+            
+            $department = new Departments();
+            $department->name = $req->name;
+            $department->fk_instituition = $req->instituition;
+            $department->save();
+
+            $departments = Departments::listAllDepartments();
+            return Redirect::route('departamento.lista', ['departments' => $departments]); 
+
+        }       
+
+    }
+
+
     public function show($id) {
 
         $department = Departments::showDepartment($id);
@@ -45,7 +90,7 @@ class DepartmentsController extends Controller
 
         if ($msg != '') {
             $arr_err = Array(
-                'nome' => $msg,  
+                'name' => $msg,  
             );
         } 
         

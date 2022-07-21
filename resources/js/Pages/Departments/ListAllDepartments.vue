@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="" role="group">
-          <Link :href="'#'" class="btn btn-success"
+          <Link :href="'/departamento/cadastro'" class="btn btn-success"
             ><i class="fas fa-user-plus fa-sm add-dept-icon"></i><span class="btn-font">Cadastrar</span></Link
           >          
         </div>

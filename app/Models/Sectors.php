@@ -21,5 +21,28 @@ class Sectors extends Model
 
     }
 
+    public static function listAllSectors() {
+
+        $sectors = DB::table('sectors as sect')
+        ->join('departments as dept', 'dept.id', '=', 'sect.fk_department')
+        ->select('sect.id as sect_id', 'fk_department', 'sect.name as sect_name', 'dept.name as dept_name')
+        ->get();
+
+        return $sectors;
+
+    }
+
+    public static function show($id) {
+
+        $sector = DB::table('sectors as sect')
+        ->join('departments as dept', 'dept.id', '=', 'sect.fk_department')
+        ->select('sect.id as sect_id', 'fk_department', 'sect.name as sect_name', 'dept.name as dept_name')
+        ->where('sect.id', '=', $id)
+        ->get();
+
+        return $sector;
+
+    }
+
 
 }

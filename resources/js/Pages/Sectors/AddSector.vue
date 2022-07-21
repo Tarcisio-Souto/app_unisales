@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Cadastrar Departamento</h4>
+        <h4>Cadastrar Setor</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <label for="inputInstituition">Instituição</label>
+              <label for="inputDepartment">Departamento</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -54,17 +54,17 @@
                   </div>
                 </div>
                 <select
-                  id="inputInstituition"
+                  id="inputDepartment"
                   class="form-control"
-                  v-model="form.instituition"
+                  v-model="form.department"
                   name="txtinstituition"
                 >                
                   <option
-                    v-for="instituition in instituitions"
-                    :key="instituition.id"
-                    :value="instituition.id"
+                    v-for="department in departments"
+                    :key="department.id"
+                    :value="department.id"
                   >
-                    {{ instituition.social_name }}
+                    {{ department.name }}
                   </option>
                 </select>
               </div>
@@ -103,7 +103,7 @@ export default {
   },
   props: {
     errors: Object,
-    instituitions: Array
+    departments: Array
   },
 
   data: () => {
@@ -111,7 +111,7 @@ export default {
       form: {
         id: null,
         name: null,
-        instituition: null,
+        department: null,
       },
     };
   },
@@ -119,7 +119,7 @@ export default {
   methods: {
 
     sendForm() {
-      this.$inertia.post("/departamento/registrar/", this.form,
+      this.$inertia.post("/setor/registrar/", this.form,
         {
           forceFormData: true,
           preserveScroll: false,
@@ -135,11 +135,11 @@ export default {
                 "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
               message:
                 "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
-                "<span style='font-weight:bold; position: relative; top: 5px;'>Departamento registrado com sucesso!</span>",
+                "<span style='font-weight:bold; position: relative; top: 5px;'>Setor registrado com sucesso!</span>",
             });
 
             this.form.name = null;
-            this.form.instituition = null;
+            this.form.department = null;
 
           },
         }

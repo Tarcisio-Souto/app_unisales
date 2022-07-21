@@ -34,9 +34,6 @@ Route::get('/usuario/editar/{id}', [UsersController::class, 'edit'])->name('usua
 Route::post('/usuario/update/{id}', [UsersController::class, 'update'])->name('usuario.atualizar')->middleware('auth');
 Route::post('/usuario/deletar/{id}', [UsersController::class, 'destroy'])->name('usuario.deletar')->middleware('auth');
 
-
-Route::get('/setor/{fk}', [SectorsController::class, 'show'])->name('setor.selecionado')->middleware('auth');
-
 /* Instituições */
 
 Route::get('/instituicao/cadastro', [InstituitionsController::class, 'create'])->name('instituicao.cadastro')->middleware('auth');
@@ -57,8 +54,17 @@ Route::get('/departamento/editar/{id}', [DepartmentsController::class, 'edit'])-
 Route::post('/departamento/atualizar/{id}', [DepartmentsController::class, 'update'])->name('departamento.atualizar')->middleware('auth');
 Route::post('/departamento/deletar/{id}', [DepartmentsController::class, 'destroy'])->name('departamento.deletar')->middleware('auth');
 
+/* Setores */
 
+Route::get('/setor/cadastro', [SectorsController::class, 'create'])->name('setor.cadastro')->middleware('auth');
+Route::post('/setor/registrar', [SectorsController::class, 'store'])->middleware('auth');
+Route::get('/setores/lista', [SectorsController::class, 'index'])->name('setor.lista')->middleware('auth');
+Route::get('/setor/visualizar/{id}', [SectorsController::class, 'view'])->name('setor.mostrar')->middleware('auth');
+Route::get('/setor/editar/{id}', [SectorsController::class, 'edit'])->name('setor.editar')->middleware('auth');
+Route::post('/setor/atualizar/{id}', [SectorsController::class, 'update'])->name('setor.atualizar')->middleware('auth');
+Route::post('/setor/deletar/{id}', [SectorsController::class, 'destroy'])->name('setor.deletar')->middleware('auth');
 
+Route::get('/setor/{fk}', [SectorsController::class, 'show'])->name('setor.selecionado')->middleware('auth');
 
 
 

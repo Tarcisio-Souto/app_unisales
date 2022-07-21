@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Cadastrar Departamento</h4>
+        <h4>Editar Setor</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -14,12 +14,7 @@
     <div class="row">
       <div class="col-md-12">
         <form @submit.prevent="sendForm" enctype="multipart/form-data" id="formAddUser">
-          <div class="row">
-            <div class="col-md-12 topico-add">
-              <h4><span style="font-weight: bold">Dados Pessoais</span></h4>
-            </div>
-          </div>     
-          <hr> 
+          <h4><span style="font-weight: bold">Dados Cadastrais</span></h4>
           <div class="row">
             <div class="col-md-6">
               <label for="inputName">Nome</label>
@@ -46,7 +41,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <label for="inputInstituition">Instituição</label>
+              <label for="inputDepartment">Departamento</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -54,17 +49,19 @@
                   </div>
                 </div>
                 <select
-                  id="inputInstituition"
+                  id="inputDepartment"
                   class="form-control"
-                  v-model="form.instituition"
-                  name="txtinstituition"
-                >                
+                  v-model="form.department"
+                  name="txtDepartment"
+                  @change='deleteInstituition($event)'
+                >
+                  <option id='selected_instituition' :value="form.department" style="background-color:gainsboro">{{ form.department }}</option>                  
                   <option
-                    v-for="instituition in instituitions"
-                    :key="instituition.id"
-                    :value="instituition.id"
+                    v-for="department in departments"
+                    :key="department.id"
+                    :value="department.id"
                   >
-                    {{ instituition.social_name }}
+                    {{ department.name }}
                   </option>
                 </select>
               </div>
@@ -75,7 +72,7 @@
           <div class="row">
             <div class="col-md-12">
               <button type="submit" class="btn btn-success btnCadastrar">
-                Registrar
+                Editar
               </button>
             </div>
           </div>
@@ -103,7 +100,8 @@ export default {
   },
   props: {
     errors: Object,
-    instituitions: Array
+    departments: Array,
+    sector: Array
   },
 
   data: () => {
@@ -111,19 +109,33 @@ export default {
       form: {
         id: null,
         name: null,
-        instituition: null,
+        department: null,
+        preserveState: true,
       },
     };
+  },
+  created() {
+    
+    this.form.id = this.$page.props.sector[0].sect_id,
+    this.form.name = this.$page.props.sector[0].sect_name,
+    this.form.department = this.$page.props.sector[0].dept_name
+
   },
 
   methods: {
 
+    deleteDepartment: function() {
+      $('#selected_department').remove();
+    },
+
     sendForm() {
-      this.$inertia.post("/departamento/registrar/", this.form,
+      this.$inertia.post("/setor/atualizar/"+this.form.id,
+        this.form,
         {
           forceFormData: true,
           preserveScroll: false,
           _token: this.$page.props.csrf_token,
+          _method: "PUT",
           preserveState: true,
           onSuccess: () => {
             bootbox.alert({
@@ -135,12 +147,8 @@ export default {
                 "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
               message:
                 "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
-                "<span style='font-weight:bold; position: relative; top: 5px;'>Departamento registrado com sucesso!</span>",
+                "<span style='font-weight:bold; position: relative; top: 5px;'>Cadastro atualizado com sucesso!</span>",
             });
-
-            this.form.name = null;
-            this.form.instituition = null;
-
           },
         }
       );

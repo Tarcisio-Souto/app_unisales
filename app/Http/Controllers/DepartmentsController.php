@@ -112,4 +112,14 @@ class DepartmentsController extends Controller
 
     }
 
+    public function destroy($id) {
+
+        $department = Departments::where('id', '=', $id)->get();
+        Departments::destroy($department);
+
+        $departments = Departments::listAllDepartments();
+        return Redirect::route('departamento.lista', ['departments' => $departments]); 
+
+    }
+
 }

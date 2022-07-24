@@ -478,6 +478,14 @@ a[href*="#contact"]::before {
     width: 150px;
 }
 
+.btnCadastrarCargo {
+    position: relative;
+    float: right;
+    top: 25px;
+    bottom: 0;
+    width: 150px;
+}
+
 .btnAlterar {
     position: relative;
     float: right;

@@ -36127,7 +36127,7 @@ var render = function () {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-success btnCadastrar",
+                    staticClass: "btn btn-success btnCadastrarCargo",
                     attrs: { type: "submit" },
                   },
                   [_vm._v("\n              Registrar\n            ")]

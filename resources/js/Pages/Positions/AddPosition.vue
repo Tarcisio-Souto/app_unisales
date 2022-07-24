@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <button type="submit" class="btn btn-success btnCadastrar">
+              <button type="submit" class="btn btn-success btnCadastrarCargo">
                 Registrar
               </button>
             </div>

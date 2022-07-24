@@ -45,7 +45,7 @@
                 <li><Link href="/instituicoes/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
                 <li><Link href="/departamentos/lista"><i class="fas fa-solid fa-briefcase icons-menu"></i>Departamentos</Link></li>
                 <li><Link href="/setores/lista"><i class="fas fa-solid fa-door-closed icons-menu"></i>Setores</Link></li>
-                <li><Link href="#/positions/list"><i class="fas fa-solid fa-sitemap icons-menu"></i>Cargos</Link></li>
+                <li><Link href="/cargos/lista"><i class="fas fa-solid fa-sitemap icons-menu"></i>Cargos</Link></li>
               </ul>
             </li>
 

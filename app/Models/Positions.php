@@ -20,6 +20,16 @@ class Positions extends Model
 
     }
 
+    public static function show($id) {
+
+        $position = DB::table('positions')
+        ->select('id', 'name')
+        ->where('id', '=', $id)
+        ->get();
+
+        return $position;
+
+    }
 
 
 }

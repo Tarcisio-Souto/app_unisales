@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Cadastro de Setor</h4>
+        <h4>Cadastro de Cargo</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -13,7 +13,7 @@
     <br />
     <div class="row">
       <div class="col-md-12">
-        <form v-for="sector in sector" :key="sector.id">          
+        <form v-for="cargo in cargo" :key="cargo.id">          
           <br /><br />
           <div class="row">
             <div class="col-md-12 topico-add">
@@ -23,7 +23,7 @@
           <hr>
           <br>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
               <label for="inputName">Nome</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -35,40 +35,17 @@
                   type="text"
                   id="inputName"
                   class="form-control"
-                  :value="sector.sect_name"
+                  :value="cargo.name"
                   disabled
                 />
               </div>              
             </div>
-            <div class="col-md-6">
-              <label for="inputDepartment">Departamento</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-user"></i>
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  id="inputDepartment"
-                  class="form-control"
-                  :value="sector.dept_name"
-                  disabled
-                />
-              </div>              
-            </div>
+            <div class="col-md-4 btnEditarCargo" align="right">
+              <Link :href="'/setor/editar/'+cargo.id" class="btn btn-warning btn-edit-user">Editar</Link>              
+            </div>            
           </div>
           <br />
-          <br /><br />
-          <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4" align="right">
-              <Link :href="'/setor/editar/'+sector.sect_id" class="btn btn-warning btn-edit-user">Editar</Link>
-              <!--<Link href="" class="btn btn-danger btnDeletar">Deletarr</Link>-->
-              
-            </div>
-          </div>
+          <br /><br />          
         </form>
       </div>
     </div>
@@ -92,11 +69,11 @@ export default {
   },
   props: {
     errors: Object,
-    sector: Array,
+    cargo: Array,
   },
   methods: {
     sendForm() {
-      this.$inertia.post("/setor/registrar", this.form, {
+      this.$inertia.post("/cargo/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,

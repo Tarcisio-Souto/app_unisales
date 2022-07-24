@@ -59,5 +59,13 @@ class PositionsController extends Controller
 
     }
 
+    public function show($id) {
+
+        $cargo = Positions::show($id);
+        return Inertia::render('Positions/ViewPosition.vue', ['cargo' => $cargo]);
+
+    }
+
+
 
 }

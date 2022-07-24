@@ -4939,29 +4939,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4972,11 +4949,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     errors: Object,
-    sector: Array
+    cargo: Array
   },
   methods: {
     sendForm: function sendForm() {
-      this.$inertia.post("/setor/registrar", this.form, {
+      this.$inertia.post("/cargo/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token
@@ -36578,7 +36555,7 @@ var render = function () {
       _c("div", { staticClass: "col-md-4" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4", attrs: { align: "center" } }, [
-        _c("h4", [_vm._v("Cadastro de Setor")]),
+        _c("h4", [_vm._v("Cadastro de Cargo")]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }),
@@ -36592,8 +36569,8 @@ var render = function () {
       _c(
         "div",
         { staticClass: "col-md-12" },
-        _vm._l(_vm.sector, function (sector) {
-          return _c("form", { key: sector.id }, [
+        _vm._l(_vm.cargo, function (cargo) {
+          return _c("form", { key: cargo.id }, [
             _c("br"),
             _c("br"),
             _vm._v(" "),
@@ -36612,7 +36589,7 @@ var render = function () {
             _c("br"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "col-md-8" }, [
                 _c("label", { attrs: { for: "inputName" } }, [_vm._v("Nome")]),
                 _vm._v(" "),
                 _c("div", { staticClass: "input-group" }, [
@@ -36625,55 +36602,23 @@ var render = function () {
                   _c("input", {
                     staticClass: "form-control",
                     attrs: { type: "text", id: "inputName", disabled: "" },
-                    domProps: { value: sector.sect_name },
+                    domProps: { value: cargo.name },
                   }),
                 ]),
               ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "inputDepartment" } }, [
-                  _vm._v("Departamento"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _c("div", { staticClass: "input-group-prepend" }, [
-                    _c("div", { staticClass: "input-group-text" }, [
-                      _c("i", { staticClass: "fas fa-user" }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "inputDepartment",
-                      disabled: "",
-                    },
-                    domProps: { value: sector.dept_name },
-                  }),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("br"),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }),
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "col-md-4", attrs: { align: "right" } },
+                {
+                  staticClass: "col-md-4 btnEditarCargo",
+                  attrs: { align: "right" },
+                },
                 [
                   _c(
                     "Link",
                     {
                       staticClass: "btn btn-warning btn-edit-user",
-                      attrs: { href: "/setor/editar/" + sector.sect_id },
+                      attrs: { href: "/setor/editar/" + cargo.id },
                     },
                     [_vm._v("Editar")]
                   ),
@@ -36681,6 +36626,11 @@ var render = function () {
                 1
               ),
             ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("br"),
+            _c("br"),
           ])
         }),
         0

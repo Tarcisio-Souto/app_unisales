@@ -486,6 +486,11 @@ a[href*="#contact"]::before {
     width: 150px;
 }
 
+.btnEditarCargo {
+    position: relative;
+    top: 25px;
+}
+
 .btnAlterar {
     position: relative;
     float: right;

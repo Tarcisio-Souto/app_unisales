@@ -108,5 +108,14 @@ class PositionsController extends Controller
 
     }
 
+    public function destroy($id) {
+
+        $cargo = Positions::where('id', '=', $id)->get();
+        Positions::destroy($cargo);
+
+        $cargos = Positions::getPositions();
+        return Redirect::route('cargos.lista', ['cargos' => $cargos]); 
+
+    }
 
 }

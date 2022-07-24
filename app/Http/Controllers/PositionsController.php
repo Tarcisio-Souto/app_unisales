@@ -66,6 +66,47 @@ class PositionsController extends Controller
 
     }
 
+    public function edit($id) {
+
+        $cargo = Positions::show($id);
+        return Inertia::render('Positions/EditPosition.vue', ['cargo' => $cargo]);
+
+    }
+
+    public function update(Request $req) {
+
+        $cargo = Positions::find($req->id);  
+        $msg = '';
+
+        if ($req->name == $cargo->name) {
+            $msg = 'Este cargo já existe.';
+        }
+
+        if ($req->name == '') {
+            $msg = 'Informe o nome do cargo.';            
+        }       
+
+        if ($msg != '') {
+            $arr_err = Array(
+                'name' => $msg,  
+            );
+        } 
+        
+        if (isset($arr_err)) {
+
+            return Redirect::route('cargo.editar', [$cargo->id])->withErrors($arr_err);
+
+        } else {
+            
+            $cargo->name = $req->name;
+            $cargo->update();
+
+            $cargos = Positions::getPositions();
+            return Redirect::route('cargos.lista', ['cargos' => $cargos]); 
+
+        }       
+
+    }
 
 
 }

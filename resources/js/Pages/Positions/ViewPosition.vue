@@ -41,7 +41,7 @@
               </div>              
             </div>
             <div class="col-md-4 btnEditarCargo" align="right">
-              <Link :href="'/setor/editar/'+cargo.id" class="btn btn-warning btn-edit-user">Editar</Link>              
+              <Link :href="'/cargo/editar/'+cargo.id" class="btn btn-warning btn-edit-user">Editar</Link>              
             </div>            
           </div>
           <br />

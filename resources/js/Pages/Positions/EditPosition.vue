@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Editar Setor</h4>
+        <h4>Editar Cargo</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -16,7 +16,7 @@
         <form @submit.prevent="sendForm" enctype="multipart/form-data" id="formAddUser">
           <h4><span style="font-weight: bold">Dados Cadastrais</span></h4>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
               <label for="inputName">Nome</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -40,42 +40,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <label for="inputDepartment">Departamento</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-building"></i>
-                  </div>
-                </div>
-                <select
-                  id="inputDepartment"
-                  class="form-control"
-                  v-model="form.department"
-                  name="txtDepartment"
-                  @change='deleteInstituition($event)'
-                >
-                  <option id='selected_instituition' :value="form.department" style="background-color:gainsboro">{{ form.department }}</option>                  
-                  <option
-                    v-for="department in departments"
-                    :key="department.id"
-                    :value="department.id"
-                  >
-                    {{ department.name }}
-                  </option>
-                </select>
-              </div>
-            </div>        
-          </div>
-          <br />
-                    
-          <div class="row">
-            <div class="col-md-12">
-              <button type="submit" class="btn btn-success btnCadastrar">
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-success btnCadastrarCargo">
                 Editar
               </button>
             </div>
           </div>
+          <br />
         </form>
       </div>
     </div>
@@ -100,8 +71,7 @@ export default {
   },
   props: {
     errors: Object,
-    departments: Array,
-    sector: Array
+    cargo: Array
   },
 
   data: () => {
@@ -116,20 +86,15 @@ export default {
   },
   created() {
     
-    this.form.id = this.$page.props.sector[0].sect_id,
-    this.form.name = this.$page.props.sector[0].sect_name,
-    this.form.department = this.$page.props.sector[0].dept_name
+    this.form.id = this.$page.props.cargo[0].id,
+    this.form.name = this.$page.props.cargo[0].name
 
   },
 
   methods: {
 
-    deleteDepartment: function() {
-      $('#selected_department').remove();
-    },
-
     sendForm() {
-      this.$inertia.post("/setor/atualizar/"+this.form.id,
+      this.$inertia.post("/cargo/atualizar/"+this.form.id,
         this.form,
         {
           forceFormData: true,

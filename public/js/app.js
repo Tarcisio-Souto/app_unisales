@@ -4646,35 +4646,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4685,8 +4656,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     errors: Object,
-    departments: Array,
-    sector: Array
+    cargo: Array
   },
   data: function data() {
     return {
@@ -4699,14 +4669,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.form.id = this.$page.props.sector[0].sect_id, this.form.name = this.$page.props.sector[0].sect_name, this.form.department = this.$page.props.sector[0].dept_name;
+    this.form.id = this.$page.props.cargo[0].id, this.form.name = this.$page.props.cargo[0].name;
   },
   methods: {
-    deleteDepartment: function deleteDepartment() {
-      $('#selected_department').remove();
-    },
     sendForm: function sendForm() {
-      this.$inertia.post("/setor/atualizar/" + this.form.id, this.form, {
+      this.$inertia.post("/cargo/atualizar/" + this.form.id, this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,
@@ -36165,7 +36132,7 @@ var render = function () {
       _c("div", { staticClass: "col-md-4" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4", attrs: { align: "center" } }, [
-        _c("h4", [_vm._v("Editar Setor")]),
+        _c("h4", [_vm._v("Editar Cargo")]),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }),
@@ -36198,7 +36165,7 @@ var render = function () {
             _c("div", { staticClass: "row" }, [
               _c(
                 "div",
-                { staticClass: "col-md-6" },
+                { staticClass: "col-md-8" },
                 [
                   _c("label", { attrs: { for: "inputName" } }, [
                     _vm._v("Nome"),
@@ -36262,104 +36229,19 @@ var render = function () {
                 2
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("label", { attrs: { for: "inputDepartment" } }, [
-                  _vm._v("Departamento"),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _c("div", { staticClass: "input-group-prepend" }, [
-                    _c("div", { staticClass: "input-group-text" }, [
-                      _c("i", { staticClass: "fas fa-building" }),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.department,
-                          expression: "form.department",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: { id: "inputDepartment", name: "txtDepartment" },
-                      on: {
-                        change: [
-                          function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form,
-                              "department",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
-                          function ($event) {
-                            return _vm.deleteInstituition($event)
-                          },
-                        ],
-                      },
-                    },
-                    [
-                      _c(
-                        "option",
-                        {
-                          staticStyle: { "background-color": "gainsboro" },
-                          attrs: { id: "selected_instituition" },
-                          domProps: { value: _vm.form.department },
-                        },
-                        [_vm._v(_vm._s(_vm.form.department))]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.departments, function (department) {
-                        return _c(
-                          "option",
-                          {
-                            key: department.id,
-                            domProps: { value: department.id },
-                          },
-                          [
-                            _vm._v(
-                              "\n                  " +
-                                _vm._s(department.name) +
-                                "\n                "
-                            ),
-                          ]
-                        )
-                      }),
-                    ],
-                    2
-                  ),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "col-md-4" }, [
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-success btnCadastrar",
+                    staticClass: "btn btn-success btnCadastrarCargo",
                     attrs: { type: "submit" },
                   },
                   [_vm._v("\n              Editar\n            ")]
                 ),
               ]),
             ]),
+            _vm._v(" "),
+            _c("br"),
           ]
         ),
       ]),
@@ -36618,7 +36500,7 @@ var render = function () {
                     "Link",
                     {
                       staticClass: "btn btn-warning btn-edit-user",
-                      attrs: { href: "/setor/editar/" + cargo.id },
+                      attrs: { href: "/cargo/editar/" + cargo.id },
                     },
                     [_vm._v("Editar")]
                   ),

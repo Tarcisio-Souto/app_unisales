@@ -53,7 +53,7 @@ class PositionsController extends Controller
             $cargo->save();
 
             $cargos = Positions::getPositions();
-            return Redirect::route('cargo.lista', ['cargos' => $cargos]); 
+            return Redirect::route('cargos.lista', ['cargos' => $cargos]); 
 
         }       
 

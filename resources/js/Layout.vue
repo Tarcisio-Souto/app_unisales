@@ -51,14 +51,13 @@
 
             <li class="dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown"
-                ><i class="fas fa-car icons-menu"></i>Bens</a
+                ><i class="fas fa-car icons-menu"></i>Patrimônios</a
               >
               <ul class="dropdown-menu animated fadeInLeft menuBens" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="#/assets/register"><i class="fas fa-plus-circle icons-menu"></i>Cadastrar</Link></li>
-                <li><Link href="#/assets/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
-                <li><Link href="#/categories/list"><i class="fas fa-duotone fa-layer-group icons-menu"></i>Categorias</Link></li>
-                <li><Link href="#/assets/occurrences"><i class="fas fa-solid fa-exclamation icons-menu"></i>Ocorrências</Link></li>                
+                <li><Link href="/patrimonio/cadastro"><i class="fas fa-plus-circle icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="/patrimonios/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
+                <li><Link href="/categorias/lista"><i class="fas fa-duotone fa-layer-group icons-menu"></i>Categorias</Link></li>                
               </ul>
             </li>
            
@@ -71,6 +70,7 @@
                 <li><Link href="#/loans/register"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
                 <li><Link href="#/loans/list"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>
                 <li><Link href="#/loans/reserves"><i class="fas fa-solid fa-calendar icons-menu"></i>Reservas</Link></li>
+                <li><Link href="/ocorrencias/lista"><i class="fas fa-solid fa-exclamation icons-menu"></i>Ocorrências</Link></li>                
               </ul>
             </li>
 

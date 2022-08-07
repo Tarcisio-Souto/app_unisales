@@ -15,20 +15,29 @@ class CategoriesController extends Controller
 {
     
     public function index() {
-
+      
         $categorias = Categories::listAllCategories();
         return Inertia::render('Categories/ListAllCategories.vue', ['categorias' => $categorias]);
 
     }
 
-    public function create() {
+    public function listAllCategories() {
+
+        $categorias = Categories::listAllCategories();
+        return response()->json($categorias);
+        //return response()->json(['categorias' => $categorias]);
+
+    }
+    
+
+    /*public function create() {
 
         return Inertia::render('Categories/AddCategory.vue');
 
-    }
+    }*/
 
     public function store(Request $req) {
-        
+
         $search_cartegoria = Categories::where('name', '=', $req->name)->first();
         $msg = '';
 
@@ -48,7 +57,7 @@ class CategoriesController extends Controller
         
         if (isset($arr_err)) {
 
-            return Redirect::route('categoria.cadastro')->withErrors($arr_err);
+            return response()->json(['errors' => $arr_err]);
 
         } else {
             
@@ -56,8 +65,8 @@ class CategoriesController extends Controller
             $categoria->name = $req->name;
             $categoria->save();
 
-            $categorias = Categories::listAllCategories();
-            return Redirect::route('categorias.lista', ['categorias' => $categorias]); 
+            $msg = 'Categoria cadastrada com sucesso!';
+            return response()->json(['success' => $msg]);
 
         }       
 

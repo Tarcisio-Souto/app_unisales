@@ -478,6 +478,12 @@ a[href*="#contact"]::before {
     width: 150px;
 }
 
+.btn-cad-list {
+    position: relative;
+    top: 48px;
+    height: 37px;
+}
+
 .btnCadastrarCargo {
     position: relative;
     float: right;

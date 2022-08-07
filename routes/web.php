@@ -80,9 +80,10 @@ Route::post('/cargo/deletar/{id}', [PositionsController::class, 'destroy'])->nam
 
 /* Categorias */
 
-Route::get('/categoria/cadastro', [CategoriesController::class, 'create'])->name('categoria.cadastro')->middleware('auth');
+//Route::get('/categoria/cadastro', [CategoriesController::class, 'create'])->name('categoria.cadastro')->middleware('auth');
 Route::post('/categoria/registrar', [CategoriesController::class, 'store'])->middleware('auth');
 Route::get('/categorias/lista', [CategoriesController::class, 'index'])->name('categorias.lista')->middleware('auth');
+Route::get('/categorias/listar-todos', [CategoriesController::class, 'listAllCategories'])->name('categorias.listAllCategories')->middleware('auth');
 Route::get('/categoria/visualizar/{id}', [CategoriesController::class, 'show'])->name('categoria.mostrar')->middleware('auth');
 Route::get('/categoria/editar/{id}', [CategoriesController::class, 'edit'])->name('categoria.editar')->middleware('auth');
 Route::post('/categoria/atualizar/{id}', [CategoriesController::class, 'update'])->name('categoria.atualizar')->middleware('auth');

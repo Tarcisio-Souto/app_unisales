@@ -1,4 +1,9 @@
 @import url('datatables.css');
+
+/*Import Bootstrap and BootstrapVue CSS files (order is important)*/
+
+@import url('bootstrap/dist/css/bootstrap.css');
+@import url('bootstrap-vue/dist/bootstrap-vue.css');
 body {
     position: relative;
     overflow-x: hidden;

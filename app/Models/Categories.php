@@ -12,7 +12,7 @@ class Categories extends Model
 
     public static function listAllCategories() {
 
-        $categorias = DB::table('categories')
+        $categorias = DB::table('categories')        
         ->select('id', 'name')
         ->get();
 

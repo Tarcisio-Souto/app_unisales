@@ -16,16 +16,17 @@ class CategoriesController extends Controller
     
     public function index() {
       
-        $categorias = Categories::listAllCategories();
-        return Inertia::render('Categories/ListAllCategories.vue', ['categorias' => $categorias]);
+        //$categorias = Categories::listAllCategories();
+        return Inertia::render('Categories/ListAllCategories.vue');
 
     }
 
     public function listAllCategories() {
 
         $categorias = Categories::listAllCategories();
+        //return response()->json($categorias);
         return response()->json($categorias);
-        //return response()->json(['categorias' => $categorias]);
+        //return $categorias::paginate(5);
 
     }
     

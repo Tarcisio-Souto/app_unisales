@@ -1,5 +1,52 @@
 <template>
   <layout>
+
+    <form
+      @submit.prevent="cadCategory"
+      enctype="multipart/form-data"
+      id="formAddCategory"
+    >
+      <div class="row">
+        <div class="col-md-8">
+          <label for="inputName" style="font-weight: bold">Categoria</label
+          ><br /><br />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-duotone fa-layer-group"></i>
+              </div>
+            </div>
+            <input
+              type="text"
+              id="inputName"
+              class="form-control"
+              placeholder="Nome"
+              v-model="form.name"
+            />
+          </div>
+          <div v-for="(erro, name) in this.form.errors" :key="name">
+            <div v-if="name == 'name'">
+              <span v-if="erro != ''" class="errors-label-notification">
+                <i class="fas fa-exclamation-circle"></i>{{ erro }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <button
+            type="submit"
+            class="btn btn-success btn-cad-list"
+            id="cadCat"
+          >
+            Registrar
+          </button>
+        </div>
+      </div>
+    </form>
+    <!-- <br> temporário -->
+
+    <br />
+
     <b-container fluid>
       <!-- User Interface controls -->
       <b-row>
@@ -26,7 +73,7 @@
 
         <b-col sm="6" class="my-1">
           <b-form-group
-            label="Filter"
+            label="Filtro"
             label-for="filter-input"
             label-cols-sm="3"
             label-align-sm="right"
@@ -38,12 +85,12 @@
                 id="filter-input"
                 v-model="filter"
                 type="search"
-                placeholder="Type to Search"
+                placeholder="Informe o parâmetro"
               ></b-form-input>
 
               <b-input-group-append>
                 <b-button :disabled="!filter" @click="filter = ''"
-                  >Clear</b-button
+                  >Limpar</b-button
                 >
               </b-input-group-append>
             </b-input-group>
@@ -97,13 +144,20 @@
             ><i class="fas fa-edit"></i
           ></Link>
           <span
-            ><i class="fas fa-trash-alt" @click="sendForm(row.value)"></i
+            ><i class="fas fa-trash-alt" @click="delCategory(row.value)"></i
           ></span>          
         </template>
         
       </b-table>
       
     </b-container>
+
+    <!-- <br> temporário -->
+
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
+
   </layout>
 </template>
 
@@ -117,6 +171,12 @@ export default {
   },
   data() {
     return {
+
+      form: {
+        errors: {},
+        name: null,
+      },
+
       items: [],
 
       fields: [
@@ -126,19 +186,6 @@ export default {
           sortable: true,
           sortDirection: "desc",
         },
-        /*{
-          key: "id",
-        },
-        /*{
-          key: "isActive",
-          label: "Is Active",
-          formatter: (value, key, item) => {
-            return value ? "Yes" : "No";
-          },
-          sortable: true,
-          sortByFormatted: true,
-          filterByFormatted: true,
-        },*/
         { key: "id", label: "Ações" },
       ],
       totalRows: 1,
@@ -190,6 +237,90 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
+
+    cadCategory() {
+      axios.post("/categoria/registrar", this.form).then(
+        function (res) {
+          if (res.data["success"]) {
+            bootbox.alert({
+              centerVertical: true,
+              backdrop: true,
+              closeButton: false,
+              size: "large",
+              title:
+                "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+              message:
+                "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
+                "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                res.data["success"] +
+                "</span>",
+            });
+            this.form.name = null
+            axios.get("/categorias/listar-todos").then((response) => {
+              this.items = response.data;
+              this.totalRows = this.items.length;
+            });
+          } else {
+            this.form.errors = res.data;
+            console.log(res.data);
+          }
+        }.bind(this)
+      );
+    },
+
+    delCategory(id) {
+      bootbox.confirm({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>Deletar categoria?</span>",
+        buttons: {
+          cancel: {
+            label: '<i class="fa fa-times"></i> Não',
+          },
+          confirm: {
+            className: "btn-danger",
+            label: '<i class="fa fa-check"></i> Sim',
+          },
+        },
+        callback: function (result) {
+          if (result == true) {
+            axios.post("/categoria/deletar/" + id).then(
+              function (res) {
+                if (res.data["success"]) {
+                  bootbox.alert({
+                    centerVertical: true,
+                    backdrop: true,
+                    closeButton: false,
+                    size: "large",
+                    title:
+                      "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                    message:
+                      "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
+                      "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                      res.data["success"] +
+                      "</span>",
+                  });
+                  axios.get("/categorias/listar-todos").then((response) => {
+                    this.items = response.data;
+                    this.totalRows = this.items.length;
+                  });
+                } else {
+                  this.form.errors = res.data;
+                  console.log(res.data);
+                }
+              }.bind(this)
+            );
+          }
+        },
+      });
+    },
+
   },
 };
 </script>

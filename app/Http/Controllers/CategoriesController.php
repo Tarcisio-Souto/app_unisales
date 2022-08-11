@@ -24,18 +24,10 @@ class CategoriesController extends Controller
     public function listAllCategories() {
 
         $categorias = Categories::listAllCategories();
-        //return response()->json($categorias);
         return response()->json($categorias);
-        //return $categorias::paginate(5);
 
     }
     
-
-    /*public function create() {
-
-        return Inertia::render('Categories/AddCategory.vue');
-
-    }*/
 
     public function store(Request $req) {
 
@@ -135,7 +127,7 @@ class CategoriesController extends Controller
             return Redirect::route('categorias.lista', ['categorias' => $categorias]); 
         } else {
             //dd('com dependencia');
-            return response()->json(['error' => 'A categoria contém dependências e não pode ser excluída. Contate o administrador do sistema.']);
+            return response()->json(['errors' => 'A categoria contém dependências e não pode ser excluída. Contate o administrador do sistema.']);
             //return Redirect::route('categorias.lista')->withErrors(['errors' => 'A categoria contém dependências e não pode ser excluída. Contate o administrador do sistema.', 403]);
 
         }            

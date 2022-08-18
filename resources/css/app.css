@@ -568,10 +568,13 @@ a[href*="#contact"]::before {
     #myTable td {
         height: 30px !important;
         font-size: 12px;
+        font-weight: 500;
         border: rgb(56, 56, 56)
     }
     #myTable tr {
         border-bottom: 2px solid rgb(117, 116, 116);
+        background-color: #a6dddf !important;
+        bottom: 5px !important;
     }
 }
 

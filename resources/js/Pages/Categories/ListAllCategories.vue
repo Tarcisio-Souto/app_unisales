@@ -50,7 +50,7 @@
     <b-container fluid>
       <!-- User Interface controls -->
       <b-row>
-        <b-col sm="5" md="6" class="my-1">
+        <b-col sm="6" class="my-1">
           <b-form-group
             label="Por página"
             label-for="per-page-select"
@@ -71,7 +71,7 @@
           </b-form-group>
         </b-col>
 
-        <b-col sm="5" md="6" class="my-1">
+        <b-col sm="6" class="my-1">
           <b-form-group
             label="Filtro"
             label-for="filter-input"
@@ -100,9 +100,9 @@
 
       <br />
 
-      
-        
-        <b-col sm="5" md="6" class="my-1">
+      <b-row>
+        <b-col sm="6"></b-col>
+        <b-col sm="6" md="6" class="my-1">
           <b-pagination
             v-model="currentPage"
             :total-rows="totalRows"
@@ -112,6 +112,7 @@
             class="my-0"
           ></b-pagination>
         </b-col>
+      </b-row>
 
       <br />
 

@@ -489,6 +489,15 @@ a[href*="#contact"]::before {
     height: 37px;
 }
 
+@media screen and (max-width: 767px) {
+    .btn-cad-list {
+        position: relative;
+        top: 20px;
+        bottom: 20px;
+        height: 37px;
+    }
+}
+
 .btnCadastrarCargo {
     position: relative;
     float: right;
@@ -538,7 +547,7 @@ a[href*="#contact"]::before {
 }
 
 
-/* DataTables */
+/* Tables */
 
 #myTable th {
     background-color: #5F9EA0;
@@ -551,6 +560,17 @@ a[href*="#contact"]::before {
 #myTable td {
     height: 5px !important;
     font-size: 12px;
+}
+
+@media screen and (max-width: 767px) {
+    #myTable td {
+        height: 30px !important;
+        font-size: 12px;
+        border: rgb(56, 56, 56)
+    }
+    #myTable tr {
+        border-bottom: 2px solid rgb(117, 116, 116);
+    }
 }
 
 #myTable .fas {

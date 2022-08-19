@@ -38,9 +38,10 @@ Route::post('/usuario/deletar/{id}', [UsersController::class, 'destroy'])->name(
 
 /* Instituições */
 
-Route::get('/instituicao/cadastro', [InstituitionsController::class, 'create'])->name('instituicao.cadastro')->middleware('auth');
+//Route::get('/instituicao/cadastro', [InstituitionsController::class, 'create'])->name('instituicao.cadastro')->middleware('auth');
 Route::post('/instituicao/registrar', [InstituitionsController::class, 'store'])->middleware('auth');
 Route::get('/instituicoes/lista', [InstituitionsController::class, 'index'])->name('instituicoes.lista')->middleware('auth');
+Route::get('/instituicoes/listar-todos', [InstituitionsController::class, 'listAllInstituitions'])->name('instituicoes.listAllInstituitions')->middleware('auth');
 Route::get('/instituicao/visualizar/{id}', [InstituitionsController::class, 'show'])->name('instituicao.mostrar')->middleware('auth');
 Route::get('/instituicao/editar/{id}', [InstituitionsController::class, 'edit'])->name('instituicao.editar')->middleware('auth');
 Route::post('/instituicao/atualizar/{id}', [InstituitionsController::class, 'update'])->name('instituicao.atualizar')->middleware('auth');
@@ -48,9 +49,10 @@ Route::post('/instituicao/deletar/{id}', [InstituitionsController::class, 'destr
 
 /* Departamentos */
 
-Route::get('/departamento/cadastro', [DepartmentsController::class, 'create'])->name('departamento.cadastro')->middleware('auth');
+//Route::get('/departamento/cadastro', [DepartmentsController::class, 'create'])->name('departamento.cadastro')->middleware('auth');
 Route::post('/departamento/registrar', [DepartmentsController::class, 'store'])->middleware('auth');
 Route::get('/departamentos/lista', [DepartmentsController::class, 'index'])->name('departamento.lista')->middleware('auth');
+Route::get('/departamentos/listar-todos', [DepartmentsController::class, 'listAllDepartments'])->name('departamentos.listAllDepartments')->middleware('auth');
 Route::get('/departamento/visualizar/{id}', [DepartmentsController::class, 'show'])->name('departamento.mostrar')->middleware('auth');
 Route::get('/departamento/editar/{id}', [DepartmentsController::class, 'edit'])->name('departamento.editar')->middleware('auth');
 Route::post('/departamento/atualizar/{id}', [DepartmentsController::class, 'update'])->name('departamento.atualizar')->middleware('auth');

@@ -123,11 +123,11 @@ class CategoriesController extends Controller
         if ($dependencia_cat <= 0) {
             $categoria = Categories::where('id', '=', $id)->get();
             Categories::destroy($categoria);
-            $categorias = Categories::listAllCategories();
-            return Redirect::route('categorias.lista', ['categorias' => $categorias]); 
+            $msg = 'Categoria deletada com sucesso!';
+            return response()->json(['success' => $msg]);
         } else {
             //dd('com dependencia');
-            return response()->json(['errors' => 'A categoria contém dependências e não pode ser excluída. Contate o administrador do sistema.']);
+            return response()->json(['errors' => 'A categoria contém dependências e não pôde ser excluída. Contate o administrador do sistema.']);
             //return Redirect::route('categorias.lista')->withErrors(['errors' => 'A categoria contém dependências e não pode ser excluída. Contate o administrador do sistema.', 403]);
 
         }            

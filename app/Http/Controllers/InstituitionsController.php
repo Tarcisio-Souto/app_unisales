@@ -14,8 +14,14 @@ class InstituitionsController extends Controller
     
     public function index() {
 
-        $instituitions = Instituitions::getInstituitions();
-        return Inertia::render('Instituitions/ListAllInstituitions.vue', ['instituitions' => $instituitions]);
+        return Inertia::render('Instituitions/ListAllInstituitions.vue');
+
+    }
+
+    public function listAllInstituitions() {
+
+        $instituitions = Instituitions::listAllInstituitions();
+        return response()->json($instituitions);
 
     }
 
@@ -33,14 +39,7 @@ class InstituitionsController extends Controller
         return Inertia::render('Instituitions/EditInstituition.vue', 
         ['instituition' => $instituition, 'states' => $states]);
 
-    }
-
-    public function create() {
-
-        $states = States::getStates();
-        return Inertia::render('Instituitions/AddInstituition.vue', ['states' => $states]);
-
-    }
+    }    
 
     public function store(Request $req) {
 

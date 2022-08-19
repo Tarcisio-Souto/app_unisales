@@ -14426,8 +14426,17 @@ a[href*="#contact"]::before {
 
 .btn-cad-list {
     position: relative;
-    top: 48px;
+    top: 56px;
     height: 37px;
+}
+
+#formAddList {
+    background-color: #999999;
+    border-radius: 3px;
+    padding: 7px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    color: white;
 }
 
 @media screen and (max-width: 767px) {
@@ -14435,6 +14444,15 @@ a[href*="#contact"]::before {
         position: relative;
         top: 20px;
         bottom: 20px;
+        height: 37px;
+    }
+    #formAddList {
+        padding-bottom: 55px;
+    }
+    .btn-cad-list {
+        position: relative;
+        float: right;
+        top: 47px;
         height: 37px;
     }
 }
@@ -14745,4 +14763,9 @@ a[href*="#contact"]::before {
 .add-dept-icon {
     position: relative;
     top: 0;
+}
+
+.select-form {
+    position: relative;
+    top: 23px;
 }

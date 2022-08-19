@@ -10,10 +10,10 @@ class Instituitions extends Model
 {
     use HasFactory;
 
-    public static function getInstituitions() {
+    public static function listAllInstituitions() {
 
         $instituitions = DB::table('instituitions')
-        ->select('id','social_name', 'cnpj', 'phone_number', 'email', 'status')
+        ->select('id as id_instituition','social_name', 'cnpj', 'phone_number', 'email', 'status')
         ->get();
 
         return $instituitions;

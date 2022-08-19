@@ -11,16 +11,15 @@ use Inertia\Inertia;
 class DepartmentsController extends Controller
 {
     public function index() {
-
-        $departments = Departments::listAllDepartments();
-        return Inertia::render('Departments/ListAllDepartments.vue', ['departments' => $departments]);
+        
+        return Inertia::render('Departments/ListAllDepartments.vue');
 
     }
 
-    public function create() {
+    public function listAllDepartments() {
 
-        $instituitions = Instituitions::getInstituitions();
-        return Inertia::render('Departments/AddDepartment.vue', ['instituitions' => $instituitions]);
+        $departments = Departments::listAllDepartments();
+        return response()->json($departments);
 
     }
 
@@ -45,17 +44,18 @@ class DepartmentsController extends Controller
         
         if (isset($arr_err)) {
 
-            return Redirect::route('departamento.cadastro')->withErrors($arr_err);
+            //return Redirect::route('departamento.cadastro')->withErrors($arr_err);
+            return response()->json(['errors' => $arr_err]);
 
         } else {
             
             $department = new Departments();
             $department->name = $req->name;
-            $department->fk_instituition = $req->instituition;
+            $department->fk_instituition = $req->instituicao;
             $department->save();
 
-            $departments = Departments::listAllDepartments();
-            return Redirect::route('departamento.lista', ['departments' => $departments]); 
+            $msg = 'Departamento cadastrado com sucesso!';
+            return response()->json(['success' => $msg]);
 
         }       
 
@@ -116,9 +116,11 @@ class DepartmentsController extends Controller
 
         $department = Departments::where('id', '=', $id)->get();
         Departments::destroy($department);
+        $msg = 'Departamento deletado com sucesso!';
+        return response()->json(['success' => $msg]); 
 
-        $departments = Departments::listAllDepartments();
-        return Redirect::route('departamento.lista', ['departments' => $departments]); 
+        //$departments = Departments::listAllDepartments();
+        //return Redirect::route('departamento.lista', ['departments' => $departments]);
 
     }
 

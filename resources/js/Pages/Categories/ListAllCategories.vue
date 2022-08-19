@@ -164,6 +164,7 @@
 <script>
 import Layout from "../../Layout.vue";
 import { Link } from "@inertiajs/inertia-vue";
+import { tSTypeAliasDeclaration } from "@babel/types";
 export default {
   components: {
     Layout,
@@ -269,6 +270,9 @@ export default {
     },
 
     delCategory(id) {
+      
+      var _this = this;
+
       bootbox.confirm({
         centerVertical: true,
         backdrop: true,
@@ -307,12 +311,23 @@ export default {
                       "</span>",
                   });
                   axios.get("/categorias/listar-todos").then((response) => {
-                    this.items = response.data;
-                    this.totalRows = this.items.length;
-                  });
+                    _this.items = response.data;
+                    this.totalRows = _this.items.length;
+                  });                  
                 } else {
-                  this.form.errors = res.data;
-                  console.log(this.form.errors);
+                  bootbox.alert({
+                    centerVertical: true,
+                    backdrop: true,
+                    closeButton: false,
+                    size: "large",
+                    title:
+                      "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                    message:
+                      "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+                      "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                      res.data["errors"] +
+                      "</span>",
+                  });
                 }
               }.bind(this)
             );

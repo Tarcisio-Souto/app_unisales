@@ -1,10 +1,23 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <template>
   <layout>
 
     <div class="row">
       <div class="col-md-12">
         <div class="" role="group">
-          <Link :href="'/setor/cadastro'" class="btn btn-success"
+          <Link :href="'/cargo/cadastro'" class="btn btn-success"
             ><i class="fas fa-user-plus fa-sm add-dept-icon"></i><span class="btn-font">Cadastrar</span></Link
           >          
         </div>
@@ -20,26 +33,24 @@
       >
         <thead>
           <tr align="center">
-            <th>Setor</th>
-            <th>Departamento</th>
+            <th>Cargo</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="sector in sectors" :key="sector.sect_id" :value="sector.sect_id" align="center">
-            <td>{{ sector.sect_name }}</td>
-            <td>{{ sector.dept_name }}</td>
+          <tr v-for="cargo in cargos" :key="cargo.id" :value="cargo.id" align="center">
+            <td>{{ cargo.name }}</td>
             <td align="center">
-              <Link :href="'/setor/visualizar/' + sector.sect_id"
+              <Link :href="'/cargo/visualizar/' + cargo.id"
                 ><i class="fas fa-eye"></i
               ></Link>
-              <Link :href="'/setor/editar/' + sector.sect_id"
+              <Link :href="'/cargo/editar/' + cargo.id"
                 ><i class="fas fa-edit"></i
               ></Link>              
               <span
                 ><i
                   class="fas fa-trash-alt"
-                  @click="sendForm(sector.sect_id)"
+                  @click="sendForm(cargo.id)"
                 ></i
               ></span>
             </td>
@@ -47,15 +58,13 @@
         </tbody> 
         <tfoot>
           <tr align="center">
-            <th>Setor</th>
-            <th>Departamento</th>
+            <th>Cargo</th>
             <th>Ações</th>
           </tr>
         </tfoot>
       </table>
     </div>
 
-    <!-- <br> temporário -->
 
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
@@ -72,7 +81,7 @@ export default {
     Link,
   },
   props: {
-    sectors: Array,
+    cargos: Array,
   },
   data: () => {
     return {
@@ -93,7 +102,7 @@ export default {
           "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
         message:
           "<i class='fas fa-exclamation-circle' style='color:red'></i></i>&nbsp&nbsp" +
-          "<span style='font-weight:bold; position: relative; top: 5px;'>Deletar setor?</span>",
+          "<span style='font-weight:bold; position: relative; top: 5px;'>Deletar cargo?</span>",
         buttons: {
           cancel: {
             label: '<i class="fa fa-times"></i> Não',
@@ -105,7 +114,7 @@ export default {
         },
         callback: function (result) {
           if (result == true) {
-            v.$inertia.post("/setor/deletar/"+id, {
+            v.$inertia.post("/cargo/deletar/"+id, {
               forceFormData: true,
               preserveScroll: false,
               _token: v.$page.props.csrf_token,
@@ -127,3 +136,4 @@ export default {
   },
 };
 </script>
+-->

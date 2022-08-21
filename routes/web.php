@@ -61,7 +61,6 @@ Route::post('/departamento/deletar/{id}', [DepartmentsController::class, 'destro
 
 /* Setores */
 
-//Route::get('/setor/cadastro', [SectorsController::class, 'create'])->name('setor.cadastro')->middleware('auth');
 Route::post('/setor/registrar', [SectorsController::class, 'store'])->middleware('auth');
 Route::get('/setores/lista', [SectorsController::class, 'index'])->name('setor.lista')->middleware('auth');
 Route::get('/setores/listar-todos', [SectorsController::class, 'listAllSectors'])->name('setores.listAllSectors')->middleware('auth');
@@ -74,9 +73,9 @@ Route::get('/setor/{fk}', [SectorsController::class, 'show'])->name('setor.selec
 
 /* Cargos */
 
-Route::get('/cargo/cadastro', [PositionsController::class, 'create'])->name('cargo.cadastro')->middleware('auth');
 Route::post('/cargo/registrar', [PositionsController::class, 'store'])->middleware('auth');
 Route::get('/cargos/lista', [PositionsController::class, 'index'])->name('cargos.lista')->middleware('auth');
+Route::get('/cargos/listar-todos', [PositionsController::class, 'listAllPositions'])->name('cargos.listAllSectors')->middleware('auth');
 Route::get('/cargo/visualizar/{id}', [PositionsController::class, 'show'])->name('cargo.mostrar')->middleware('auth');
 Route::get('/cargo/editar/{id}', [PositionsController::class, 'edit'])->name('cargo.editar')->middleware('auth');
 Route::post('/cargo/atualizar/{id}', [PositionsController::class, 'update'])->name('cargo.atualizar')->middleware('auth');

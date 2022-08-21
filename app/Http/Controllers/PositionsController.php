@@ -12,14 +12,14 @@ class PositionsController extends Controller
 
     public function index() {
 
-        $cargos = Positions::getPositions();
-        return Inertia::render('Positions/ListAllPositions.vue', ['cargos' => $cargos]);
+        return Inertia::render('Positions/ListAllPositions.vue');
 
     }
 
-    public function create() {
+    public function listAllPositions() {
 
-        return Inertia::render('Positions/AddPosition.vue');
+        $cargos = Positions::listAllPositions();
+        return response()->json($cargos);
 
     }
 
@@ -44,7 +44,7 @@ class PositionsController extends Controller
         
         if (isset($arr_err)) {
 
-            return Redirect::route('cargo.cadastro')->withErrors($arr_err);
+            return response()->json(['errors' => $arr_err]);
 
         } else {
             
@@ -52,8 +52,8 @@ class PositionsController extends Controller
             $cargo->name = $req->name;
             $cargo->save();
 
-            $cargos = Positions::getPositions();
-            return Redirect::route('cargos.lista', ['cargos' => $cargos]); 
+            $msg = 'Cargo cadastrado com sucesso!';
+            return response()->json(['success' => $msg]);
 
         }       
 
@@ -112,9 +112,8 @@ class PositionsController extends Controller
 
         $cargo = Positions::where('id', '=', $id)->get();
         Positions::destroy($cargo);
-
-        $cargos = Positions::getPositions();
-        return Redirect::route('cargos.lista', ['cargos' => $cargos]); 
+        $msg = 'Cargo deletado com sucesso!';
+        return response()->json(['success' => $msg]);
 
     }
 

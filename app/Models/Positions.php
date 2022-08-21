@@ -10,7 +10,7 @@ class Positions extends Model
 {
     use HasFactory;
 
-    public static function getPositions() {
+    public static function listAllPositions() {
 
         $positions = DB::table('positions')
         ->select('id','name')

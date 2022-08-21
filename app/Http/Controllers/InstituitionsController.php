@@ -109,7 +109,7 @@ class InstituitionsController extends Controller
             
             $instituition->save();
 
-            $instituicoes = Instituitions::getInstituitions();
+            $instituicoes = Instituitions::listAllInstituitions();
             return Redirect::route('instituicoes.lista', ['instituicoes' => $instituicoes]); 
         
         }
@@ -183,7 +183,7 @@ class InstituitionsController extends Controller
             
             $instituition->update();
 
-            $instituicoes = Instituitions::getInstituitions();
+            $instituicoes = Instituitions::listAllInstituitions();
             return Redirect::route('instituicoes.lista', ['instituicoes' => $instituicoes]); 
         
         }
@@ -195,7 +195,7 @@ class InstituitionsController extends Controller
         $instituition = Instituitions::where('id', '=', $id)->get();
         Instituitions::destroy($instituition);
 
-        $instituitions = Instituitions::getInstituitions();
+        $instituitions = Instituitions::listAllInstituitions();
         return Redirect::route('instituicoes.lista', ['instituicoes' => $instituitions]); 
 
     }

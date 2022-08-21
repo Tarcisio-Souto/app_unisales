@@ -72,7 +72,7 @@ class DepartmentsController extends Controller
     public function edit($id) {
 
         $department = Departments::showDepartment($id);
-        $instituitions = Instituitions::getInstituitions();
+        $instituitions = Instituitions::listAllInstituitions();
         return Inertia::render('Departments/EditDepartment.vue', 
         ['department' => $department, 'instituitions' => $instituitions]);
 

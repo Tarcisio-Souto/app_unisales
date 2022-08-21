@@ -201,8 +201,8 @@
                   <option selected>Selecione a instituition</option>
                   <option
                     v-for="instituition in instituitions"
-                    :key="instituition.id"
-                    :value="instituition.id"
+                    :key="instituition.id_instituition"
+                    :value="instituition.id_instituition"
                   >
                     {{ instituition.social_name }}
                   </option>

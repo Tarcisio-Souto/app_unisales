@@ -21,8 +21,7 @@ class UsersController extends Controller
     
     public function index() {
 
-        $users = User::listAllUsers();
-        return Inertia::render('Users/ListAllUsers.vue', ['users' => $users]);
+        return Inertia::render('Users/ListAllUsers.vue');
 
     }
 
@@ -37,7 +36,7 @@ class UsersController extends Controller
     public function create() {
         
         $positions = Positions::getPositions();
-        $instituitions = Instituitions::getInstituitions();
+        $instituitions = Instituitions::listAllInstituitions();
         $races = Races::getRaces();
         $departments = Departments::getDeparments();
         $states = States::getStates();
@@ -90,6 +89,7 @@ class UsersController extends Controller
         if (isset($arr_err)) {
 
             return Redirect::route('usuario.cadastro')->withErrors($arr_err);
+            //return response()->json(['errors' => $arr_err]);
 
         } else {
 
@@ -150,8 +150,10 @@ class UsersController extends Controller
             
             $user->save();
 
-            return Redirect::route('usuario.cadastro')->with('success', 'Colaborador registrado com sucesso!'); 
-        
+            $users = User::listAllUsers();
+            return Redirect::route('usuarios.lista', ['users' => $users]); 
+
+            
         }
 
     }
@@ -167,7 +169,7 @@ class UsersController extends Controller
 
         $user = User::showUser($id);
         $positions = Positions::getPositions();
-        $instituitions = Instituitions::getInstituitions();
+        $instituitions = Instituitions::listAllInstituitions();
         $races = Races::getRaces();
         $departments = Departments::getDeparments();
         $states = States::getStates();
@@ -297,10 +299,8 @@ class UsersController extends Controller
 
         $user = User::where('id', '=', $id)->get();
         User::destroy($user);
-
-        $users = User::listAllUsers();
-        return Redirect::route('usuarios.lista', ['users' => $users]); 
-
+        $msg = 'Usuário deletado com sucesso!';
+        return response()->json(['success' => $msg]); 
 
 
     }

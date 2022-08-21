@@ -23,9 +23,17 @@ class SectorsController extends Controller
     public function index() {
 
         $sectors = Sectors::listAllSectors();
-        return Inertia::render('Sectors/ListAllSectors.vue', ['sectors' => $sectors]);
+        return Inertia::render('Sectors/ListAllSectors.vue');
 
     }
+
+    public function listAllSectors() {
+
+        $sectors = Sectors::listAllSectors();
+        return response()->json($sectors);
+
+    }
+
 
     public function create() {
 
@@ -55,7 +63,7 @@ class SectorsController extends Controller
         
         if (isset($arr_err)) {
 
-            return Redirect::route('setor.cadastro')->withErrors($arr_err);
+            return response()->json(['errors' => $arr_err]);
 
         } else {
             
@@ -64,8 +72,8 @@ class SectorsController extends Controller
             $sector->fk_department = $req->department;
             $sector->save();
 
-            $sectors = Sectors::listAllSectors();
-            return Redirect::route('setor.lista', ['sectors' => $sectors]); 
+            $msg = 'Setor cadastrado com sucesso!';
+            return response()->json(['success' => $msg]);
 
         }       
 
@@ -130,9 +138,8 @@ class SectorsController extends Controller
 
         $sector = Sectors::where('id', '=', $id)->get();
         Sectors::destroy($sector);
-
-        $sectors = Sectors::listAllSectors();
-        return Redirect::route('setor.lista', ['sectors' => $sectors]); 
+        $msg = 'Setor deletado com sucesso!';
+        return response()->json(['success' => $msg]); 
 
     }
 

@@ -14,7 +14,8 @@ class InstituitionsController extends Controller
     
     public function index() {
 
-        return Inertia::render('Instituitions/ListAllInstituitions.vue');
+        $instituitions = Instituitions::listAllInstituitions();
+        return Inertia::render('Instituitions/ListAllInstituitions.vue', ['instituitions' => $instituitions]);
 
     }
 
@@ -29,6 +30,13 @@ class InstituitionsController extends Controller
 
         $instituition = Instituitions::showInstituition($id);     
         return Inertia::render('Instituitions/ViewInstituition.vue', ['instituition' => $instituition]);
+
+    }
+
+    public function create() {
+
+        $states = States::getStates();
+        return Inertia::render('Instituitions/AddInstituition.vue', ['states' => $states]);
 
     }
 
@@ -194,9 +202,9 @@ class InstituitionsController extends Controller
 
         $instituition = Instituitions::where('id', '=', $id)->get();
         Instituitions::destroy($instituition);
+        $msg = 'Instituição deletada com sucesso!';
+        return response()->json(['success' => $msg]); 
 
-        $instituitions = Instituitions::listAllInstituitions();
-        return Redirect::route('instituicoes.lista', ['instituicoes' => $instituitions]); 
 
     }
 

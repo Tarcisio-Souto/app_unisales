@@ -39,7 +39,7 @@ Route::post('/usuario/deletar/{id}', [UsersController::class, 'destroy'])->name(
 
 /* Instituições */
 
-//Route::get('/instituicao/cadastro', [InstituitionsController::class, 'create'])->name('instituicao.cadastro')->middleware('auth');
+Route::get('/instituicao/cadastro', [InstituitionsController::class, 'create'])->name('instituicao.cadastro')->middleware('auth');
 Route::post('/instituicao/registrar', [InstituitionsController::class, 'store'])->middleware('auth');
 Route::get('/instituicoes/lista', [InstituitionsController::class, 'index'])->name('instituicoes.lista')->middleware('auth');
 Route::get('/instituicoes/listar-todos', [InstituitionsController::class, 'listAllInstituitions'])->name('instituicoes.listAllInstituitions')->middleware('auth');

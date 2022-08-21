@@ -20,7 +20,7 @@ class Instituitions extends Model
 
     }
 
-    public static function showInstituition() {
+    public static function showInstituition($id) {
 
         $instituition = DB::table('instituitions as inst')
         ->join('addresses as addr', 'inst.fk_address', '=', 'addr.id')
@@ -28,6 +28,7 @@ class Instituitions extends Model
         ->select('inst.id as inst_id','social_name', 'cnpj', 'phone_number', 'email', 'fk_address',
                 'addr.street', 'addr.number', 'addr.district', 'addr.complement', 
                 'addr.city', 'addr.zipcode', 'st.name as state', 'inst.status', 'addr.fk_state')
+        ->where('inst.id', '=', $id)
         ->get();
 
         return $instituition;

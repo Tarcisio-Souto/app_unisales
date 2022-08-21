@@ -26,6 +26,14 @@ class UsersController extends Controller
 
     }
 
+    public function listAllUsers() {
+
+        $users = User::listAllUsers();
+        return response()->json($users);
+
+    }
+
+
     public function create() {
         
         $positions = Positions::getPositions();

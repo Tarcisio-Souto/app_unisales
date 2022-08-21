@@ -4,7 +4,7 @@
     <form
       @submit.prevent="cadCategory"
       enctype="multipart/form-data"
-      id="formAddCategory"
+      id="formAddList"
     >
       <div class="row">
         <div class="col-md-8">

@@ -1,48 +1,29 @@
 <template>
   <layout>
 
-    <form
-      @submit.prevent="cadAsset"
-      enctype="multipart/form-data"
-      id="formAddCategory"
-    >
-      <div class="row">
-        <div class="col-md-8">
-          <label for="inputName" style="font-weight: bold">Patrimônio</label
-          ><br /><br />
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <i class="fas fa-duotone fa-layer-group"></i>
-              </div>
-            </div>
-            <input
-              type="text"
-              id="inputName"
-              class="form-control"
-              placeholder="Nome"
-              v-model="form.name"
-            />
-          </div>
-          <div v-for="(erro, name) in this.form.errors" :key="name">
-            <div v-if="name == 'name'">
-              <span v-if="erro != ''" class="errors-label-notification">
-                <i class="fas fa-exclamation-circle"></i>{{ erro }}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <button
-            type="submit"
-            class="btn btn-success btn-cad-list"
-            id="cadCat"
+    <div class="row">
+      <div class="col-md-12" align="center">
+        <div class="" role="group">
+          <Link :href="'#'" class="btn btn-success"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i
+            ><span class="btn-font">Exportar (.csv)</span></Link
           >
-            Registrar
-          </button>
+          <Link :href="'#'" class="btn btn-success"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i
+            ><span class="btn-font">Exportar (.xlxs)</span></Link
+          >
+          <Link :href="'#'" class="btn btn-warning"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i
+            ><span class="btn-font">Exportar (.json)</span></Link
+          >
+          <Link :href="'#'" class="btn-exp-pers btn btn-primary"
+            ><i class="fa fa-solid fa-file-csv fa-sm"></i
+            ><span class="btn-font">Exportar (personalizado)</span></Link
+          >
         </div>
       </div>
-    </form>
+    </div>
+    <br /><br />
     <!-- <br> temporário -->
 
     <br />
@@ -137,14 +118,14 @@
         </template>
 
         <template #cell(id)="row">
-          <Link :href="'/departamento/visualizar/' + row.value"
+          <Link :href="'/patrimonio/visualizar/' + row.value"
             ><i class="fas fa-eye"></i
           ></Link>
-          <Link :href="'/departamento/editar/' + row.value"
+          <Link :href="'/patrimonio/editar/' + row.value"
             ><i class="fas fa-edit"></i
           ></Link>
           <span
-            ><i class="fas fa-trash-alt" @click="delCategory(row.value)"></i
+            ><i class="fas fa-trash-alt" @click="delAsset(row.value)"></i
           ></span>          
         </template>
         
@@ -181,8 +162,32 @@ export default {
 
       fields: [
         {
-          key: "name",
+          key: "ass_name",
+          label: "Patrimônio",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "mod_name",
+          label: "Modelo",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "cat_name",
           label: "Categoria",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "ass_status",
+          label: "Status",
+          sortable: true,
+          sortDirection: "desc",
+        },
+        {
+          key: "social_name",
+          label: "Instituição",
           sortable: true,
           sortDirection: "desc",
         },
@@ -206,7 +211,7 @@ export default {
   },
 
   created() {
-    axios.get("/categorias/listar-todos").then((response) => {
+    axios.get("/patrimonios/listar-todos").then((response) => {
       this.items = response.data;
       this.totalRows = this.items.length;
     });
@@ -239,7 +244,7 @@ export default {
     },
 
     cadAsset() {
-      axios.post("/categoria/registrar", this.form).then(
+      axios.post("/patrimonio/registrar", this.form).then(
         function (res) {
           if (res.data["success"]) {
             bootbox.alert({
@@ -256,7 +261,7 @@ export default {
                 "</span>",
             });
             this.form.name = null
-            axios.get("/categorias/listar-todos").then((response) => {
+            axios.get("/patrimonios/listar-todos").then((response) => {
               this.items = response.data;
               this.totalRows = this.items.length;
             });
@@ -268,7 +273,7 @@ export default {
       );
     },
 
-    delCategory(id) {
+    delAsset(id) {
       bootbox.confirm({
         centerVertical: true,
         backdrop: true,
@@ -278,7 +283,7 @@ export default {
           "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
         message:
           "<i class='fas fa-exclamation-circle' style='color:red'></i></i>&nbsp&nbsp" +
-          "<span style='font-weight:bold; position: relative; top: 5px;'>Deletar categoria?</span>",
+          "<span style='font-weight:bold; position: relative; top: 5px;'>Deletar patrimônio?</span>",
         buttons: {
           cancel: {
             label: '<i class="fa fa-times"></i> Não',
@@ -290,7 +295,7 @@ export default {
         },
         callback: function (result) {
           if (result == true) {
-            axios.post("/categoria/deletar/" + id).then(
+            axios.post("/patrimonio/deletar/" + id).then(
               function (res) {
                 if (res.data["success"]) {
                   bootbox.alert({
@@ -306,7 +311,7 @@ export default {
                       res.data["success"] +
                       "</span>",
                   });
-                  axios.get("/categorias/listar-todos").then((response) => {
+                  axios.get("/patrimonios/listar-todos").then((response) => {
                     this.items = response.data;
                     this.totalRows = this.items.length;
                   });

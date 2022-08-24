@@ -97,6 +97,7 @@ Route::post('/categoria/deletar/{id}', [CategoriesController::class, 'destroy'])
 Route::get('/patrimonio/cadastro', [AssetsController::class, 'create'])->name('patrimonio.cadastro')->middleware('auth');
 Route::post('/patrimonio/registrar', [AssetsController::class, 'store'])->middleware('auth');
 Route::get('/patrimonios/lista', [AssetsController::class, 'index'])->name('patrimonios.lista')->middleware('auth');
+Route::get('/patrimonios/listar-todos', [AssetsController::class, 'listAllAssets'])->name('patrimonios.listAllAssets')->middleware('auth');
 Route::get('/patrimonio/visualizar/{id}', [AssetsController::class, 'show'])->name('patrimonio.mostrar')->middleware('auth');
 Route::get('/patrimonio/editar/{id}', [AssetsController::class, 'edit'])->name('patrimonio.editar')->middleware('auth');
 Route::post('/patrimonio/atualizar/{id}', [AssetsController::class, 'update'])->name('patrimonio.atualizar')->middleware('auth');

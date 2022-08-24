@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstituitionsController;
+use App\Http\Controllers\ModelsController;
 use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\SectorsController;
 use App\Http\Controllers\UsersController;
@@ -93,6 +94,8 @@ Route::post('/categoria/atualizar/{id}', [CategoriesController::class, 'update']
 Route::post('/categoria/deletar/{id}', [CategoriesController::class, 'destroy'])->name('categoria.deletar')->middleware('auth');
 
 /* Patrimônios */
+
+Route::get('/modelos/listar-todos', [ModelsController::class, 'listAllModels'])->name('modelos.listAllModels')->middleware('auth');
 
 Route::get('/patrimonio/cadastro', [AssetsController::class, 'create'])->name('patrimonio.cadastro')->middleware('auth');
 Route::post('/patrimonio/registrar', [AssetsController::class, 'store'])->middleware('auth');

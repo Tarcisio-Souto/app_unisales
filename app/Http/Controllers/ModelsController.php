@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class ModelsController extends Controller
 {
+
+    public function listAllModels() {
+
+        $models = Models::listAllModels();
+        return response()->json($models);
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *

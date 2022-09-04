@@ -138,8 +138,8 @@
                 >                
                   <option
                     v-for="instituicao in this.form.instituicoes"
-                    :key="instituicao.id"
-                    :value="instituicao.id"
+                    :key="instituicao.id_instituition"
+                    :value="instituicao.id_instituition"
                   >
                     {{ instituicao.social_name }}
                   </option>
@@ -199,7 +199,7 @@ export default {
 
   created() {
     axios.get("/instituicoes/listar-todos").then((response) => {
-      this.form.instituicoes = response.data;      
+      this.form.instituicoes = response.data;  
     });
     axios.get("/modelos/listar-todos").then((response) => {
       this.form.modelos = response.data;
@@ -213,7 +213,7 @@ export default {
 
     sendForm() {
       this.$inertia.post("/patrimonio/registrar/", this.form,
-        {
+        {          
           forceFormData: true,
           preserveScroll: false,
           _token: this.$page.props.csrf_token,
@@ -231,8 +231,8 @@ export default {
                 "<span style='font-weight:bold; position: relative; top: 5px;'>Patrimônio registrado com sucesso!</span>",
             });
 
-            this.form.name = null;
-            this.form.department = null;
+            //this.form.name = null;
+            //this.form.instituicao = null;
 
           },
         }

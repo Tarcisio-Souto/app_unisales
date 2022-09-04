@@ -117,7 +117,7 @@
           {{ row.value }}
         </template>
 
-        <template #cell(id)="row">
+        <template #cell(ass_id)="row">
           <Link :href="'/patrimonio/visualizar/' + row.value"
             ><i class="fas fa-eye"></i
           ></Link>
@@ -191,7 +191,7 @@ export default {
           sortable: true,
           sortDirection: "desc",
         },
-        { key: "id", label: "Ações" },
+        { key: "ass_id", label: "Ações" },
       ],
       totalRows: 1,
       currentPage: 1,
@@ -274,6 +274,9 @@ export default {
     },
 
     delAsset(id) {
+
+      var _this = this;
+
       bootbox.confirm({
         centerVertical: true,
         backdrop: true,
@@ -312,12 +315,12 @@ export default {
                       "</span>",
                   });
                   axios.get("/patrimonios/listar-todos").then((response) => {
-                    this.items = response.data;
-                    this.totalRows = this.items.length;
+                    _this.items = response.data;
+                    _this.totalRows = this.items.length;
                   });
                 } else {
-                  this.form.errors = res.data;
-                  console.log(this.form.errors);
+                  _this.form.errors = res.data;
+                  console.log(_this.form.errors);
                 }
               }.bind(this)
             );

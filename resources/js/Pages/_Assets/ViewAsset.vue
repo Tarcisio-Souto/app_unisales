@@ -1,10 +1,9 @@
 <template>
-  <layout>
-
+  <layout class="backg-color">
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
-        <h4>Cadastro de Setor</h4>
+        <h4>Editar Setor</h4>
       </div>
       <div class="col-md-4"></div>
     </div>
@@ -13,17 +12,11 @@
     <br />
     <div class="row">
       <div class="col-md-12">
-        <form v-for="sector in sector" :key="sector.id">          
-          <br /><br />
+        <form v-for="assets in assets" :key="assets.ass_id"
+        >
+          <h4><span style="font-weight: bold">Dados Cadastrais</span></h4>
           <div class="row">
-            <div class="col-md-12 topico-add">
-              <h4><span style="font-weight: bold">Dados Cadastrais</span></h4>
-            </div>
-          </div>
-          <hr>
-          <br>
-          <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="inputName">Nome</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -35,13 +28,14 @@
                   type="text"
                   id="inputName"
                   class="form-control"
-                  :value="sector.sect_name"
+                  placeholder="Nome"
+                  v-model="assets.ass_name"
                   disabled
                 />
-              </div>              
+              </div>
             </div>
-            <div class="col-md-6">
-              <label for="inputDepartment">Departamento</label>
+            <div class="col-md-4">
+              <label for="inputName">Nº Patrimônio</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
@@ -50,23 +44,156 @@
                 </div>
                 <input
                   type="text"
-                  id="inputDepartment"
+                  id="inputName"
                   class="form-control"
-                  :value="sector.dept_name"
+                  placeholder="Nome"
+                  v-model="assets.ass_pat"
                   disabled
                 />
               </div>              
             </div>
+            <div class="col-md-4">
+              <label for="inputModel">Modelo</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-building"></i>
+                  </div>
+                </div>
+                <select
+                  id="inputModel"
+                  class="form-control"
+                  v-model="assets.mod_name"
+                  name="txtModel"
+                  disabled
+                >
+                  <option :value="assets.mod_name">{{ assets.mod_name }}</option>
+                </select>
+              </div>
+            </div>
           </div>
           <br />
-          <br /><br />
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="inputCategoria">Categoria</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-building"></i>
+                  </div>
+                </div>
+                <select
+                  id="inputCategoria"
+                  class="form-control"
+                  v-model="assets.cat_name"
+                  name="txtModel"
+                  disabled
+                >
+                  <option :value="assets.cat_name">{{ assets.cat_name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="inputInstituicao">Instituição</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fas fa-building"></i>
+                  </div>
+                </div>
+                <select
+                  id="inputInstituicao"
+                  class="form-control"
+                  v-model="assets.social_name"
+                  name="txtModel"
+                  disabled
+                >
+                  <option :value="assets.social_name">
+                    {{ assets.social_name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="InputStatus">Situação</label>
+              <div class="row">
+                <div class="col-md-12">
+                  <div
+                    class="form-check form-check-inline"
+                    v-if="assets.ass_status == '1'"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="InputStatus1"
+                      value="1"
+                      checked
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Ativo
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline" v-else>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="inputStatus1"
+                      value="1"
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Ativo
+                    </label>
+                  </div>
+
+                  <div
+                    class="form-check form-check-inline"
+                    v-if="assets.ass_status == '0'"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="InputStatus2"
+                      value="0"
+                      checked
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios2">
+                      Bloqueado
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline" v-else>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="exampleRadios"
+                      id="InputStatus2"
+                      value="0"
+                      disabled
+                    />
+                    <label class="form-check-label" for="exampleRadios1">
+                      Bloqueado
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>            
+          </div>
+          <br />
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4"></div>
-            <div class="col-md-4" align="right">
-              <Link :href="'/setor/editar/'+sector.sect_id" class="btn btn-warning btn-edit-user">Editar</Link>
-              <!--<Link href="" class="btn btn-danger btnDeletar">Deletarr</Link>-->
-              
+            <div class="col-md-4 btnEditarCargo" align="right">
+              <Link
+                :href="'/patrimonio/editar/' + assets.ass_id"
+                class="btn btn-warning btn-edit-user"
+                >Editar</Link
+              >
             </div>
           </div>
         </form>
@@ -81,6 +208,7 @@
   </layout>
 </template>
 
+
 <script>
 import Layout from "../../Layout.vue";
 import { Link } from "@inertiajs/inertia-vue";
@@ -92,17 +220,9 @@ export default {
   },
   props: {
     errors: Object,
-    sector: Array,
+    assets: Array,
   },
-  methods: {
-    sendForm() {
-      this.$inertia.post("/setor/registrar", this.form, {
-        forceFormData: true,
-        preserveScroll: false,
-        _token: this.$page.props.csrf_token,
-        
-      });
-    },
-  },
+
+  
 };
 </script>

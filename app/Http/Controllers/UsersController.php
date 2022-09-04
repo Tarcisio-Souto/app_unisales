@@ -168,7 +168,7 @@ class UsersController extends Controller
     public function edit($id) {
 
         $user = User::showUser($id);
-        $positions = Positions::getPositions();
+        $positions = Positions::listAllPositions();
         $instituitions = Instituitions::listAllInstituitions();
         $races = Races::getRaces();
         $departments = Departments::getDeparments();

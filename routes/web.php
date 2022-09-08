@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstituitionsController;
+use App\Http\Controllers\LoansController;
 use App\Http\Controllers\ModelsController;
 use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\SectorsController;
@@ -106,3 +107,14 @@ Route::get('/patrimonio/editar/{id}', [AssetsController::class, 'edit'])->name('
 Route::post('/patrimonio/atualizar/{id}', [AssetsController::class, 'update'])->name('patrimonio.atualizar')->middleware('auth');
 Route::post('/patrimonio/deletar/{id}', [AssetsController::class, 'destroy'])->name('patrimonio.deletar')->middleware('auth');
 
+/* Locações */
+
+Route::get('/assets/{fk}', [AssetsController::class, 'selectAssets'])->name('patrimonio.selecionado')->middleware('auth');
+
+Route::get('/emprestimo/cadastro', [LoansController::class, 'create'])->name('emprestimo.cadastro')->middleware('auth');
+Route::post('/emprestimo/registrar', [LoansController::class, 'store'])->middleware('auth');
+Route::get('/emprestimos/listar-todos', [LoansController::class, 'listAllAssets'])->name('emprestimos.listAllAssets')->middleware('auth');
+Route::get('/emprestimo/visualizar/{id}', [LoansController::class, 'show'])->name('emprestimo.mostrar')->middleware('auth');
+Route::get('/emprestimo/editar/{id}', [LoansController::class, 'edit'])->name('emprestimo.editar')->middleware('auth');
+Route::post('/emprestimo/atualizar/{id}', [LoansController::class, 'update'])->name('emprestimo.atualizar')->middleware('auth');
+Route::post('/emprestimo/deletar/{id}', [LoansController::class, 'destroy'])->name('emprestimo.deletar')->middleware('auth');

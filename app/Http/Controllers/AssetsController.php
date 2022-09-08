@@ -14,6 +14,14 @@ use Inertia\Inertia;
 class AssetsController extends Controller
 {
 
+    public function selectAssets($fk_category) {
+
+        $assets = Assets::getAssetsPerCategory($fk_category);
+        return response()->json($assets);
+
+    }
+
+
     public function index() {
       
         return Inertia::render('_Assets/ListAllAssets.vue');

@@ -39,6 +39,15 @@ class Assets extends Model
 
         return $asset;
     
+    }
+
+    public static function getAssetsPerCategory($fk_category) {
+
+        $assets = DB::table('assets as ass')
+        ->select('ass.id as ass_id', 'ass.name as ass_name')
+        ->get();
+
+        return $assets;
 
     }
 

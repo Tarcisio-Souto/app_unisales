@@ -45,6 +45,7 @@ class Assets extends Model
 
         $assets = DB::table('assets as ass')
         ->select('ass.id as ass_id', 'ass.name as ass_name')
+        ->where('ass.fk_category', '=', $fk_category)
         ->get();
 
         return $assets;

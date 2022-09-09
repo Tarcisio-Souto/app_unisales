@@ -80,30 +80,24 @@
               </div>
             </div>
 
-            <div class="col-md-8">
-              <label for="inputName">Nome</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <i class="fas fa-user"></i>
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  id="inputName"
-                  class="form-control"
-                  placeholder="Nome"
-                  v-model="form.name"
-                />
-              </div>
-              <div v-for="(erro, name) in errors" :key="name">
-                <div v-if="name == 'name'">
-                  <span v-if="erro != ''" class="errors-label-notification">
-                    <i class="fas fa-exclamation-circle"></i>{{ erro }}
-                  </span>
-                </div>
-              </div>
+            <div class="col-md-4">
+              <label for="inputAsset">Usuário</label>
+              <b-form-input
+                list="my-list-id"
+                @keyup="searchUsers($event)"                
+              ></b-form-input>
+
+              <datalist id="my-list-id">
+                <option
+                  v-for="user in this.form.users"
+                  :key="user.us_id"
+                  :value="user.us_name"
+                >
+                  {{ user.us_name }}
+                </option>
+              </datalist>
             </div>
+
             <div class="col-md-4">
               <button type="submit" class="btn btn-success btnCadastrarCargo">
                 Registrar
@@ -128,10 +122,13 @@
 import Layout from "../../Layout.vue";
 import { Link } from "@inertiajs/inertia-vue";
 import { Inertia } from "@inertiajs/inertia";
+import "vue-input-search/dist/vue-search.css";
+import VueSearch from "vue-input-search/dist/vue-search.common";
 export default {
   components: {
     Layout,
     Link,
+    "vue-search": VueSearch,
   },
   props: {
     errors: Object,
@@ -150,12 +147,18 @@ export default {
         status: null,
         comments: null,
         category: null,
-        assets: []
+        assets: [],
+        users: [],
       },
     };
   },
 
   methods: {
+    searchUsers: function () {
+      axios.get("/usuarios/listar-todos").then((response) => {
+        this.form.users = response.data;
+      });
+    },
 
     getAssets: function () {
       axios.get("/assets/" + this.form.category).then((response) => {

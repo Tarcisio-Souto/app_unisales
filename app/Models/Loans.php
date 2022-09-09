@@ -13,7 +13,7 @@ class Loans extends Model
     public static function listAllLoans(){
 
         $loans = DB::table('loans as lo')
-        ->join('assets as ass', 'add.id', '=', 'lo.fk_asset')
+        ->join('assets as ass', 'ass.id', '=', 'lo.fk_asset')
         ->join('users as us', 'us.id', '=', 'lo.fk_user')
         ->select('ass.patrimony_number as pat_number', 'lo.status as lo_status',
                 'us.name as us_name', 'lo.dt_loan', 'lo.dt_devolution')

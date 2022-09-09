@@ -67,7 +67,7 @@
               >
               <ul class="dropdown-menu animated fadeInLeft menuLocacoes" role="menu">
                 <!--<div class="dropdown-header">Ferramentas</div>-->
-                <li><Link href="/patrimonio/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
+                <li><Link href="/emprestimo/cadastro"><i class="fas fa-user-plus icons-menu"></i>Cadastrar</Link></li>
                 <!--<li><Link href="/patrimonios/lista"><i class="fas fa-search icons-menu"></i>Pesquisar</Link></li>-->
                 <!--<li><Link href="/patrimonio/reserves"><i class="fas fa-solid fa-calendar icons-menu"></i>Reservas</Link></li>-->
                 <li><Link href="/ocorrencias/lista"><i class="fas fa-solid fa-exclamation icons-menu"></i>Ocorrências</Link></li>                

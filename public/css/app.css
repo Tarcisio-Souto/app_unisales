@@ -14769,3 +14769,43 @@ a[href*="#contact"]::before {
     position: relative;
     top: 23px;
 }
+
+#inputDtLoan,
+#inputAsset,
+#inputDtDevolution,
+#inputStatus,
+#inputUser,
+#inputCategory {
+    height: 25px !important;
+    padding: 0 7px;
+}
+
+.input-group-prepend {
+    height: 25px !important;
+}
+
+.btnCadastrarEmprestimo {
+    position: relative;
+    float: right;
+    bottom: 0;
+    width: 150px;
+}
+
+.btnAddItems {
+    position: relative;
+    top: 48%;
+    margin-left: 45%;
+}
+
+#headerFormAddLoan {
+    background-color: #999999;
+    border-radius: 3px;
+    padding: 7px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.edit-loan-icon {
+    cursor: pointer;
+}

@@ -32,6 +32,13 @@ class UsersController extends Controller
 
     }
 
+    public function searchUser($id) {
+
+        $user = User::showUser($id); 
+        return response()->json($user);
+
+    }
+
 
     public function create() {
         

@@ -81,14 +81,13 @@
                 id="inputUser"
                 v-model="form.user"
                 @keyup="searchUsers($event)"
-                @change="searchUser($event)"
               ></b-form-input>
 
               <datalist id="my-list-id">
                 <option
                   v-for="user in this.form.users"
                   :key="user.us_id"
-                  :value="user.us_id"
+                  :value="user.us_name"
                 >
                   {{ user.us_name }}
                 </option>
@@ -118,7 +117,7 @@
               <button
                 type="button"
                 class="btn btn-primary btnAddItems"
-                @click="add()"
+                @click="addRow()"
               >
                 Adicionar
               </button>
@@ -198,7 +197,7 @@
     </div>
 
     <br />
-    
+
     <div class="table-responsive-lg">
       <table
         id="myTable"
@@ -215,26 +214,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="item in list"
-            :key="item.id"
-            :value="item.id"
-            align="center"
-          >
+          <tr v-for="item in items[0]" :key="item.row" :value="item.row" align="center">
             <td>{{ item.asset }}</td>
             <td>{{ item.category }}</td>
             <td>{{ item.user }}</td>
             <td>{{ item.status }}</td>
             <td align="center">
-              <!--<span
-                ><i class="fas fa-edit edit-loan-icon" @click="edit(item.id)"></i
-              ></span>-->
+              <Link :href="'/usuario/visualizar/' + item.row"
+                ><i class="fas fa-eye"></i
+              ></Link>
+              <Link :href="'/usuario/editar/' + item.row"
+                ><i class="fas fa-edit"></i
+              ></Link>              
               <span
-                ><i class="fas fa-trash-alt" @click="remove(item.id)"></i
+                ><i
+                  class="fas fa-trash-alt"
+                  @click="sendForm(item.row)"
+                ></i
               ></span>
             </td>
           </tr>
-        </tbody>
+        </tbody> 
+        
       </table>
     </div>
 
@@ -268,11 +269,10 @@ export default {
   data: () => {
     return {
       form: {
-        id: 0,
-        asset_id: null,
-        asset_name: null,
+        row: null,
+        id: null,
+        asset: null,
         user: null,
-        user_id: null,
         dt_loan: null,
         dt_devolution: null,
         status: null,
@@ -281,62 +281,39 @@ export default {
         assets: [],
         users: [],
       },
-      index: null,
-      list: [],
 
       /* lista que irá armazenar os objetos selecionados para posterior efetivação do empréstimo */
       items: [],
+
+      
     };
   },
 
-  //Âncora do ciclo de vida do Vue
-  mounted() {
-    const contacts = JSON.parse(localStorage.getItem("contacts"));
-    this.list = contacts ? contacts : [];
-  },
-
   methods: {
+    
+    addRow() {
 
-    add() {
+      var i = 0;
+      var _this = this
 
-      console.log('ID: ', this.form.user_id)
-      console.log('Nome: ', this.form.user)
-      
-      if (this.form.id === 0) {
-        this.form.id = this.list.length + 1;
-        this.list.push(this.form);
-      } else {
-        this.list[this.index] = this.form;
+      if (this.form.row == null) {
+        _this.items[i] = [{'row':i, 'asset':this.form.asset, 'category':this.form.category, 'user':this.form.user, 'status':this.form.status}]
+        _this.form.row = this.form.row + 1;
+        i = this.form.row;
       }
-      localStorage.setItem("contacts", JSON.stringify(this.list));
-      this.form = { id: 0, name: null, telephone: null };
 
-      console.log(this.list);
+      if (this.form.row != null && i != 1) {
+        while (i != this.form.row) {
+          i = this.form.row;
+          _this.items[i] = [{'asset':this.form.asset, 'category':this.form.category, 'user':this.form.user, 'status':this.form.status}]
+        }
+        this.form.row = this.form.row + 1;
+      }
+
+      console.log(_this.items[0])
 
     },
 
-    remove(item) {
-      const idx = this.list.indexOf(item);
-      this.list.splice(idx, 1);
-      localStorage.setItem("contacts", JSON.stringify(this.list));
-    },
-
-    /*edit(item) {
-      this.index = this.list.indexOf(item);
-      this.form = Object.assign({}, item);
-      localStorage.setItem("contacts", JSON.stringify(this.list));
-    },*/
-
-    searchUser: function () {
-
-      //console.log('Nome (ID): ', this.form.user)
-      this.form.user_id = this.form.user
-
-      axios.get("/usuario/pesquisa-nome/" + this.form.user_id).then((response) => {
-        this.form.user = response.data[0]['name_user'];
-        //console.log('Nome: ', response.data[0]['name_user'])
-      });
-    },
 
     searchUsers: function () {
       axios.get("/usuarios/listar-todos").then((response) => {

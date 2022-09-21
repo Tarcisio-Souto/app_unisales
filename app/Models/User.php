@@ -80,7 +80,16 @@ class User extends Authenticatable
 
     }
 
+    public static function searchUser($id) {
 
+        $user = DB::table('users as us')
+        ->select('us.name')
+        ->where('us.id', '=', $id)
+        ->get();
+
+        return $user;       
+
+    }
 
 
 

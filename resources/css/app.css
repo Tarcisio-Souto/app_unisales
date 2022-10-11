@@ -834,6 +834,8 @@ a[href*="#contact"]::before {
 #inputDtDevolution,
 #inputStatus,
 #inputUser,
+#inputHrLoan,
+#inputHrDevolution,
 #inputCategory {
     height: 25px !important;
     padding: 0 7px;

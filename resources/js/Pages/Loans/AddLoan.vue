@@ -39,7 +39,7 @@
                   <option
                     v-for="category in categories"
                     :key="category.id"
-                    :value="category.id"
+                    :value="category.id + ' - ' + category.name"
                   >
                     {{ category.name }}
                   </option>
@@ -66,7 +66,7 @@
                   <option
                     v-for="asset in this.form.assets"
                     :key="asset.ass_id"
-                    :value="asset.ass_id"
+                    :value="asset.ass_id + ' - ' + asset.ass_name"
                   >
                     {{ asset.ass_name }}
                   </option>
@@ -88,9 +88,9 @@
                 <option
                   v-for="user in this.form.users"
                   :key="user.us_id"
-                  :value="user.us_id"
+                  :value="user.us_id + ' - ' + user.us_name"
                 >
-                  {{ user.us_name }}
+                  {{ user.us_id + ' - ' + user.us_name }}
                 </option>
               </datalist>
             </div>
@@ -173,6 +173,53 @@
                 </div>
               </div>
             </div>
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="inputHrLoan">Horário do Empréstimo</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fas fa-calendar-alt"></i>
+                      </div>
+                    </div>
+                    <input
+                      key=""
+                      type="text"
+                      id="inputHrLoan"
+                      class="form-control"
+                      v-model="form.hr_loan"
+                      name="txtHrLoan"
+                      v-mask="'##:##'"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="inputHrDevolution">Horário da Devolução</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fas fa-calendar-alt"></i>
+                      </div>
+                    </div>
+                    <input
+                      key=""
+                      type="text"
+                      id="inputHrDevolution"
+                      class="form-control"
+                      v-model="form.hr_devolution"
+                      name="txtHrDevolution"
+                      v-mask="'##:##'"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="inputComments">Observações</label>
@@ -183,22 +230,22 @@
                 ></textarea>
               </div>
             </div>
-            <div class="col-md-3">
-              <button
-                type="submit"
-                class="btn btn-success btnCadastrarEmprestimo"
-              >
-                Registrar
-              </button>
-            </div>
           </div>
           <br />
         </form>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-9"></div>
+      <div class="col-md-3">
+        <button type="button" @click="sendForm()" class="btn btn-success btnCadastrarEmprestimo">
+          Registrar
+        </button>
+      </div>
+    </div>
 
     <br />
-    
+
     <div class="table-responsive-lg">
       <table
         id="myTable"
@@ -211,6 +258,8 @@
             <th>Categoria</th>
             <th>Solicitante</th>
             <th>Situação</th>
+            <th>Data/Hora Empréstimo</th>
+            <th>Data/Hora Devolução</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -225,6 +274,8 @@
             <td>{{ item.category }}</td>
             <td>{{ item.user }}</td>
             <td>{{ item.status }}</td>
+            <td>{{ item.dt_loan + " " + item.hr_loan }}</td>
+            <td>{{ item.dt_devolution + " " + item.hr_devolution }}</td>
             <td align="center">
               <!--<span
                 ><i class="fas fa-edit edit-loan-icon" @click="edit(item.id)"></i
@@ -278,6 +329,8 @@ export default {
         status: null,
         comments: null,
         category: null,
+        hr_loan: null,
+        hr_devolution: null,
         assets: [],
         users: [],
       },
@@ -296,23 +349,55 @@ export default {
   },
 
   methods: {
-
     add() {
+      var input_null = 0;
 
-      console.log('ID: ', this.form.user_id)
-      console.log('Nome: ', this.form.user)
-      
-      if (this.form.id === 0) {
-        this.form.id = this.list.length + 1;
-        this.list.push(this.form);
+      if (this.form.dt_loan == null) {
+        $("#inputDtLoan").css({ border: "1px solid red" });
+        input_null = 1;
       } else {
-        this.list[this.index] = this.form;
+        $("#inputDtLoan").css({ border: "1px solid gainsboro" });
       }
-      localStorage.setItem("contacts", JSON.stringify(this.list));
-      this.form = { id: 0, name: null, telephone: null };
 
-      console.log(this.list);
+      if (this.form.dt_devolution == null) {
+        $("#inputDtDevolution").css({ border: "1px solid red" });
+        input_null = 1;
+      } else {
+        $("#inputDtDevolution").css({ border: "1px solid gainsboro" });
+      }
 
+      if (this.form.hr_loan == null) {
+        $("#inputHrLoan").css({ border: "1px solid red" });
+        input_null = 1;
+      } else {
+        $("#inputHrLoan").css({ border: "1px solid gainsboro" });
+      }
+
+      if (this.form.hr_devolution == null) {
+        $("#inputHrDevolution").css({ border: "1px solid red" });
+        input_null = 1;
+      } else {
+        $("#inputHrDevolution").css({ border: "1px solid gainsboro" });
+      }
+
+      if (input_null == 0) {
+        if (this.form.status == "0") {
+          this.form.status = "Locado";
+        } else {
+          this.form.status = "Reservado";
+        }
+
+        if (this.form.id === 0) {
+          this.form.id = this.list.length + 1;
+          this.list.push(this.form);
+        } else {
+          this.list[this.index] = this.form;
+        }
+        localStorage.setItem("contacts", JSON.stringify(this.list));
+        this.form = { id: 0, name: null, telephone: null };
+
+        console.log(this.list);
+      }
     },
 
     remove(item) {
@@ -328,14 +413,15 @@ export default {
     },*/
 
     searchUser: function () {
-
       //console.log('Nome (ID): ', this.form.user)
-      this.form.user_id = this.form.user
+      this.form.user_id = this.form.user;
 
-      axios.get("/usuario/pesquisa-nome/" + this.form.user_id).then((response) => {
-        this.form.user = response.data[0]['name_user'];
-        //console.log('Nome: ', response.data[0]['name_user'])
-      });
+      axios
+        .get("/usuario/pesquisa-nome/" + this.form.user_id)
+        .then((response) => {
+          this.form.user = response.data[0]["name_user"];
+          //console.log('Nome: ', response.data[0]['name_user'])
+        });
     },
 
     searchUsers: function () {
@@ -352,32 +438,46 @@ export default {
     },
 
     sendForm() {
-      this.$inertia.post("/emprestimo/registrar/", this.form, {
-        forceFormData: true,
-        preserveScroll: false,
-        _token: this.$page.props.csrf_token,
-        preserveState: true,
-        onSuccess: () => {
-          bootbox.alert({
-            centerVertical: true,
-            backdrop: true,
-            closeButton: false,
-            size: "large",
-            title:
-              "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
-            message:
-              "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
-              "<span style='font-weight:bold; position: relative; top: 5px;'>Empréstimo registrado com sucesso!</span>",
-          });
+      if (this.list.length === 0) {
+        bootbox.alert({
+          centerVertical: true,
+          backdrop: true,
+          closeButton: false,
+          size: "large",
+          title:
+            "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+          message:
+            "<i class='fas fa-check-circle' style='color:red'></i>&nbsp&nbsp" +
+            "<span style='font-weight:bold; position: relative; top: 5px;'>Primeiro adicione antes de registrar o empréstimo.</span>",
+        });
+      } else {
+        this.$inertia.post("/emprestimo/registrar/", this.list, {
+          forceFormData: true,
+          preserveScroll: false,
+          _token: this.$page.props.csrf_token,
+          preserveState: true,
+          onSuccess: () => {
+            bootbox.alert({
+              centerVertical: true,
+              backdrop: true,
+              closeButton: false,
+              size: "large",
+              title:
+                "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+              message:
+                "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
+                "<span style='font-weight:bold; position: relative; top: 5px;'>Empréstimo registrado com sucesso!</span>",
+            });
 
-          this.form.asset = null;
-          this.form.user = null;
-          this.form.dt_loan = null;
-          this.form.dt_devolution = null;
-          this.form.status = null;
-          this.form.comments = null;
-        },
-      });
+            this.form.asset = null;
+            this.form.user = null;
+            this.form.dt_loan = null;
+            this.form.dt_devolution = null;
+            this.form.status = null;
+            this.form.comments = null;
+          },
+        });
+      }
     },
   },
 };

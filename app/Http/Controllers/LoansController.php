@@ -6,16 +6,30 @@ use App\Models\Assets;
 use App\Models\Categories;
 use App\Models\Loans;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class LoansController extends Controller
 {
-    
-    public function create() {
+
+    public function listAllLoans() {
+
+        //$loans = Loans::listAllLoans();
+        return Inertia::render('Loans/ListAllLoans.vue');
+
+    }
+
+    public function listLoans() {
 
         $loans = Loans::listAllLoans();
+        return response()->json($loans);
+
+    }
+
+    public function create() {
+        
         $categories = Categories::listAllCategories();        
-        return Inertia::render('Loans/AddLoan.vue', ['loans' => $loans, 'categories' => $categories]);
+        return Inertia::render('Loans/AddLoan.vue', ['categories' => $categories]);
 
     }
 
@@ -48,7 +62,7 @@ class LoansController extends Controller
             $asset = explode("-",$req[$i]['asset']);
             $id_asset = trim($asset[0]);
             $loans->fk_asset = $id_asset;
-            
+
             $status = $req[$i]['status'];
             if ($status == "Locado") {
                 $status = 0;
@@ -65,11 +79,10 @@ class LoansController extends Controller
 
             $loans->save();
 
+            $loans = Loans::listAllLoans();
+            return Redirect::route('emprestimos.lista', ['loans' => $loans]); 
 
-        }
-        
-
-
+        }        
 
     }
 

@@ -438,6 +438,9 @@ export default {
     },
 
     sendForm() {
+
+      var _this = this;
+
       if (this.list.length === 0) {
         bootbox.alert({
           centerVertical: true,
@@ -468,6 +471,8 @@ export default {
                 "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
                 "<span style='font-weight:bold; position: relative; top: 5px;'>Empréstimo registrado com sucesso!</span>",
             });
+
+            localStorage.clear()
 
             this.form.asset = null;
             this.form.user = null;

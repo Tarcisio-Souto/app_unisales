@@ -11,18 +11,15 @@ Vue.use(VueTheMask)
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
+import VueGoogleCharts from 'vue-google-charts'
 
-
+Vue.use(VueGoogleCharts)
 
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
     // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
-//import Vue from 'vue'
-import VueGoogleCharts from 'vue-google-charts'
-
-Vue.use(VueGoogleCharts)
 
 createInertiaApp({
     resolve: name => require(`./Pages/${name}`),

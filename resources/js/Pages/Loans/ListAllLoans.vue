@@ -1,6 +1,5 @@
 <template>
   <layout>
-
     <div class="row">
       <div class="col-md-12" align="center">
         <div class="" role="group">
@@ -98,7 +97,8 @@
       <br />
 
       <!-- Main table element -->
-      <b-table id="myTable"
+      <b-table
+        id="myTable"
         :items="items"
         :fields="fields"
         :current-page="currentPage"
@@ -122,15 +122,13 @@
             ><i class="fas fa-eye"></i
           ></Link>-->
           <Link :href="'/emprestimo/devolucao/' + row.value"
-            ><i class="fas fa-solid fa-thumbs-up"></i
+            ><i class="fas fa-solid fa-thumbs-up" @click="devolution()"></i
           ></Link>
           <span
             ><i class="fas fa-trash-alt" @click="delLoan(row.value)"></i
-          ></span>          
+          ></span>
         </template>
-        
       </b-table>
-      
     </b-container>
 
     <!-- <br> temporário -->
@@ -138,7 +136,6 @@
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
-
   </layout>
 </template>
 
@@ -148,11 +145,10 @@ import { Link } from "@inertiajs/inertia-vue";
 export default {
   components: {
     Layout,
-    Link
+    Link,
   },
   data() {
     return {
-
       form: {
         errors: [],
         name: null,
@@ -228,6 +224,20 @@ export default {
     },
   },
   methods: {
+    devolution() {
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>Objeto devolvido com sucesso.</span>",
+      });
+    },
+
     info(item, index, button) {
       this.infoModal.title = `Row index: ${index}`;
       this.infoModal.content = JSON.stringify(item, null, 2);
@@ -242,10 +252,8 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-   
 
     delLoan(id) {
-
       var _this = this;
 
       bootbox.confirm({
@@ -299,7 +307,6 @@ export default {
         },
       });
     },
-
   },
 };
 </script>

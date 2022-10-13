@@ -86,4 +86,16 @@ class LoansController extends Controller
 
     }
 
+    public function devolution($id) {
+
+        $loan = Loans::find($id);
+        $loan->status = 2;
+        $loan->update();
+
+        $loans = Loans::listAllLoans();
+        return Redirect::route('emprestimos.lista', ['loans' => $loans]);      
+
+    }
+
+
 }

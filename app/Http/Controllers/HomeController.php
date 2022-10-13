@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Home;
+use App\Models\Loans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -15,9 +16,20 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
-        return Inertia::render('Home', ['user' => Auth::user()->name]);
+    {   
+        $topLoans = Home::topLoans();
+        return Inertia::render('Home', ['user' => Auth::user()->name, 'topLoans' => $topLoans]);
     }
+
+
+    public function topLoans() {
+
+        $topLoans = Home::topLoans();
+        return Inertia::render('Home', ['topLoans' => $topLoans]);
+
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

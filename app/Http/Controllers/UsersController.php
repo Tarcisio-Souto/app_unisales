@@ -42,7 +42,7 @@ class UsersController extends Controller
 
     public function create() {
         
-        $positions = Positions::getPositions();
+        $positions = Positions::listAllPositions();
         $instituitions = Instituitions::listAllInstituitions();
         $races = Races::getRaces();
         $departments = Departments::getDeparments();

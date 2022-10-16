@@ -68,7 +68,7 @@
                     :key="asset.ass_id"
                     :value="asset.ass_id + ' - ' + asset.ass_name"
                   >
-                    {{ asset.ass_name }}
+                    {{ asset.ass_id + ' - ' + asset.ass_name }}
                   </option>
                 </select>
               </div>

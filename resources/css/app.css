@@ -870,3 +870,17 @@ a[href*="#contact"]::before {
 .edit-loan-icon {
     cursor: pointer;
 }
+
+.welcome{
+    background-color: rgb(238, 154, 58);
+    padding-top: 15px;
+    color: white;
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+
+.img-unisales{
+    padding-top: 30px;
+    background-color: #e7e7e7;
+}
+

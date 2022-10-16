@@ -43,9 +43,22 @@ class Assets extends Model
 
     public static function getAssetsPerCategory($fk_category) {
 
+        /**select * from assets ass 
+        left join loans lo 
+        on lo.fk_asset = ass.id 
+        where lo.status = 2 
+        and ass.fk_category = 1 
+        or ass.id not in (select fk_asset from loans) 
+        and ass.fk_category = 1;**/
+
         $assets = DB::table('assets as ass')
+        ->leftJoin('loans as lo', 'lo.fk_asset', 'ass.id')
         ->select('ass.id as ass_id', 'ass.name as ass_name')
+        ->where('lo.status', '=', 2)
         ->where('ass.fk_category', '=', $fk_category)
+        ->orWhereNotIn('ass.id', ['select fk_asset from loans'])
+        ->where('ass.fk_category', '=', $fk_category)
+        ->distinct()
         ->get();
 
         return $assets;

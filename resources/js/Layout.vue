@@ -17,7 +17,7 @@
                 <a href="#">
                   <img
                     src="https://unisales.br/wp-content/uploads/2020/03/logo.svg"
-                    alt="VHLogo"
+                    alt="UnisalesLogo"
                     width="150px"
                   />
                 </a>

@@ -121,3 +121,5 @@ Route::get('/emprestimo/editar/{id}', [LoansController::class, 'edit'])->name('e
 Route::get('/emprestimo/devolucao/{id}', [LoansController::class, 'devolution'])->name('emprestimo.devolution')->middleware('auth');
 Route::post('/emprestimo/atualizar/{id}', [LoansController::class, 'update'])->name('emprestimo.atualizar')->middleware('auth');
 Route::post('/emprestimo/deletar/{id}', [LoansController::class, 'destroy'])->name('emprestimo.deletar')->middleware('auth');
+
+Route::get('{slug}', [HomeController::class, 'index']);

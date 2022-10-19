@@ -8,6 +8,7 @@ use App\Models\Loans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Carbon\Carbon;
 
 class LoansController extends Controller
 {
@@ -36,8 +37,6 @@ class LoansController extends Controller
     public function store(Request $req) {
 
         $size_vector = sizeof($req->all());
-
-        //dd($req->all());
 
         for ($i = 0; $i < $size_vector; $i++) {
 
@@ -89,12 +88,27 @@ class LoansController extends Controller
 
     public function devolution($id) {
 
+        $today = date("Y-m-d H:i:s");
+
         $loan = Loans::find($id);
         $loan->status = 2;
+        $loan->dt_devolution = $today;
         $loan->update();
 
         $loans = Loans::listAllLoans();
         return Redirect::route('emprestimos.lista', ['loans' => $loans]);      
+
+    }
+
+
+    public function occurrences() {
+        return Inertia::render('Loans/ListAllOccurrences.vue');
+    }
+
+    public function listOccurrences() {
+
+        $occurrences = Loans::listAllOccurrences();
+        return response()->json($occurrences);
 
     }
 

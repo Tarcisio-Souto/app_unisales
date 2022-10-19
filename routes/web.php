@@ -122,4 +122,11 @@ Route::get('/emprestimo/devolucao/{id}', [LoansController::class, 'devolution'])
 Route::post('/emprestimo/atualizar/{id}', [LoansController::class, 'update'])->name('emprestimo.atualizar')->middleware('auth');
 Route::post('/emprestimo/deletar/{id}', [LoansController::class, 'destroy'])->name('emprestimo.deletar')->middleware('auth');
 
+
+/* Ocorrências */
+
+Route::get('/ocorrencias/lista', [LoansController::class, 'occurrences'])->name('ocorrencias.ocorrencias')->middleware('auth');
+Route::get('/ocorrencias/listar-todos', [LoansController::class, 'listOccurrences'])->name('ocorrencias.listLoans')->middleware('auth');
+
+
 Route::get('{slug}', [HomeController::class, 'index']);

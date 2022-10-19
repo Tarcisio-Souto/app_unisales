@@ -84,9 +84,9 @@
           <!--<Link :href="'/emprestimo/visualizar/' + row.value"
             ><i class="fas fa-eye"></i
           ></Link>-->
-          <Link :href="'/emprestimo/devolucao/' + row.value"><i class="fas fa-solid fa-thumbs-up"
+          <!--<Link :href="'/emprestimo/devolucao/' + row.value"><i class="fas fa-solid fa-thumbs-up"
             @click="devolution()"></i></Link>
-          <span><i class="fas fa-trash-alt" @click="delLoan(row.value)"></i></span>
+          <span><i class="fas fa-trash-alt" @click="delLoan(row.value)"></i></span>-->
         </template>
       </b-table>
     </b-container>
@@ -147,7 +147,6 @@ export default {
           sortable: true,
           sortDirection: "desc",
         },
-        { key: "lo_id", label: "Ações" },
       ],
       totalRows: 1,
       currentPage: 1,
@@ -167,21 +166,13 @@ export default {
   },
 
   created() {
-    axios.get("/emprestimos/listar-todos").then((response) => {
+    axios.get("/ocorrencias/listar-todos").then((response) => {
       this.items = response.data;
       this.totalRows = this.items.length;
 
       for (var i = 0; i < this.items.length; i++) {
-        if (this.items[i]["lo_status"] == 2) {
-          this.items[i]["lo_status"] = "Devolvido"
-        } else if (this.items[i]["lo_status"] == 0) {
-          this.items[i]["lo_status"] = "Locado"
-        } else {
-          this.items[i]["lo_status"] = "Reservado"
-        }
+        this.items[i]["lo_status"] = "Em atraso"
       }
-
-      console.log()
 
     });
 
@@ -199,20 +190,6 @@ export default {
   },
   methods: {
 
-    devolution() {
-      bootbox.alert({
-        centerVertical: true,
-        backdrop: true,
-        closeButton: false,
-        size: "large",
-        title:
-          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
-        message:
-          "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
-          "<span style='font-weight:bold; position: relative; top: 5px;'>Objeto devolvido com sucesso.</span>",
-      });
-    },
-
     info(item, index, button) {
       this.infoModal.title = `Row index: ${index}`;
       this.infoModal.content = JSON.stringify(item, null, 2);
@@ -227,61 +204,7 @@ export default {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
     },
-
-    delLoan(id) {
-      var _this = this;
-
-      bootbox.confirm({
-        centerVertical: true,
-        backdrop: true,
-        closeButton: false,
-        size: "large",
-        title:
-          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
-        message:
-          "<i class='fas fa-exclamation-circle' style='color:red'></i></i>&nbsp&nbsp" +
-          "<span style='font-weight:bold; position: relative; top: 5px;'>Deletar patrimônio?</span>",
-        buttons: {
-          cancel: {
-            label: '<i class="fa fa-times"></i> Não',
-          },
-          confirm: {
-            className: "btn-danger",
-            label: '<i class="fa fa-check"></i> Sim',
-          },
-        },
-        callback: function (result) {
-          if (result == true) {
-            axios.post("/emprestimo/deletar/" + id).then(
-              function (res) {
-                if (res.data["success"]) {
-                  bootbox.alert({
-                    centerVertical: true,
-                    backdrop: true,
-                    closeButton: false,
-                    size: "large",
-                    title:
-                      "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
-                    message:
-                      "<i class='fas fa-check-circle' style='color:green'></i>&nbsp&nbsp" +
-                      "<span style='font-weight:bold; position: relative; top: 5px;'>" +
-                      res.data["success"] +
-                      "</span>",
-                  });
-                  axios.get("/patrimonios/listar-todos").then((response) => {
-                    _this.items = response.data;
-                    _this.totalRows = this.items.length;
-                  });
-                } else {
-                  _this.form.errors = res.data;
-                  console.log(_this.form.errors);
-                }
-              }.bind(this)
-            );
-          }
-        },
-      });
-    },
+    
   },
 };
 </script>

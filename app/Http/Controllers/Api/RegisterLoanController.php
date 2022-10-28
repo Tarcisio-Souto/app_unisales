@@ -46,4 +46,19 @@ class RegisterLoanController extends Controller
 
 
     }
+
+    public function listLoansUser(Request $req) {
+
+        $loans = Loans::listLoansUser($req->id);
+        if (isset($loans[0]->lo_id)) {
+            return response()
+            ->json(['message' => 'Empréstimos encontrados.', 'status' => '200', 'loans' => $loans]);
+        } else {
+            return response()
+            ->json(['message' => 'Não há nenhum empréstimo registrado para este usuário.', 'status' => '400']);
+        }
+
+    }
+
+
 }

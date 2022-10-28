@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\RegisterLoanController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,4 +13,4 @@ Route::middleware('auth:sanctum')->get('/auth', function (Request $request) {
 */
 
 Route::post('/auth', [AuthController::class, 'auth']);
-
+Route::post('/register-loan', [RegisterLoanController::class, 'registerLoan']);

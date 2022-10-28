@@ -75,7 +75,7 @@ class LoansController extends Controller
             $user = explode("-",$req[$i]['user_id']);
             $id_user = trim($user[0]);
             $loans->fk_user = $id_user;
-            $loans->alert = 0;
+            //$loans->alert = 0;
 
             $loans->save();
 

@@ -46,4 +46,17 @@ class Loans extends Model
     }
 
 
+    public static function checkLoanActive($id_asset) {
+
+        $loan = DB::table('loans as lo')
+        ->join('assets as ass', 'ass.id', '=', 'lo.fk_asset')
+        ->select('*')
+        ->where('ass.id', '=', $id_asset)
+        ->get();
+
+        return $loan;
+
+    }
+
+
 }

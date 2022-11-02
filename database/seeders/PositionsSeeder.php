@@ -23,7 +23,7 @@ class PositionsSeeder extends Seeder
             ['id' => 2, 'name' => 'Professor'],
             ['id' => 3, 'name' => 'Técnico Em Informática'],
             ['id' => 4, 'name' => 'Estagiário'],
-            ['id' => 6, 'name' => 'Aluno'],
+            ['id' => 5, 'name' => 'Aluno'],
         ]);
 
         /*

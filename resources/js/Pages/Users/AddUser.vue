@@ -484,7 +484,8 @@
                   class="form-control"
                   placeholder="Informe o complemento"
                   v-model="form.complement"
-                  name="txtComplemento"                  
+                  name="txtComplemento"
+                  required            
                 />
               </div>
             </div>

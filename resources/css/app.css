@@ -829,6 +829,8 @@ a[href*="#contact"]::before {
     top: 23px;
 }
 
+
+/*
 #inputDtLoan,
 #inputAsset,
 #inputDtDevolution,
@@ -840,10 +842,12 @@ a[href*="#contact"]::before {
     height: 25px !important;
     padding: 0 7px;
 }
+*/
 
-.input-group-prepend {
+
+/*.input-group-prepend {
     height: 25px !important;
-}
+}*/
 
 .btnCadastrarEmprestimo {
     position: relative;
@@ -871,7 +875,7 @@ a[href*="#contact"]::before {
     cursor: pointer;
 }
 
-.welcome{
+.welcome {
     background-color: rgb(238, 154, 58);
     padding-top: 15px;
     color: white;
@@ -879,7 +883,7 @@ a[href*="#contact"]::before {
     border-bottom-right-radius: 60px;
 }
 
-.img-unisales{
+.img-unisales {
     padding-top: 30px;
     background-color: #e7e7e7;
 }

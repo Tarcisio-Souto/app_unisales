@@ -1,7 +1,7 @@
 <template>
   <layout>
 
-    <Head title="Welcome" />
+    <Head title="Unisales" />
     <div class="row">
       <div class="col-md-10 img-unisales">
         <img src="https://unisales.br/wp-content/uploads/2020/03/logo.svg" alt="UnisalesLogo" width="150px" />

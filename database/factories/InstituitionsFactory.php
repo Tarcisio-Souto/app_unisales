@@ -20,7 +20,7 @@ class InstituitionsFactory extends Factory
             'social_name' => 'Fantasia Instituto',
             'phone_number' => '(01) 0101-0101',
             'status' => '1',
-            'fk_address' => '1154'
+            'fk_address' => '34'
         ];
     }
 }

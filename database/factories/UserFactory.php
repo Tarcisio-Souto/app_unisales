@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(100),
             'dt_birth' => '1993-02-26',
             'dt_adm' => '2021-09-13',
-            'fk_address' => '1',
+            'fk_address' => '34',
             'fk_department' => '2',
             'fk_sector' => '18',
             'fk_instituition' => '1',

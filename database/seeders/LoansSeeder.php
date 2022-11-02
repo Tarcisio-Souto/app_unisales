@@ -22,7 +22,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '1',
-             'observations' => ''
+             'comments' => ''
             ],
 
             ['dt_loan' => '2022-03-07',
@@ -31,7 +31,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '0',
-             'observations' => ''
+             'comments' => ''
             ],
             
             ['dt_loan' => '2022-03-07',
@@ -40,7 +40,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '0',
-             'observations' => ''
+             'comments' => ''
             ],
 
             ['dt_loan' => '2022-03-07',
@@ -49,7 +49,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '0',
-             'observations' => ''
+             'comments' => ''
             ],
 
             ['dt_loan' => '2022-01-10',
@@ -58,7 +58,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '1',
-             'observations' => ''
+             'comments' => ''
             ],
 
             ['dt_loan' => '2022-03-07',
@@ -67,7 +67,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '0',
-             'observations' => ''
+             'comments' => ''
             ],
 
             ['dt_loan' => '2022-03-07',
@@ -76,7 +76,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '0',
-             'observations' => ''
+             'comments' => ''
             ],
 
             ['dt_loan' => '2022-03-07',
@@ -85,7 +85,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '0',
-             'observations' => ''
+             'comments' => ''
             ],
 
             ['dt_loan' => '2022-03-07',
@@ -94,7 +94,7 @@ class LoansSeeder extends Seeder
              'fk_user' => '1',
              'status' => '0',
              'alert' => '0',
-             'observations' => ''
+             'comments' => ''
             ]
 
         ]);

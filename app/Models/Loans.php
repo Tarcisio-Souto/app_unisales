@@ -42,7 +42,6 @@ class Loans extends Model
 
         return $loans;
 
-
     }
 
 
@@ -50,8 +49,9 @@ class Loans extends Model
 
         $loan = DB::table('loans as lo')
         ->join('assets as ass', 'ass.id', '=', 'lo.fk_asset')
-        ->select('*')
+        ->select('lo.status', DB::raw('MAX(lo.id)'))
         ->where('ass.id', '=', $id_asset)
+        ->groupBy('lo.id', 'lo.status')
         ->get();
 
         return $loan;
@@ -60,7 +60,7 @@ class Loans extends Model
 
     public static function listLoansUser($id) {
 
-        $loans = DB::table('loans as lo')
+        /*$loans = DB::table('loans as lo')
         ->join('assets as ass', 'ass.id', '=', 'lo.fk_asset')
         ->join('users as us', 'us.id', '=', 'lo.fk_user')
         ->select('ass.patrimony_number as pat_number', 'lo.status as lo_status', 'ass.name as asset_name',
@@ -69,7 +69,24 @@ class Loans extends Model
                 DB::raw('DATE_FORMAT(lo.dt_devolution, "%d/%m/%Y %H:%i:%s") as dt_devolution'),
                 'lo.id as lo_id')
         ->where('us.id', '=', $id)
+        ->get();*/
+
+
+        $loans = DB::table('loans as lo')
+        ->join('assets as ass', 'ass.id', '=', 'lo.fk_asset')
+        ->join('users as us', 'us.id', '=', 'lo.fk_user')
+        ->select('ass.patrimony_number as pat_number', 'ass.name as asset_name',
+                'us.name as us_name',
+                DB::raw('CASE WHEN (lo.status = 0) THEN "Locado"
+                WHEN (lo.status = 1) THEN "Reservado"
+                WHEN (lo.status = 2) THEN "Devolvido"
+                END lo_status'),
+                DB::raw('DATE_FORMAT(lo.dt_loan, "%d/%m/%Y %H:%i:%s") as dt_loan'),
+                DB::raw('DATE_FORMAT(lo.dt_devolution, "%d/%m/%Y %H:%i:%s") as dt_devolution'),
+                'lo.id as lo_id')
+        ->where('us.id', '=', $id)
         ->get();
+
 
         return $loans;
 

@@ -65,5 +65,16 @@ class Assets extends Model
 
     }
 
+    public static function searchAsset($id) {
+
+        $asset = DB::table('assets')
+        ->select('*')
+        ->where('id', '=', $id)
+        ->get();
+
+        return $asset;
+
+    }
+
 
 }

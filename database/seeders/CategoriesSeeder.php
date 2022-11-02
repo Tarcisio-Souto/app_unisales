@@ -16,16 +16,16 @@ class CategoriesSeeder extends Seeder
     {
         DB::table('categories')->insert([
 
-            ['name' => 'Notebook'],
-            ['name' => 'Computador'],
-            ['name' => 'Sala de Aula'],
-            ['name' => 'Laboratório'],
-            ['name' => 'Auditório'],
-            ['name' => 'Motocicleta'],
-            ['name' => 'Carro'],
-            ['name' => 'Sala de Reunião'],
-            ['name' => 'Audiovisual'],
-            ['name' => 'Periféricos']
+            ['id' => 1, 'name' => 'Notebook'],
+            ['id' => 2, 'name' => 'Computador'],
+            ['id' => 3, 'name' => 'Sala de Aula'],
+            ['id' => 4, 'name' => 'Laboratório'],
+            ['id' => 5, 'name' => 'Auditório'],
+            ['id' => 6, 'name' => 'Motocicleta'],
+            ['id' => 7, 'name' => 'Carro'],
+            ['id' => 8, 'name' => 'Sala de Reunião'],
+            ['id' => 9, 'name' => 'Audiovisual'],
+            ['id' => 10, 'name' => 'Periféricos']
 
         ]);
     }

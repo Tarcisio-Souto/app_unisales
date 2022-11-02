@@ -20,7 +20,7 @@ class AddressesFactory extends Factory
             'complement' => 'Próx. à Microsoft',
             'city' => 'Developers City',
             'zipcode' => '10101-010',
-            'fk_state' => '1154'
+            'fk_state' => '8'
         ];
     }
 }

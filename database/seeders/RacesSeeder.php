@@ -16,12 +16,12 @@ class RacesSeeder extends Seeder
     {
         DB::table('races')->insert([
 
-            ['name' => 'Parda'],
-            ['name' => 'Branca'],
-            ['name' => 'Preta'],
-            ['name' => 'Amarela'],
-            ['name' => 'Indígena'],
-            ['name' => 'Não declarado']
+            ['id' => 1, 'name' => 'Parda'],
+            ['id' => 2, 'name' => 'Branca'],
+            ['id' => 3, 'name' => 'Preta'],
+            ['id' => 4, 'name' => 'Amarela'],
+            ['id' => 5, 'name' => 'Indígena'],
+            ['id' => 6, 'name' => 'Não declarado']
 
         ]);
     }

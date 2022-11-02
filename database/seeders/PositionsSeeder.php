@@ -19,11 +19,11 @@ class PositionsSeeder extends Seeder
     public function run()
     {
         Positions::insert([
-            ['name' => 'Coordenador'],
-            ['name' => 'Professor'],
-            ['name' => 'Técnico Em Informática'],
-            ['name' => 'Estagiário'],
-            ['name' => 'Aluno'],
+            ['id' => 1, 'name' => 'Coordenador'],
+            ['id' => 2, 'name' => 'Professor'],
+            ['id' => 3, 'name' => 'Técnico Em Informática'],
+            ['id' => 4, 'name' => 'Estagiário'],
+            ['id' => 6, 'name' => 'Aluno'],
         ]);
 
         /*

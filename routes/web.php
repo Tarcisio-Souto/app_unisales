@@ -130,3 +130,4 @@ Route::get('/ocorrencias/listar-todos', [LoansController::class, 'listOccurrence
 
 
 Route::get('{slug}', [HomeController::class, 'index']);
+Route::get('{slug}', [LoginController::class, 'showLoginForm']);

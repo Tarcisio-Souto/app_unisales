@@ -14,6 +14,7 @@ class AddressesFactory extends Factory
     public function definition()
     {
         return [
+            'id' => 1,
             'street' => 'Av. dos Desenvolvedores',
             'number' => '10',
             'district' => 'Bairro dos Desenvolvedores',

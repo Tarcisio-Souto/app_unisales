@@ -20,7 +20,7 @@ class CreateLoans extends Migration
             $table->datetime('dt_devolution');
             $table->boolean('status');
             $table->text('comments')->nullable();
-            $table->boolean('alert');
+            //$table->boolean('alert');
             $table->unsignedBigInteger('fk_asset');
             $table->unsignedBigInteger('fk_user');
 

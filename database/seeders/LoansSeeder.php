@@ -21,7 +21,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '1',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '1',
+             //'alert' => '1',
              'comments' => ''
             ],
 
@@ -30,7 +30,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '8',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '0',
+             //'alert' => '0',
              'comments' => ''
             ],
             
@@ -39,7 +39,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '13',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '0',
+             //'alert' => '0',
              'comments' => ''
             ],
 
@@ -48,7 +48,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '17',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '0',
+             //'alert' => '0',
              'comments' => ''
             ],
 
@@ -57,7 +57,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '5',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '1',
+             //'alert' => '1',
              'comments' => ''
             ],
 
@@ -66,7 +66,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '20',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '0',
+             //'alert' => '0',
              'comments' => ''
             ],
 
@@ -75,7 +75,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '1',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '0',
+             //'alert' => '0',
              'comments' => ''
             ],
 
@@ -84,7 +84,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '23',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '0',
+             //'alert' => '0',
              'comments' => ''
             ],
 
@@ -93,7 +93,7 @@ class LoansSeeder extends Seeder
              'fk_asset' => '24',
              'fk_user' => '1',
              'status' => '0',
-             'alert' => '0',
+             //'alert' => '0',
              'comments' => ''
             ]
 

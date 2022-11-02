@@ -14,6 +14,7 @@ class InstituitionsFactory extends Factory
     public function definition()
     {
         return [
+            'id' => 1,
             'cnpj' => '82.617.182/0001-09',
             'email' => 'instituto@instituto.org',
             'fantasy_name' => 'Instituto Fantasia',

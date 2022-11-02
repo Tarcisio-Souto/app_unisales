@@ -16,7 +16,7 @@ class LoansSeeder extends Seeder
     {
         DB::table('loans')->insert([
 
-            ['dt_loan' => '2022-02-07',
+            ['id' => 1, 'dt_loan' => '2022-02-07',
              'dt_devolution' => '2022-02-07',
              'fk_asset' => '1',
              'fk_user' => '1',
@@ -25,7 +25,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
 
-            ['dt_loan' => '2022-03-07',
+            ['id' => 2, 'dt_loan' => '2022-03-07',
              'dt_devolution' => '2022-03-09',
              'fk_asset' => '8',
              'fk_user' => '1',
@@ -34,7 +34,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
             
-            ['dt_loan' => '2022-03-07',
+            ['id' => 3, 'dt_loan' => '2022-03-07',
              'dt_devolution' => '2022-03-07',
              'fk_asset' => '13',
              'fk_user' => '1',
@@ -43,7 +43,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
 
-            ['dt_loan' => '2022-03-07',
+            ['id' => 4, 'dt_loan' => '2022-03-07',
              'dt_devolution' => '2022-03-07',
              'fk_asset' => '17',
              'fk_user' => '1',
@@ -52,7 +52,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
 
-            ['dt_loan' => '2022-01-10',
+            ['id' => 5, 'dt_loan' => '2022-01-10',
              'dt_devolution' => '2022-01-11',
              'fk_asset' => '5',
              'fk_user' => '1',
@@ -61,7 +61,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
 
-            ['dt_loan' => '2022-03-07',
+            ['id' => 6, 'dt_loan' => '2022-03-07',
              'dt_devolution' => '2022-03-07',
              'fk_asset' => '20',
              'fk_user' => '1',
@@ -70,7 +70,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
 
-            ['dt_loan' => '2022-03-07',
+            ['id' => 7, 'dt_loan' => '2022-03-07',
              'dt_devolution' => '2022-03-07',
              'fk_asset' => '1',
              'fk_user' => '1',
@@ -79,7 +79,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
 
-            ['dt_loan' => '2022-03-07',
+            ['id' => 8, 'dt_loan' => '2022-03-07',
              'dt_devolution' => '2022-03-07',
              'fk_asset' => '23',
              'fk_user' => '1',
@@ -88,7 +88,7 @@ class LoansSeeder extends Seeder
              'comments' => ''
             ],
 
-            ['dt_loan' => '2022-03-07',
+            ['id' => 9, 'dt_loan' => '2022-03-07',
              'dt_devolution' => '2022-03-07',
              'fk_asset' => '24',
              'fk_user' => '1',

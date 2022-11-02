@@ -19,6 +19,7 @@ class UserFactory extends Factory
         $key = '!@#$';
 
         return [
+            'id' => 1,
             'name' => 'Tarcisio Souto',
             'email' => 'tss.labsi@gmail.com',
             'age' => '29',

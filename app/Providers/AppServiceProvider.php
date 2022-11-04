@@ -24,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (config('app.env') === 'production') {
+        /*if (config('app.env') === 'production') {
             \url('https');
-        }
+        }*/
 
         /*if (config('APP_ENV') === 'production') {
             URL::forceScheme('https');
@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('http');
         }*/
 
-        //URL::forceScheme('https');
+        URL::forceScheme('https');
 
         Schema::defaultStringLength(191);
 

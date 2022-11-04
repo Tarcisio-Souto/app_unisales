@@ -118,7 +118,7 @@ Route::get('/emprestimos/lista', [LoansController::class, 'listAllLoans'])->name
 Route::get('/emprestimo/visualizar/{id}', [LoansController::class, 'show'])->name('emprestimo.mostrar')->middleware('auth');
 Route::get('/emprestimo/editar/{id}', [LoansController::class, 'edit'])->name('emprestimo.editar')->middleware('auth');
 Route::get('/emprestimo/devolucao/{id}', [LoansController::class, 'devolution'])->name('emprestimo.devolution')->middleware('auth');
-Route::post('/emprestimo/registrar', [LoansController::class, 'store'])->name('emprestimo.registro')->middleware('auth');
+Route::post('/emprestimo/registrar', [LoansController::class, 'store'])->middleware('auth');
 Route::post('/emprestimo/atualizar/{id}', [LoansController::class, 'update'])->name('emprestimo.atualizar')->middleware('auth');
 Route::post('/emprestimo/deletar/{id}', [LoansController::class, 'destroy'])->name('emprestimo.deletar')->middleware('auth');
 

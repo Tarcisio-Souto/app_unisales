@@ -28,13 +28,13 @@ class AppServiceProvider extends ServiceProvider
             \url('http');
         }*/
 
-        if (config('APP_ENV') === 'production') {
+        /*if (config('APP_ENV') === 'production') {
             URL::forceScheme('https');
         } else if (config('APP_ENV') === 'local') {
             URL::forceScheme('http');
-        }
+        }*/
 
-        //URL::forceScheme('https');
+        URL::forceScheme('https');
 
         Schema::defaultStringLength(191);
 

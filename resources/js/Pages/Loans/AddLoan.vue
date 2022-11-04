@@ -454,7 +454,7 @@ export default {
             "<span style='font-weight:bold; position: relative; top: 5px;'>Primeiro adicione antes de registrar o empréstimo.</span>",
         });
       } else {
-        this.$inertia.post("emprestimo/registrar/", this.list, {
+        this.$inertia.post("/emprestimo/registrar", this.list, {
           forceFormData: true,
           preserveScroll: false,
           _token: this.$page.props.csrf_token,

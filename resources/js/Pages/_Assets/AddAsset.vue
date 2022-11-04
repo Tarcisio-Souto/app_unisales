@@ -212,7 +212,7 @@ export default {
   methods: {
 
     sendForm() {
-      this.$inertia.post("https://tcc-unisales.herokuapp.com/patrimonio/registrar/", this.form,
+      this.$inertia.post("/patrimonio/registrar/", this.form,
         {          
           forceFormData: true,
           preserveScroll: false,

@@ -100,7 +100,8 @@ export default {
   },
   props: {
     errors: Object,
-    department: Array
+    department: Array,
+    instituitions: Array
   },
 
   data: () => {

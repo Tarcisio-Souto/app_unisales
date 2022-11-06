@@ -124,9 +124,9 @@ export default {
 
   methods: {
 
-    deleteInstituition: function() {
+    /*deleteInstituition: function() {
       $('#selected_instituition').remove();
-    },
+    },*/
 
     sendForm() {
       this.$inertia.post("/departamento/atualizar/"+this.form.id,

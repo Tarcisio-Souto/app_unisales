@@ -53,7 +53,7 @@
                   class="form-control"
                   v-model="form.instituition"
                   name="txtinstituition"
-                  
+                  @change='deleteInstituition($event)'
                 >
                   <option id='selected_instituition' :value="form.instituition" style="background-color:gainsboro">{{ form.instituition }}</option>                  
                   <option
@@ -124,9 +124,10 @@ export default {
 
   methods: {
 
-    /*deleteInstituition: function() {
-      $('#selected_instituition').remove();
-    },*/
+    deleteInstituition: function() {
+      //$('#selected_instituition').remove();
+      alert($('#selected_instituition').value)
+    },
 
     sendForm() {
       this.$inertia.post("/departamento/atualizar/"+this.form.id,

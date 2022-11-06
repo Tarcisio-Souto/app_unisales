@@ -455,11 +455,11 @@ export default {
     },
 
     sendForm() {
-      this.$inertia.post("instituicao/registrar", this.form, {
+      this.$inertia.post("/instituicao/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,
-        _method: "PUT",
+        //_method: "PUT",
         preserveState: true,
         onSuccess: () => {
           bootbox.alert({

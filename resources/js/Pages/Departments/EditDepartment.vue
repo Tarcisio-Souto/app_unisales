@@ -53,7 +53,7 @@
                   class="form-control"
                   v-model="form.instituition"
                   name="txtinstituition"
-                  @change='deleteInstituition($event)'
+                  
                 >
                   <option id='selected_instituition' :value="form.instituition" style="background-color:gainsboro">{{ form.instituition }}</option>                  
                   <option

@@ -83,9 +83,9 @@
                   <option
                     v-for="modelo in this.form.modelos"
                     :key="modelo.id"
-                    :value="modelo.id"
+                    :value="modelo.mod_name"
                   >
-                    {{ modelo.name }}
+                    {{ modelo.mod_name }}
                   </option>
                 </select>
               </div>
@@ -133,13 +133,12 @@
                   class="form-control"
                   v-model="form.instituicao"
                   name="txtModel"
-                  @change='deleteInstituition($event)'
                 >
                   <option id='selected_instituition' :value="form.instituicao" style="background-color:gainsboro">{{ form.instituicao }}</option>                  
                   <option
                     v-for="instituicao in this.form.instituicoes"
                     :key="instituicao.id"
-                    :value="instituicao.id"
+                    :value="instituicao.social_name"
                   >
                     {{ instituicao.name }}
                   </option>
@@ -241,6 +240,7 @@ export default {
     });
     axios.get("/modelos/listar-todos").then((response) => {
       this.form.modelos = response.data;
+      console.log(response);
     });
     axios.get("/categorias/listar-todos").then((response) => {
       this.form.categorias = response.data;
@@ -259,9 +259,9 @@ export default {
 
   methods: {
 
-    deleteInstituition: function() {
+    /*deleteInstituition: function() {
       $('#selected_instituition').remove();
-    },
+    },*/
     deleteCategory: function() {
       $('#selected_category').remove();
     },

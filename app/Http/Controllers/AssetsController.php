@@ -110,6 +110,8 @@ class AssetsController extends Controller
 
     public function update(Request $req) {
 
+        //dd($req->all());
+
         $msg1 = '';
         $msg2 = '';
 

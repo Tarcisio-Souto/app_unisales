@@ -137,10 +137,10 @@
         </template>
 
         <template #cell(id)="row">
-          <Link :href="'/departamento/visualizar/' + row.value"
+          <Link :href="'/categoria/visualizar/' + row.value"
             ><i class="fas fa-eye"></i
           ></Link>
-          <Link :href="'/departamento/editar/' + row.value"
+          <Link :href="'/categoria/editar/' + row.value"
             ><i class="fas fa-edit"></i
           ></Link>
           <span

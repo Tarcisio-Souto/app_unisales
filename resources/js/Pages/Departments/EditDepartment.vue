@@ -59,7 +59,7 @@
                   <option
                     v-for="instituition in instituitions"
                     :key="instituition.id"
-                    :value="instituition.id"
+                    :value="instituition.social_name"
                   >
                     {{ instituition.social_name }}
                   </option>
@@ -126,7 +126,7 @@ export default {
 
     deleteInstituition: function() {
       //$('#selected_instituition').remove();
-      alert($('#selected_instituition').value)
+      alert(this.form.instituition)
     },
 
     sendForm() {
@@ -136,7 +136,6 @@ export default {
           forceFormData: true,
           preserveScroll: false,
           _token: this.$page.props.csrf_token,
-          _method: "PUT",
           preserveState: true,
           onSuccess: () => {
             bootbox.alert({

@@ -101,7 +101,7 @@ class PositionsController extends Controller
             $cargo->name = $req->name;
             $cargo->update();
 
-            $cargos = Positions::getPositions();
+            $cargos = Positions::listAllPositions();
             return Redirect::route('cargos.lista', ['cargos' => $cargos]); 
 
         }       

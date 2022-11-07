@@ -126,7 +126,7 @@ export default {
 
     deleteInstituition: function() {
       //$('#selected_instituition').remove();
-      alert(this.form.instituition)
+      //alert(this.form.instituition)
     },
 
     sendForm() {

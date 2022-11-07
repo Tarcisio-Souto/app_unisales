@@ -330,7 +330,7 @@ export default {
           if (result == true) {
             axios.post("/departamento/deletar/" + id).then(
               function (res) {
-                if (res.data["success"]) {                  
+                if (res.data["success"]) {
                   bootbox.alert({
                     centerVertical: true,
                     backdrop: true,
@@ -343,7 +343,11 @@ export default {
                       "<span style='font-weight:bold; position: relative; top: 5px;'>" +
                       res.data["success"] +
                       "</span>",
-                  });                                    
+                  });
+                  axios.get("/departamentos/listar-todos").then((response) => {
+                    this.items = response.data;
+                    this.totalRows = this.items.length;
+                  });
                 } else {
                   this.form.errors = res.data.errors;
                   //console.log(this.form.errors);

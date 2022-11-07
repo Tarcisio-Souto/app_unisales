@@ -102,9 +102,9 @@ class SectorsController extends Controller
         $sector = Sectors::find($req->id);  
         $msg = '';
 
-        if ($req->name == $sector->name) {
+        /*if ($req->name == $sector->name) {
             $msg = 'Este setor já existe.';
-        }
+        }*/
 
         if ($req->name == '') {
             $msg = 'Informe o nome do setor.';            

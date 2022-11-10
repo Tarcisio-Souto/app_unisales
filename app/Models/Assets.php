@@ -62,13 +62,10 @@ class Assets extends Model
         ->get();
         */
 
-        $assets = DB::select(DB::raw("select ass.id as ass_id, ass.name as ass_name from assets ass 
-        left join loans lo 
-        on lo.fk_asset = ass.id 
-        where lo.status = 2
-        and ass.fk_category = '$fk_category'
-        or ass.id not in (select fk_asset from loans) 
-        and ass.fk_category = '$fk_category'"));
+        $assets = DB::select(DB::raw("select * from assets ass
+        where ass.fk_category = '$fk_category'
+        and ass.id not in (select lo.fk_asset from loans lo
+                      where lo.status = 0 or lo.status = 1)"));
 
         return $assets;
 

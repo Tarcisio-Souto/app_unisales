@@ -335,7 +335,7 @@ export default {
         category: null,
         hr_loan: null,
         hr_devolution: null,
-        assets: Array,
+        assets: [],
         users: [],
       },
       index: null,

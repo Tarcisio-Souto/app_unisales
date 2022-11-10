@@ -51,7 +51,7 @@ class Assets extends Model
         or ass.id not in (select fk_asset from loans) 
         and ass.fk_category = 1;**/
 
-        $assets = DB::table('assets as ass')        
+        /*$assets = DB::table('assets as ass')        
         ->leftJoin('loans as lo', 'lo.fk_asset', '=', 'ass.id')
         ->select('ass.id as ass_id', 'ass.name as ass_name')        
         ->where('lo.status', '=', 2)
@@ -60,7 +60,15 @@ class Assets extends Model
         ->where('ass.fk_category', '=', $fk_category)
         ->distinct()
         ->get();
+        */
 
+        $assets = DB::select(DB::raw("select ass.id as ass_id, ass.name as ass_name from assets ass 
+        left join loans lo 
+        on lo.fk_asset = ass.id 
+        where lo.status = 2
+        and ass.fk_category = '$fk_category'
+        or ass.id not in (select fk_asset from loans) 
+        and ass.fk_category = '$fk_category'"));
 
         return $assets;
 

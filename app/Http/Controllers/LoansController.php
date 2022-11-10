@@ -29,10 +29,6 @@ class LoansController extends Controller
 
     public function create() {
         
-        $assets = Assets::getAssetsPerCategory(3);
-
-        dd($assets);
-
         $categories = Categories::listAllCategories();        
         return Inertia::render('Loans/AddLoan.vue', ['categories' => $categories]);
 

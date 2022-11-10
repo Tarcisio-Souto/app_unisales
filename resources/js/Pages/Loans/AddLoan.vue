@@ -33,7 +33,7 @@
                   v-model="form.category"
                   name="txtCategory"
                   required
-                  @change="getAssets($event)"
+                  @change="getAssets($event), selectCategory($event)"
                 >
                   <option selected>Selecione a categoria</option>
                   <option
@@ -68,7 +68,7 @@
                     :key="asset.ass_id"
                     :value="asset.ass_id + ' - ' + asset.ass_name"
                   >
-                    {{ asset.ass_id + ' - ' + asset.ass_name }}
+                    {{ asset.ass_id + " - " + asset.ass_name }}
                   </option>
                 </select>
               </div>
@@ -90,7 +90,7 @@
                   :key="user.us_id"
                   :value="user.us_id + ' - ' + user.us_name"
                 >
-                  {{ user.us_id + ' - ' + user.us_name }}
+                  {{ user.us_id + " - " + user.us_name }}
                 </option>
               </datalist>
             </div>
@@ -238,7 +238,11 @@
     <div class="row">
       <div class="col-md-9"></div>
       <div class="col-md-3">
-        <button type="button" @click="sendForm()" class="btn btn-success btnCadastrarEmprestimo">
+        <button
+          type="button"
+          @click="sendForm()"
+          class="btn btn-success btnCadastrarEmprestimo"
+        >
           Registrar
         </button>
       </div>
@@ -331,7 +335,7 @@ export default {
         category: null,
         hr_loan: null,
         hr_devolution: null,
-        assets: [],
+        assets: Array,
         users: [],
       },
       index: null,
@@ -394,7 +398,15 @@ export default {
           this.list[this.index] = this.form;
         }
         localStorage.setItem("contacts", JSON.stringify(this.list));
-        this.form = { id: 0, name: null, telephone: null };
+        //this.form = { id: 0, name: null, telephone: null };
+
+        this.form.category = null;
+        this.form.assets = null;
+        this.form.user = null;
+        this.form.dt_loan = null;
+        this.form.dt_devolution = null;
+        this.form.status = null;
+        this.form.comments = null;
 
         console.log(this.list);
       }
@@ -430,15 +442,18 @@ export default {
       });
     },
 
+    selectCategory: function () {},
+
     getAssets: function () {
+      this.$forceUpdate(); // Notice we have to use a $ here
+
       axios.get("/assets/" + this.form.category).then((response) => {
         this.form.assets = response.data;
-        console.log(response);
+        console.log("this.form.assets: ", this.form.assets);
       });
     },
 
     sendForm() {
-
       var _this = this;
 
       if (this.list.length === 0) {
@@ -472,9 +487,10 @@ export default {
                 "<span style='font-weight:bold; position: relative; top: 5px;'>Empréstimo registrado com sucesso!</span>",
             });
 
-            localStorage.clear()
+            localStorage.clear();
 
-            this.form.asset = null;
+            this.form.category = null;
+            this.form.assets = null;
             this.form.user = null;
             this.form.dt_loan = null;
             this.form.dt_devolution = null;

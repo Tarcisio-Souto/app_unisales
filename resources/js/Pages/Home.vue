@@ -53,10 +53,10 @@ export default {
       chartData: [
         ["", "Categorias"],
         [this.topLoans[0]["cat_name"], this.topLoans[0]["qtd"]],
-        /*[this.topLoans[1]["cat_name"], this.topLoans[1]["qtd"]],
+        [this.topLoans[1]["cat_name"], this.topLoans[1]["qtd"]],
         [this.topLoans[2]["cat_name"], this.topLoans[2]["qtd"]],
         [this.topLoans[3]["cat_name"], this.topLoans[3]["qtd"]],
-        [this.topLoans[4]["cat_name"], this.topLoans[4]["qtd"]],*/
+        [this.topLoans[4]["cat_name"], this.topLoans[4]["qtd"]],
       ],
 
       chartOptions: {

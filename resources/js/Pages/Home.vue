@@ -7,7 +7,7 @@
         <img src="https://unisales.br/wp-content/uploads/2020/03/logo.svg" alt="UnisalesLogo" width="150px" />
       </div>    
       <div class="col-md-2 welcome">
-        <H4>Bem-vindodsdsdasd!</H4>
+        <H4>Bem-vindo!</H4>
         <p>{{ user }}</p>
       </div>
     </div>
@@ -56,7 +56,7 @@ export default {
         [this.topLoans[1]["cat_name"], this.topLoans[1]["qtd"]],
         [this.topLoans[2]["cat_name"], this.topLoans[2]["qtd"]],
         [this.topLoans[3]["cat_name"], this.topLoans[3]["qtd"]],
-        /*[this.topLoans[4]["cat_name"], this.topLoans[4]["qtd"]],*/
+        [this.topLoans[4]["cat_name"], this.topLoans[4]["qtd"]],
       ],
 
       chartOptions: {

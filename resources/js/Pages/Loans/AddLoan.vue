@@ -338,7 +338,7 @@ export default {
         assets: [],
         users: [],
       },
-      index: null,
+      index: 0,
       list: [],
 
       /* lista que irá armazenar os objetos selecionados para posterior efetivação do empréstimo */
@@ -355,6 +355,7 @@ export default {
   methods: {
     add() {
       var input_null = 0;
+      //this.index += 1
 
       if (this.form.dt_loan == null) {
         $("#inputDtLoan").css({ border: "1px solid red" });
@@ -395,22 +396,18 @@ export default {
           this.form.id = this.list.length + 1;
           this.list.push(this.form);
         } else {
+          this.index += 1
+          console.log('THIS.INDEX: ', this.index)
           this.list[this.index] = this.form;
         }
         localStorage.setItem("contacts", JSON.stringify(this.list));
-        //this.form = { category: null, assets: null, user: null, dt_loan: null, dt_devolution: null, status: null, comments: null };
+       
+        console.log('LIST: ', this.list)
 
-        /*this.form.category = null;
-        this.form.assets = null;
-        this.form.user = null;
-        this.form.dt_loan = null;
-        this.form.dt_devolution = null;
-        this.form.status = null;
-        this.form.comments = null;*/
-
-        console.log(this.list);
+        this.form = {category: null, assets: null, user: null, dt_loan: null, dt_devolution: null, status: null, comments: null };
         
       }
+
     },
 
     remove(item) {
@@ -446,7 +443,7 @@ export default {
     selectCategory: function () {},
 
     getAssets: function () {
-      this.$forceUpdate(); // Notice we have to use a $ here
+      //this.$forceUpdate(); // Notice we have to use a $ here
 
       axios.get("/assets/" + this.form.category).then((response) => {
         this.form.assets = response.data;

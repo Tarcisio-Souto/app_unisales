@@ -398,17 +398,18 @@ export default {
           this.list[this.index] = this.form;
         }
         localStorage.setItem("contacts", JSON.stringify(this.list));
-        //this.form = { id: 0, name: null, telephone: null };
+        //this.form = { category: null, assets: null, user: null, dt_loan: null, dt_devolution: null, status: null, comments: null };
 
-        this.form.category = null;
+        /*this.form.category = null;
         this.form.assets = null;
         this.form.user = null;
         this.form.dt_loan = null;
         this.form.dt_devolution = null;
         this.form.status = null;
-        this.form.comments = null;
+        this.form.comments = null;*/
 
         console.log(this.list);
+        
       }
     },
 

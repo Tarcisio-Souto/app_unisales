@@ -147,6 +147,9 @@ export default {
     Layout,
     Link,
   },
+  props: {
+    errors: Object,
+  },
   data() {
     return {
       form: {
@@ -209,9 +212,24 @@ export default {
     axios.get("/instituicoes/listar-todos").then((response) => {
       this.items = response.data;
       this.totalRows = this.items.length;
-      console.log('begin: ', this.items) 
+      console.log("begin: ", this.items);
     });
-       
+
+    if (this.errors["accessLevel"]) {
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
   },
 
   computed: {
@@ -259,13 +277,28 @@ export default {
             });
           } else {
             this.form.errors = res.data.errors;
+            //console.log('erro aqui: ', res.data.errors["accessLevel"]);
+            if (res.data.errors["accessLevel"]) {
+              bootbox.alert({
+                centerVertical: true,
+                backdrop: true,
+                closeButton: false,
+                size: "large",
+                title:
+                  "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                message:
+                  "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+                  "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                    res.data.errors["accessLevel"] +
+                  "</span>",
+              });
+            }
           }
         }.bind(this)
       );
     },
 
     delUser(id) {
-
       var _this = this;
 
       bootbox.confirm({
@@ -308,11 +341,23 @@ export default {
                   axios.get("/instituicoes/listar-todos").then((response) => {
                     _this.items = response.data;
                     _this.totalRows = _this.items.length;
-                    console.log('ending: ', _this.items) 
+                    console.log("ending: ", _this.items);
                   });
                 } else {
-                  this.form.errors = res.data.errors;
-                  //console.log(this.form.errors);
+                  //this.form.errors = res.data.errors;
+                  bootbox.alert({
+                    centerVertical: true,
+                    backdrop: true,
+                    closeButton: false,
+                    size: "large",
+                    title:
+                      "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                    message:
+                      "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+                      "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                      'O acesso requer elevação.' +
+                      "</span>",
+                  });
                 }
               }.bind(this)
             );

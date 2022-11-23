@@ -1,6 +1,5 @@
 <template>
   <layout>
-
     <div class="row">
       <div class="col-md-12" align="center">
         <div class="" role="group">
@@ -98,7 +97,8 @@
       <br />
 
       <!-- Main table element -->
-      <b-table id="myTable"
+      <b-table
+        id="myTable"
         :items="items"
         :fields="fields"
         :current-page="currentPage"
@@ -126,11 +126,9 @@
           ></Link>
           <span
             ><i class="fas fa-trash-alt" @click="delAsset(row.value)"></i
-          ></span>          
+          ></span>
         </template>
-        
       </b-table>
-      
     </b-container>
 
     <!-- <br> temporário -->
@@ -138,7 +136,6 @@
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
-
   </layout>
 </template>
 
@@ -148,11 +145,13 @@ import { Link } from "@inertiajs/inertia-vue";
 export default {
   components: {
     Layout,
-    Link
+    Link,
+  },
+  props: {
+    errors: Object,
   },
   data() {
     return {
-
       form: {
         errors: [],
         name: null,
@@ -215,6 +214,23 @@ export default {
       this.items = response.data;
       this.totalRows = this.items.length;
     });
+
+    if (this.errors["accessLevel"]) {
+      console.log(this.errors["accessLevel"]);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
   },
 
   computed: {
@@ -260,7 +276,7 @@ export default {
                 res.data["success"] +
                 "</span>",
             });
-            this.form.name = null
+            this.form.name = null;
             axios.get("/patrimonios/listar-todos").then((response) => {
               this.items = response.data;
               this.totalRows = this.items.length;
@@ -274,7 +290,6 @@ export default {
     },
 
     delAsset(id) {
-
       var _this = this;
 
       bootbox.confirm({
@@ -320,7 +335,19 @@ export default {
                   });
                 } else {
                   _this.form.errors = res.data;
-                  console.log(_this.form.errors);
+                  bootbox.alert({
+                    centerVertical: true,
+                    backdrop: true,
+                    closeButton: false,
+                    size: "large",
+                    title:
+                      "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                    message:
+                      "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+                      "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                        'O acesso requer elevação.' +
+                      "</span>",
+                  });
                 }
               }.bind(this)
             );
@@ -328,7 +355,6 @@ export default {
         },
       });
     },
-
   },
 };
 </script>

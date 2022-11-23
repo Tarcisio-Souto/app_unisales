@@ -1,11 +1,14 @@
 <template>
   <layout>
-
     <Head title="Unisales" />
     <div class="row">
       <div class="col-md-10 img-unisales">
-        <img src="https://unisales.br/wp-content/uploads/2020/03/logo.svg" alt="UnisalesLogo" width="150px" />
-      </div>    
+        <img
+          src="https://unisales.br/wp-content/uploads/2020/03/logo.svg"
+          alt="UnisalesLogo"
+          width="150px"
+        />
+      </div>
       <div class="col-md-2 welcome">
         <H4>Bem-vindo!</H4>
         <p>{{ user }}</p>
@@ -24,8 +27,12 @@
     <div class="row" id="subGrafico1">
       <div class="col-md-3"></div>
       <div class="col-md-6">
-        <GChart type="PieChart" :settings="{ packages: ['corechart'] }" :data="chartData"
-          :options="chartOptions.chart" />
+        <GChart
+          type="PieChart"
+          :settings="{ packages: ['corechart'] }"
+          :data="chartData"
+          :options="chartOptions.chart"
+        />
       </div>
       <div class="col-md-3"></div>
     </div>
@@ -44,6 +51,7 @@ export default {
     GChart,
   },
   props: {
+    errors: Object,
     user: String,
     topLoans: Array,
   },
@@ -82,6 +90,23 @@ export default {
         subGrafico1.slideToggle();
       });
     });
+
+    if (this.errors['accessLevel']) {
+      console.log(this.errors['accessLevel']);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+            this.errors['accessLevel'] +
+          "</span>",
+      });
+    }
   },
 };
 </script>

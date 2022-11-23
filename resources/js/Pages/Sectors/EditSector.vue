@@ -120,6 +120,22 @@ export default {
     this.form.name = this.$page.props.sector[0].sect_name,
     this.form.department = this.$page.props.sector[0].dept_name
 
+    if (this.errors["accessLevel"]) {
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
+
   },
 
   methods: {

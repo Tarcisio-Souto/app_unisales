@@ -1,6 +1,5 @@
 <template>
   <layout>
-
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center">
@@ -13,15 +12,15 @@
     <br />
     <div class="row">
       <div class="col-md-12">
-        <form v-for="department in department" :key="department.id">          
+        <form v-for="department in department" :key="department.id">
           <br /><br />
           <div class="row">
             <div class="col-md-12 topico-add">
               <h4><span style="font-weight: bold">Dados Cadastrais</span></h4>
             </div>
           </div>
-          <hr>
-          <br>
+          <hr />
+          <br />
           <div class="row">
             <div class="col-md-6">
               <label for="inputName">Nome</label>
@@ -38,7 +37,7 @@
                   :value="department.name"
                   disabled
                 />
-              </div>              
+              </div>
             </div>
             <div class="col-md-6">
               <label for="inputInstituicao">Instituição</label>
@@ -55,7 +54,7 @@
                   :value="department.social_name"
                   disabled
                 />
-              </div>              
+              </div>
             </div>
           </div>
           <br />
@@ -64,9 +63,12 @@
             <div class="col-md-4"></div>
             <div class="col-md-4"></div>
             <div class="col-md-4" align="right">
-              <Link :href="'/departamento/editar/'+department.id" class="btn btn-warning btn-edit-user">Editar</Link>
+              <Link
+                :href="'/departamento/editar/' + department.id"
+                class="btn btn-warning btn-edit-user"
+                >Editar</Link
+              >
               <!--<Link href="" class="btn btn-danger btnDeletar">Deletarr</Link>-->
-              
             </div>
           </div>
         </form>
@@ -94,13 +96,32 @@ export default {
     errors: Object,
     department: Array,
   },
+
+  created() {
+    if (this.errors["accessLevel"]) {
+      console.log(this.errors["accessLevel"]);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
+  },
+
   methods: {
     sendForm() {
       this.$inertia.post("/departamento/registrar", this.form, {
         forceFormData: true,
         preserveScroll: false,
         _token: this.$page.props.csrf_token,
-        
       });
     },
   },

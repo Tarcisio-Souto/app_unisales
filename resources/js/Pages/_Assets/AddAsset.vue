@@ -207,6 +207,24 @@ export default {
     axios.get("/categorias/listar-todos").then((response) => {
       this.form.categorias = response.data;
     });
+
+    if (this.errors['accessLevel']) {
+      console.log(this.errors['accessLevel']);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+            this.errors['accessLevel'] +
+          "</span>",
+      });
+    }
+
   },
 
   methods: {

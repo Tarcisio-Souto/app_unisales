@@ -31,8 +31,11 @@ class CategoriesController extends Controller
 
     public function store(Request $req) {
 
+        $cargo = auth()->user()->fk_position;
+
         $search_cartegoria = Categories::where('name', '=', $req->name)->first();
         $msg = '';
+        $alert = '';
 
         if ($req->name != '' && isset($search_cartegoria['name'])) {
             $msg = 'Esta categoria já existe.';
@@ -40,11 +43,28 @@ class CategoriesController extends Controller
 
         if ($req->name == '') {
             $msg = 'Informe o nome da categoria.';
-        }       
+        }   
 
-        if ($msg != '') {
+        if ($cargo != 8) {
+            $alert = 'O acesso requer elevação.';
+        }
+
+        if ($msg != '' && $alert == '') {
             $arr_err = Array(
-                'name' => $msg,  
+                'name' => $msg
+            );
+        } 
+
+        if ($msg == '' && $alert != '') {
+            $arr_err = Array(
+                'accessLevel' => $alert
+            );
+        } 
+
+        if ($msg != '' && $alert != '') {
+            $arr_err = Array(
+                'name' => $msg,
+                'accessLevel' => $alert
             );
         } 
         

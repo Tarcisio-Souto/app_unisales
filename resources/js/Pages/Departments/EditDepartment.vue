@@ -115,6 +115,23 @@ export default {
     };
   },
   created() {
+
+    if (this.errors["accessLevel"]) {
+      console.log(this.errors["accessLevel"]);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
     
     this.form.id = this.$page.props.department[0].id,
     this.form.name = this.$page.props.department[0].name,

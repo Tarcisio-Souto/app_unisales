@@ -12,7 +12,11 @@
     <br />
     <div class="row">
       <div class="col-md-12">
-        <form @submit.prevent="sendForm" enctype="multipart/form-data" id="formAddInstituition">
+        <form
+          @submit.prevent="sendForm"
+          enctype="multipart/form-data"
+          id="formAddInstituition"
+        >
           <br /><br />
           <h4><span style="font-weight: bold">Dados Cadastrais</span></h4>
           <div class="row">
@@ -171,7 +175,6 @@
                 </div>
               </div>
             </div>
-
           </div>
           <br />
 
@@ -305,9 +308,15 @@
                   class="form-control"
                   v-model="form.state"
                   name="txtState"
-                  @change='deleteState($event)'
+                  @change="deleteState($event)"
                 >
-                  <option id='selected_state' :value="form.state" style="background-color:gainsboro">{{ form.state }}</option>                  
+                  <option
+                    id="selected_state"
+                    :value="form.state"
+                    style="background-color: gainsboro"
+                  >
+                    {{ form.state }}
+                  </option>
                   <option
                     v-for="state in states"
                     :key="state.id_state"
@@ -316,9 +325,8 @@
                     {{ state.name }}
                   </option>
                 </select>
-
               </div>
-            </div>  
+            </div>
           </div>
 
           <br /><br />
@@ -452,17 +460,33 @@ export default {
       (this.form.number = this.$page.props.instituition[0].number),
       (this.form.district = this.$page.props.instituition[0].district),
       (this.form.city = this.$page.props.instituition[0].city),
-      (this.form.state = this.$page.props.instituition[0].state),      
+      (this.form.state = this.$page.props.instituition[0].state),
       (this.form.zipcode = this.$page.props.instituition[0].zipcode),
       (this.form.complement = this.$page.props.instituition[0].complement);
 
     (this.form.fk_state = this.$page.props.instituition[0].fk_state),
       (this.form.fk_address = this.$page.props.instituition[0].fk_address);
+
+    if (this.errors["accessLevel"]) {
+      console.log(this.errors["accessLevel"]);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
   },
   methods: {
-
-    deleteState: function() {
-      $('#selected_state').remove();
+    deleteState: function () {
+      $("#selected_state").remove();
     },
 
     sendForm() {

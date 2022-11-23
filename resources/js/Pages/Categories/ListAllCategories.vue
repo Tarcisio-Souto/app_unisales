@@ -1,6 +1,5 @@
 <template>
   <layout>
-
     <form
       @submit.prevent="cadCategory"
       enctype="multipart/form-data"
@@ -117,7 +116,8 @@
       <br />
 
       <!-- Main table element -->
-      <b-table id="myTable"
+      <b-table
+        id="myTable"
         :items="items"
         :fields="fields"
         :current-page="currentPage"
@@ -145,11 +145,9 @@
           ></Link>
           <span
             ><i class="fas fa-trash-alt" @click="delCategory(row.value)"></i
-          ></span>          
+          ></span>
         </template>
-        
       </b-table>
-      
     </b-container>
 
     <!-- <br> temporário -->
@@ -157,7 +155,6 @@
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
-
   </layout>
 </template>
 
@@ -168,11 +165,13 @@ import { tSTypeAliasDeclaration } from "@babel/types";
 export default {
   components: {
     Layout,
-    Link
+    Link,
+  },
+  props: {
+    errors: Object,
   },
   data() {
     return {
-
       form: {
         errors: [],
         name: null,
@@ -211,6 +210,23 @@ export default {
       this.items = response.data;
       this.totalRows = this.items.length;
     });
+
+    if (this.errors["accessLevel"]) {
+      console.log(this.errors["accessLevel"]);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
   },
 
   computed: {
@@ -256,21 +272,35 @@ export default {
                 res.data["success"] +
                 "</span>",
             });
-            this.form.name = null
+            this.form.name = null;
             axios.get("/categorias/listar-todos").then((response) => {
               this.items = response.data;
               this.totalRows = this.items.length;
             });
           } else {
-            this.form.errors = res.data;
-            console.log(res.data);
+            this.form.errors = res.data.errors;
+            //console.log('erro aqui: ', res.data.errors["accessLevel"]);
+            if (res.data.errors["accessLevel"]) {
+              bootbox.alert({
+                centerVertical: true,
+                backdrop: true,
+                closeButton: false,
+                size: "large",
+                title:
+                  "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                message:
+                  "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+                  "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                    res.data.errors["accessLevel"] +
+                  "</span>",
+              });
+            }
           }
         }.bind(this)
       );
     },
 
     delCategory(id) {
-      
       var _this = this;
 
       bootbox.confirm({
@@ -313,7 +343,7 @@ export default {
                   axios.get("/categorias/listar-todos").then((response) => {
                     _this.items = response.data;
                     this.totalRows = _this.items.length;
-                  });                  
+                  });
                 } else {
                   bootbox.alert({
                     centerVertical: true,
@@ -325,7 +355,7 @@ export default {
                     message:
                       "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
                       "<span style='font-weight:bold; position: relative; top: 5px;'>" +
-                      res.data["errors"] +
+                      "O acesso requer elevação." +
                       "</span>",
                   });
                 }
@@ -335,7 +365,6 @@ export default {
         },
       });
     },
-
   },
 };
 </script>

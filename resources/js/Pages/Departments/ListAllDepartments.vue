@@ -198,6 +198,9 @@ export default {
     Layout,
     Link,
   },
+  props: {
+    errors: Object,
+  },
   data() {
     return {
       form: {
@@ -244,6 +247,23 @@ export default {
     axios.get("/instituicoes/listar-todos").then((response) => {
       this.instituicoes = response.data;
     });
+
+    if (this.errors["accessLevel"]) {
+      console.log(this.errors["accessLevel"]);
+      bootbox.alert({
+        centerVertical: true,
+        backdrop: true,
+        closeButton: false,
+        size: "large",
+        title:
+          "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+        message:
+          "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+          "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+          this.errors["accessLevel"] +
+          "</span>",
+      });
+    }
   },
 
   computed: {
@@ -300,7 +320,23 @@ export default {
             });
           } else {
             this.form.errors = res.data.errors;
-            //console.log('erro aqui: ', this.form.errors);
+
+            if (res.data.errors["accessLevel"]) {
+              console.log(res.data.errors["accessLevel"]);
+              bootbox.alert({
+                centerVertical: true,
+                backdrop: true,
+                closeButton: false,
+                size: "large",
+                title:
+                  "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                message:
+                  "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+                  "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                    res.data.errors["accessLevel"] +
+                  "</span>",
+              });
+            }
           }
         }.bind(this)
       );
@@ -349,8 +385,20 @@ export default {
                     this.totalRows = this.items.length;
                   });
                 } else {
-                  this.form.errors = res.data.errors;
-                  //console.log(this.form.errors);
+                  //this.form.errors = res.data.errors;
+                  bootbox.alert({
+                    centerVertical: true,
+                    backdrop: true,
+                    closeButton: false,
+                    size: "large",
+                    title:
+                      "<img src='https://unisales.br/wp-content/uploads/2020/03/logo.svg'>",
+                    message:
+                      "<i class='fas fa-exclamation-circle' style='color:red'></i>&nbsp&nbsp" +
+                      "<span style='font-weight:bold; position: relative; top: 5px;'>" +
+                      "O acesso requer elevação." +
+                      "</span>",
+                  });
                 }
               }.bind(this)
             );

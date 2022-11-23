@@ -44,6 +44,8 @@ class SectorsController extends Controller
 
     public function store(Request $req) {
         
+        $cargo = auth()->user()->fk_position;
+
         $search_dept = Sectors::where('name', '=', $req->name)->first();
         $msg = '';
 
@@ -58,6 +60,29 @@ class SectorsController extends Controller
         if ($msg != '') {
             $arr_err = Array(
                 'name' => $msg,  
+            );
+        } 
+
+        if ($cargo != 8) {
+            $alert = 'O acesso requer elevação.';
+        }
+
+        if ($msg != '' && $alert == '') {
+            $arr_err = Array(
+                'name' => $msg
+            );
+        } 
+
+        if ($msg == '' && $alert != '') {
+            $arr_err = Array(
+                'accessLevel' => $alert
+            );
+        } 
+
+        if ($msg != '' && $alert != '') {
+            $arr_err = Array(
+                'name' => $msg,
+                'accessLevel' => $alert
             );
         } 
         

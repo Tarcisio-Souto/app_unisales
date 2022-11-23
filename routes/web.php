@@ -30,7 +30,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('aut
 
 /* Usuários */
 
-Route::get('/usuario/cadastro', [UsersController::class, 'create'])->name('usuario.cadastro')->middleware('auth');
+Route::get('/usuario/cadastro', [UsersController::class, 'create'])->name('usuario.cadastro')->middleware(['auth', 'check-user-level']);
 Route::post('/usuario/registrar', [UsersController::class, 'store'])->middleware(['auth', 'check-user-level']);
 Route::get('/usuarios/lista', [UsersController::class, 'index'])->name('usuarios.lista')->middleware(['auth', 'check-user-level']);
 Route::get('/usuarios/listar-todos', [UsersController::class, 'listAllUsers'])->name('usuarios.listAllUsers')->middleware(['auth', 'check-user-level']);

@@ -45,7 +45,7 @@ class CategoriesController extends Controller
             $msg = 'Informe o nome da categoria.';
         }   
 
-        if ($cargo != 8) {
+        if ($cargo != 1) {
             $alert = 'O acesso requer elevação.';
         }
 

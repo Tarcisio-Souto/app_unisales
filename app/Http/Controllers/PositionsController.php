@@ -43,7 +43,7 @@ class PositionsController extends Controller
             );
         } 
 
-        if ($cargo != 8) {
+        if ($cargo != 1) {
             $alert = 'O acesso requer elevação.';
         }
 

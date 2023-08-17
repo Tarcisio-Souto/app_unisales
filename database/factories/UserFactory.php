@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'fk_department' => '2',
             'fk_sector' => '18',
             'fk_instituition' => '1',
-            'fk_position' => '5',
+            'fk_position' => '1',
             'genre' => 'm',
             'password' => Hash::make($key),
             'path_photo' => '',

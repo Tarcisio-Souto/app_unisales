@@ -22,7 +22,7 @@ class CheckUserLevel
         // Recupera o e-mail do usuário logado
         $cargo = auth()->user()->fk_position;
 
-        if ($cargo != 8) {
+        if ($cargo != 1) {
             return Redirect::back()->withErrors(['accessLevel' => 'O acesso requer elevação.']);
         }
 

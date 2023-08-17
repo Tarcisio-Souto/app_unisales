@@ -16,7 +16,7 @@ Esta é a aplicação web, mas também desenvolvi a versão mobile com o Flutter
 <ul>
     <li>Laravel 8</li>
     <li>PHP 8</li>
-    <li>VueJs 2</li>
+    <li>VueJs 2 (Inertia)</li>
     <li>Bootstrap 4</li>
     <li>Javascript</li>
     <li>Bootbox JS (modais)</li>
@@ -72,31 +72,31 @@ Esta é a aplicação web, mas também desenvolvi a versão mobile com o Flutter
 
 ><b>Login</b><br>
 
-![Screenshot](https://github.com/Tarcisio-Souto/api_register_home_appliances/blob/main/capturas/01_-_Login.PNG)
+![Screenshot](https://github.com/Tarcisio-Souto/app_unisales/blob/main/capturas/01_-_Login.PNG)
 
 <br><br>
 
 ><b>Início</b><br>
 
-![Screenshot](https://github.com/Tarcisio-Souto/api_register_home_appliances/blob/main/capturas/02_-_Início.PNG)
+![Screenshot](https://github.com/Tarcisio-Souto/app_unisales/blob/main/capturas/02_-_Início.PNG)
 
 <br><br>
 
 ><b>Menu</b><br>
 
-![Screenshot](https://github.com/Tarcisio-Souto/api_register_home_appliances/blob/main/capturas/03_-_Menu.PNG)
+![Screenshot](https://github.com/Tarcisio-Souto/app_unisales/blob/main/capturas/03_-_Menu.PNG)
 
 <br><br>
 
 ><b>Cadastro de Usuários</b><br>
 
-![Screenshot](https://github.com/Tarcisio-Souto/api_register_home_appliances/blob/main/capturas/04_-_Cadastro-Usuário.PNG)
+![Screenshot](https://github.com/Tarcisio-Souto/app_unisales/blob/main/capturas/04_-_Cadastro-Usuário.PNG)
 
 <br><br>
 
 ><b>Locação</b><br>
 
-![Screenshot](https://github.com/Tarcisio-Souto/api_register_home_appliances/blob/main/capturas/05_-_Locação.PNG)
+![Screenshot](https://github.com/Tarcisio-Souto/app_unisales/blob/main/capturas/05_-_Locação.PNG)
 
 
 <br><br><br>
